@@ -3652,4 +3652,13 @@ export default {
   "Your webhooks stop sending while Integrations is off. They stay set up.": "\"इंटीग्रेशन\" बंद रहने तक आपके Webhook कुछ नहीं भेजते। वे सेट रहते हैं।",
   "{0} of {1} modules on.": "{1} में से {0} मॉड्यूल चालू।",
   "{0} stops syncing while Health is off. Nothing is disconnected, and it catches up once Health is back.": "\"सेहत\" बंद रहने तक {0} सिंक नहीं करता। कुछ भी डिस्कनेक्ट नहीं होता, और \"सेहत\" लौटते ही सब पकड़ लेता है।",
+  'Ads': 'विज्ञापन',
+  'Ads are off': 'विज्ञापन बंद हैं',
+  'Ads removed — thank you!': 'विज्ञापन हटा दिए गए — धन्यवाद!',
+  'One-time purchase — R$ 34,90': 'एक बार की खरीद — R$ 34,90',
+  'Purchase could not be verified': 'खरीद सत्यापित नहीं हो सकी',
+  'Purchase restored': 'खरीद बहाल हो गई',
+  'Remove ads': 'विज्ञापन हटाएँ',
+  'Restore purchases': 'खरीद बहाल करें',
+  'Thanks for supporting openGym.': 'openGym का साथ देने के लिए धन्यवाद।'
 }

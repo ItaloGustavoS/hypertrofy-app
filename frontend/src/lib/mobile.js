@@ -15,6 +15,7 @@ import { effectiveRoutineIds } from './history.js'
 import { NUDGE_COPY, lineIndex, nudgeFor, nudgeMinute, toneOf } from './nudge.js'
 import { excusedOn } from './day-notes.js'
 import { stateJson } from './state-json.js'
+import { PREMIUM_PRODUCT_ID, normalizePurchase } from './monetization.js'
 
 export const MOBILE = import.meta.env.VITE_MOBILE === '1'
 
@@ -488,3 +489,109 @@ async function writeToChosenFolder(state, day) {
 
 // Tests only: forget the cached choice, as a fresh start of the app would.
 export function _resetBackupFolder() { folderState = null; folderPlugin = null; folderListeners.clear() }
+
+/* ------------------------------------------------------------ monetization -- */
+// AdMob banner + the one-time "remove ads" purchase. Mobile shells only: the web build
+// never calls any of this, and every wrapper degrades to false when the plugin is missing,
+// which the UI reads as "not available here" rather than as an error worth showing.
+
+// Ad unit IDs are per platform in AdMob, so they come from two build-time vars. Unset means
+// no banner at all — better than a crash or an empty strip over the content.
+const BANNER_ID = {
+  android: import.meta.env.VITE_ADMOB_BANNER_ID_ANDROID,
+  ios: import.meta.env.VITE_ADMOB_BANNER_ID_IOS,
+}
+
+let adsReady = false   // AdMob initialized AND consent lets us request ads
+let adsInit = null
+
+// Initializing twice is pointless and the consent answer cannot change mid-session, so the
+// first call is cached — including a failure, which is what "no ads on this build" looks like.
+export function initAds() {
+  if (!MOBILE) return Promise.resolve(false)
+  adsInit ||= (async () => {
+    try {
+      const { AdMob } = await import('@capacitor-community/admob')
+      await AdMob.initialize()
+      // UMP consent (required in the EEA). canRequestAds is false until the user answers the
+      // form, and it stays false if the form is unavailable — fail closed, never guess.
+      const info = await AdMob.requestConsentInfo()
+      const consent = info?.status === 'REQUIRED' ? await AdMob.showConsentForm() : info
+      adsReady = !!consent?.canRequestAds
+      return true
+    } catch (e) { return false }
+  })()
+  return adsInit
+}
+
+export async function showBanner(adFree) {
+  if (!MOBILE || !adsReady || adFree === true) return false
+  const adId = BANNER_ID[await nativePlatform()]
+  if (!adId) return false
+  try {
+    const { AdMob, BannerAdSize, BannerAdPosition } = await import('@capacitor-community/admob')
+    await AdMob.showBanner({ adId, adSize: BannerAdSize.BANNER, position: BannerAdPosition.BOTTOM_CENTER })
+    // The banner is a native overlay above the WebView, not part of the page — this class is
+    // what keeps the last row of content from ending up underneath it.
+    document.body.classList.add('has-banner')
+    return true
+  } catch (e) { return false }
+}
+
+export async function hideBanner() {
+  if (!MOBILE) return false
+  document.body.classList.remove('has-banner')
+  try {
+    const { AdMob } = await import('@capacitor-community/admob')
+    await AdMob.hideBanner()
+    return true
+  } catch (e) { return false }
+}
+
+// Android hands back a purchaseToken; StoreKit 2 gives a transaction id (what the App Store
+// Server API looks a transaction up by) plus the signed JWS. Either identifies the purchase.
+const tokenOf = tx => tx?.purchaseToken || tx?.transactionId || tx?.jwsRepresentation || ''
+
+// One-time, non-consumable purchase that sets S.adFree. The receipt is validated server-side
+// via POST /api/purchase/validate — the client never trusts the store response alone.
+export async function purchasePremium(validate) {
+  if (!MOBILE) return { ok: false }
+  try {
+    const { NativePurchases, PURCHASE_TYPE } = await import('@capgo/native-purchases')
+    const tx = await NativePurchases.purchaseProduct({
+      productIdentifier: PREMIUM_PRODUCT_ID,
+      productType: PURCHASE_TYPE.INAPP,
+    })
+    const payload = normalizePurchase({
+      productId: tx?.productIdentifier || PREMIUM_PRODUCT_ID,
+      purchaseToken: tokenOf(tx),
+      platform: await nativePlatform(),
+    })
+    if (!payload) return { ok: false }
+    const verdict = await validate(payload)
+    return verdict && verdict.adFree ? { ok: true } : { ok: false }
+  } catch (e) { return { ok: false } }
+}
+
+// restorePurchases() replays the store's own sync and returns void, so the entitlements have
+// to be read back with getPurchases() afterwards.
+export async function restorePurchases(validate) {
+  if (!MOBILE) return { ok: false }
+  try {
+    const { NativePurchases, PURCHASE_TYPE } = await import('@capgo/native-purchases')
+    await NativePurchases.restorePurchases()
+    const res = await NativePurchases.getPurchases({ productType: PURCHASE_TYPE.INAPP })
+    const platform = await nativePlatform()
+    for (const p of res?.purchases || []) {
+      const payload = normalizePurchase({
+        productId: p.productIdentifier || '',
+        purchaseToken: tokenOf(p),
+        platform,
+      })
+      if (!payload) continue
+      const verdict = await validate(payload)
+      if (verdict && verdict.adFree) return { ok: true }
+    }
+    return { ok: false }
+  } catch (e) { return { ok: false } }
+}

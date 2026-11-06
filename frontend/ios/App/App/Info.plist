@@ -125,5 +125,17 @@
 	<string>Used to write openGym links onto your own NFC stickers, so a tap can start your workout or open an exercise.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Used to make sure it’s really you before your account is deleted.</string>
+	<!-- AdMob. The App ID below is Google's public *test* ID: it keeps credential-less builds
+	     working and only serves test ads, so replace it with the real one before a release.
+	     shortcut: test AdMob App ID, swap for the real one when the AdMob account exists.
+	     SKAdNetworkItems is deliberately absent until then — Google publishes the list per app. -->
+	<key>GADIsAdManagerApp</key>
+	<true/>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-3940256099942544~1458002511</string>
+	<!-- Shown only if the App Tracking Transparency prompt is ever requested. Declining it
+	     just means ads stay non-personalized. -->
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Allow tracking so ads can be more relevant to you. Declining keeps ads non-personalized.</string>
 </dict>
 </plist>

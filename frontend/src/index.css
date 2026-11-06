@@ -288,6 +288,9 @@ body.resting #app{padding-bottom:calc(166px + var(--sab))}
 /* The workout screen has no tab bar (App.jsx): only the docked rest bar, when it is there. */
 body.no-tabbar #app{padding-bottom:calc(24px + var(--sab))}
 body.no-tabbar.resting #app{padding-bottom:calc(96px + var(--sab))}
+/* The AdMob banner is a native view drawn over the WebView, not an element in the page, so
+   the scroll area has to make room for it by hand: 50dp banner + the tab bar it sits above. */
+body.has-banner #app{padding-bottom:calc(178px + var(--sab))}
 .workout-end-spacer{height:0}
 /* The end of a workout (Workout.jsx, P3): Add exercise and the session note as one inset list. */
 .wk-end{margin-top:2px}

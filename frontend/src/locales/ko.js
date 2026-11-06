@@ -3652,4 +3652,13 @@ export default {
   "Your webhooks stop sending while Integrations is off. They stay set up.": "'연동'이 꺼져 있는 동안 웹훅이 전송되지 않아요. 설정은 그대로예요.",
   "{0} of {1} modules on.": "모듈 {1}개 중 {0}개 켜짐.",
   "{0} stops syncing while Health is off. Nothing is disconnected, and it catches up once Health is back.": "'건강'이 꺼져 있는 동안 {0} 동기화가 멈춰요. 연결은 끊기지 않고, '건강'을 다시 켜면 밀린 걸 따라잡아요.",
+  'Ads': '광고',
+  'Ads are off': '광고가 꺼져 있습니다',
+  'Ads removed — thank you!': '광고가 제거되었습니다 — 감사합니다!',
+  'One-time purchase — R$ 34,90': '일회성 구매 — R$ 34,90',
+  'Purchase could not be verified': '구매를 확인할 수 없습니다',
+  'Purchase restored': '구매가 복원되었습니다',
+  'Remove ads': '광고 제거',
+  'Restore purchases': '구매 복원',
+  'Thanks for supporting openGym.': 'openGym을 지원해 주셔서 감사합니다.'
 }

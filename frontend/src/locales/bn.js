@@ -3731,4 +3731,13 @@ export default {
   "Your webhooks stop sending while Integrations is off. They stay set up.": "\"ইন্টিগ্রেশন\" বন্ধ থাকলে আপনার ওয়েবহুক কিছু পাঠায় না। সেগুলো সেট আপ করাই থাকে।",
   "{0} of {1} modules on.": "{1}টির মধ্যে {0}টি মডিউল চালু।",
   "{0} stops syncing while Health is off. Nothing is disconnected, and it catches up once Health is back.": "\"স্বাস্থ্য\" বন্ধ থাকলে {0} সিঙ্ক বন্ধ রাখে। কিছুই বিচ্ছিন্ন হয় না, আর \"স্বাস্থ্য\" ফিরলেই সব পুষিয়ে নেয়।",
+  'Ads': 'বিজ্ঞাপন',
+  'Ads are off': 'বিজ্ঞাপন বন্ধ আছে',
+  'Ads removed — thank you!': 'বিজ্ঞাপন সরানো হয়েছে — ধন্যবাদ!',
+  'One-time purchase — R$ 34,90': 'একবারের কেনাকাটা — R$ 34,90',
+  'Purchase could not be verified': 'কেনাকাটা যাচাই করা যায়নি',
+  'Purchase restored': 'কেনাকাটা পুনরুদ্ধার হয়েছে',
+  'Remove ads': 'বিজ্ঞাপন সরান',
+  'Restore purchases': 'কেনাকাটা পুনরুদ্ধার করুন',
+  'Thanks for supporting openGym.': 'openGym-কে সমর্থন করার জন্য ধন্যবাদ।'
 }

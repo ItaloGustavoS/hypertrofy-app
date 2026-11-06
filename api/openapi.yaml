@@ -172,6 +172,12 @@ tags:
       attached to a logged workout. Stored per profile (one quota for both) and named
       by the SHA-256 of its bytes; the state only carries a `MediaRef`. Every route here is a
       404 when the instance runs with `MEDIA_UPLOADS=0`.
+  - name: purchase
+    description: >-
+      Store-receipt validation for the mobile app's one-time "remove ads" purchase.
+      Mobile shells only; the web PWA never calls it. Answers `{ adFree: true }` only
+      for a receipt the store itself confirmed, and `adFree: false` for everything
+      else, including an instance with no store credentials configured (501).
   - name: coach
     description: >-
       AI Coach: plans, reviews and debriefs. Every route here answers 503 unless the
@@ -3821,6 +3827,72 @@ paths:
               example: { error: "unknown provider" }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
+
+  /api/purchase/validate:
+    post:
+      tags: [purchase]
+      operationId: purchaseValidate
+      summary: Validate a store receipt for the "remove ads" purchase
+      description: |
+        Called by the Android and iOS shells after a purchase or a restore. The client
+        sends the identifier the store handed it and flips its local `adFree` flag only
+        on `{ adFree: true }` from here — the store response alone is never trusted.
+
+        Android sends the Play `purchaseToken`; iOS sends the StoreKit 2 transaction id
+        (or its signed JWS). The server asks the store (Play Developer API, App Store
+        Server API) and answers `adFree: true` only for the known product in a valid,
+        non-refunded state. Fail-closed: an unrecognized product, a missing or expired
+        receipt, a vendor error, or an instance with no store credentials answers
+        `adFree: false` — an unverified purchase unlocks nothing.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [productId, purchaseToken, platform]
+              properties:
+                productId:
+                  type: string
+                  enum: [openGym_premium_remove_ads]
+                purchaseToken:
+                  type: string
+                  description: >-
+                    Play `purchaseToken` on Android, StoreKit 2 transaction id or JWS
+                    on iOS.
+                platform:
+                  type: string
+                  enum: [android, ios]
+      responses:
+        '200':
+          description: The store confirmed the purchase.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  adFree: { type: boolean, enum: [true] }
+        '400':
+          description: Unknown product, missing token, or a platform that isn't android/ios.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+              examples:
+                product: { value: { adFree: false, error: "unknown product" } }
+                platform: { value: { adFree: false, error: "platform must be android or ios" } }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '501':
+          description: This instance has no credentials for the store the receipt came from.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+              example: { adFree: false, error: "iap-not-configured" }
+        '500':
+          description: The store could not be reached, or refused the credentials.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+              example: { adFree: false, error: "validation backend error" }
 
 components:
   securitySchemes:

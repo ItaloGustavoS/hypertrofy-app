@@ -93,6 +93,9 @@ export const DEF = {
   theme: 'dark', accent: 'lime', body: 'male', targetW: null,
   // The weekly-rate corridor on the body-weight card (#759, lib/bodyweight.js rateCorridor).
   rateGoal: null,
+  // Mobile shells only: the one-time "remove ads" purchase. Local state like any other
+  // setting, but only a receipt the server verified may set it to true.
+  adFree: false,
   bodyweight: [], routines: [], week: {}, dayPlan: {},
   // A note per day off (#261): { [iso]: { tag, text, _ts } } (lib/day-notes.js). A noted day is
   // excused from the missed-day nudge; each day merges on its own stamp (lib/sync-merge.js).

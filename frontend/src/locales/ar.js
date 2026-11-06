@@ -3707,4 +3707,13 @@ export default {
   "Your webhooks stop sending while Integrations is off. They stay set up.": "لا يرسل الويب هوك شيئًا ما دامت «التكاملات» متوقفة. يبقى مُعدًّا.",
   "{0} of {1} modules on.": "{0} من {1} وحدات مفعّلة.",
   "{0} stops syncing while Health is off. Nothing is disconnected, and it catches up once Health is back.": "يتوقف {0} عن المزامنة ما دامت «الصحة» متوقفة. لا يُفصل شيء، ويلحق بكل شيء عند عودة «الصحة».",
+  'Ads': 'إعلانات',
+  'Ads are off': 'الإعلانات متوقفة',
+  'Ads removed — thank you!': 'تمت إزالة الإعلانات — شكرًا!',
+  'One-time purchase — R$ 34,90': 'شراء لمرة واحدة — R$ 34,90',
+  'Purchase could not be verified': 'تعذّر التحقق من الشراء',
+  'Purchase restored': 'تمت استعادة الشراء',
+  'Remove ads': 'إزالة الإعلانات',
+  'Restore purchases': 'استعادة المشتريات',
+  'Thanks for supporting openGym.': 'شكرًا لدعمك openGym.'
 }

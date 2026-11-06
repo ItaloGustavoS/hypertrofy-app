@@ -39,6 +39,7 @@ import { useTour, tourState, openTour, readTour, shouldOffer, resumeAt } from '.
 import { exitWorkoutEdit, startFlow, beginWorkout, bwSheet } from './sheets.jsx'
 import Icon from './components/Icon.jsx'
 import TabBar from './components/TabBar.jsx'
+import AdBanner from './components/AdBanner.jsx'
 import ScrollTopButton from './components/ScrollTopButton.jsx'
 import ErrorBoundary from './components/ErrorBoundary.jsx'
 import Modals from './components/Modals.jsx'
@@ -380,6 +381,7 @@ function Shell() {
       <SyncBanner />
       {!noTabs && <TabBar onStart={startFlow} />}
       {!noTabs && authed && <ScrollTopButton off={loc.pathname === '/workout'} path={loc.pathname} />}
+      <AdBanner />
       <RestTimer />
       <Modals />
       <Toast />

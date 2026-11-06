@@ -1,0 +1,24 @@
+# Notes for the real Info.plist next to this file.
+#
+# Info.plist is tracked in git — there is no per-developer overlay. The only value in it
+# that must not ship is the AdMob App ID, and it currently holds Google's public *test*
+# App ID (ca-app-pub-3940256099942544~1458002511) so a credential-less build still runs
+# and only serves test ads. Replace it in place when the AdMob account exists:
+#
+#   <key>GADApplicationIdentifier</key>
+#   <string>ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX</string>
+#
+# Also present, and required by the Google Mobile Ads SDK:
+#   GADIsAdManagerApp                  <true/>
+#   NSUserTrackingUsageDescription    shown only if the ATT prompt is ever requested;
+#                                     declining just keeps ads non-personalized
+#
+# Not yet present, add when the AdMob account exists:
+#   SKAdNetworkItems                  Google publishes the list per app; without it ads
+#                                     still serve but install attribution is limited
+#
+# Required for App Store submission once the app is actually distributed there (openGym
+# only uses standard HTTPS, no proprietary crypto):
+#
+#   <key>ITSAppUsesNonExemptEncryption</key>
+#   <false/>

@@ -31,6 +31,11 @@ services:
       # is `tar czf … data/`, and a live refresh token must not end up inside it. Nothing here
       # needs backing up — if you lose it, sign the provider in again.
       - ./coach-auth:/coach-auth
+      # Store receipts for the mobile "remove ads" purchase. Uncomment and point the matching
+      # variable in .env at these paths; without them the endpoint answers 501 and the app
+      # stays ad-supported.
+      # - ./secrets/google-play-sa.json:/run/secrets/google-play-sa.json:ro
+      # - ./secrets/apple-iap.p8:/run/secrets/apple-iap.p8:ro
 
   # Builds the React frontend (multi-stage) and serves it, proxying /api → api
   # and the exercise animations, which are part of the image. Single origin for passkeys.

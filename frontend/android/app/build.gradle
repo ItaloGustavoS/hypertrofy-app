@@ -1,5 +1,18 @@
 apply plugin: 'com.android.application'
 
+// AdMob's App ID has to exist in the manifest at merge time, but it is per-developer
+// credential, so it is read from local.properties (gitignored) instead of being committed.
+// The fallback is Google's public *test* App ID: it keeps credential-less builds working and
+// makes ads render as test ads, so it must be replaced before a store release.
+// shortcut: test AdMob App ID, swap for the real one in local.properties before shipping.
+def admobAppId = 'ca-app-pub-3940256099942544~3347511713'
+def localProps = rootProject.file('local.properties')
+if (localProps.exists()) {
+    def props = new Properties()
+    localProps.withInputStream { props.load(it) }
+    if (props.getProperty('admob.app.id')) admobAppId = props.getProperty('admob.app.id')
+}
+
 android {
     namespace = "ch.duartesantos.opengym"
     compileSdk = rootProject.ext.compileSdkVersion
@@ -13,6 +26,7 @@ android {
         versionCode 31
         versionName "1.4.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [admobAppId: admobAppId]
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
              // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61

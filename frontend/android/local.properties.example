@@ -1,0 +1,27 @@
+# Copy this file to "local.properties" (without the .example suffix) and
+# fill in the values for your machine + your app. local.properties is in
+# .gitignore — never commit it. Capacitor reads it at build time.
+
+# Android SDK path — set this to wherever your Android SDK is installed.
+# Examples:
+#   Linux:   /home/you/Android/Sdk
+#   macOS:   /Users/you/Library/Android/sdk
+#   Windows: C\:\\Users\\you\\AppData\\Local\\Android\\Sdk
+sdk.dir=/path/to/Android/Sdk
+
+# AdMob App ID — get it from https://admob.google.com/ after registering the
+# Android app. Format: ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX
+# app/build.gradle reads this and fills the com.google.android.gms.ads.APPLICATION_ID
+# meta-data in AndroidManifest.xml. Left commented out, the build falls back to
+# Google's public test App ID, which only serves test ads.
+# admob.app.id=ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX
+
+# Google Play service account JSON — get it from Google Play Console →
+# Setup → API access → Service accounts. The api container reads this on
+# receipt validation, not the Android build itself. The path is the
+# in-container path, so for Docker use a bind mount or secret:
+#   google.play.sa.json=/run/secrets/google-play-sa.json
+google.play.sa.json=/path/to/google-play-sa.json
+
+# Google Play package name — must match applicationId in app/build.gradle.
+google.play.package.name=ch.duartesantos.opengym

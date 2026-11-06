@@ -3663,4 +3663,13 @@ export default {
   "Your webhooks stop sending while Integrations is off. They stay set up.": "เว็บฮุกจะหยุดส่งระหว่างที่ \"การเชื่อมต่อ\" ปิดอยู่ แต่ยังตั้งค่าไว้เหมือนเดิม",
   "{0} of {1} modules on.": "เปิดอยู่ {0} จาก {1} โมดูล",
   "{0} stops syncing while Health is off. Nothing is disconnected, and it catches up once Health is back.": "{0} จะหยุดซิงก์ระหว่างที่ \"สุขภาพ\" ปิดอยู่ ไม่มีอะไรถูกตัดการเชื่อมต่อ และจะตามทันเมื่อเปิด \"สุขภาพ\" อีกครั้ง",
+  'Ads': 'โฆษณา',
+  'Ads are off': 'ปิดโฆษณาอยู่',
+  'Ads removed — thank you!': 'ลบโฆษณาแล้ว — ขอบคุณ!',
+  'One-time purchase — R$ 34,90': 'ซื้อครั้งเดียว — R$ 34,90',
+  'Purchase could not be verified': 'ไม่สามารถตรวจสอบการซื้อได้',
+  'Purchase restored': 'กู้คืนการซื้อแล้ว',
+  'Remove ads': 'ลบโฆษณา',
+  'Restore purchases': 'กู้คืนการซื้อ',
+  'Thanks for supporting openGym.': 'ขอบคุณที่สนับสนุน openGym'
 }

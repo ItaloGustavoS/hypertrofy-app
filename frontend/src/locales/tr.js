@@ -3652,4 +3652,13 @@ export default {
   "Your webhooks stop sending while Integrations is off. They stay set up.": "“Entegrasyonlar” kapalıyken webhook'ların bir şey göndermez. Kurulu kalırlar.",
   "{0} of {1} modules on.": "{1} modülden {0} tanesi açık.",
   "{0} stops syncing while Health is off. Nothing is disconnected, and it catches up once Health is back.": "“Sağlık” kapalıyken {0} eşitlemeyi durdurur. Hiçbir bağlantı kesilmez, “Sağlık” geri gelince her şeyi yakalar.",
+  'Ads': 'Reklamlar',
+  'Ads are off': 'Reklamlar kapalı',
+  'Ads removed — thank you!': 'Reklamlar kaldırıldı — teşekkürler!',
+  'One-time purchase — R$ 34,90': 'Tek seferlik satın alma — R$ 34,90',
+  'Purchase could not be verified': 'Satın alma doğrulanamadı',
+  'Purchase restored': 'Satın alma geri yüklendi',
+  'Remove ads': 'Reklamları kaldır',
+  'Restore purchases': 'Satın alımları geri yükle',
+  'Thanks for supporting openGym.': 'openGym’i desteklediğiniz için teşekkürler.'
 }

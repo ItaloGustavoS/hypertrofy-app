@@ -1,0 +1,5 @@
+# Generated files that api/test compares byte-for-byte against the generator output.
+# Without this, core.autocrlf on Windows checks them out as CRLF and the test fails.
+api/nudge-copy.js text eol=lf
+api/wrapped-copy.js text eol=lf
+api/coach/core/prompts.js text eol=lf

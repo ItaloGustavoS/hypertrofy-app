@@ -43,6 +43,7 @@ import { createIntegrations } from './integrations/index.js';
 import { integrationRoutes } from './integrations/routes.js';
 import { excusedOn, nudgeFor, nudgeWindowOpen, toneOf } from './nudge.js';
 import { wrappedPushYear, wrappedSummary, wrappedPushOwed, wrappedPush } from './wrapped.js';
+import { validatePurchase } from './purchase.js';
 
 const PORT = +(process.env.PORT || 3000);
 const DATA = process.env.DATA_DIR || '/data';
@@ -2983,7 +2984,19 @@ const routes = {
   /* ---------- photos & videos ---------- */
   // Absent, not refusing, when MEDIA_UPLOADS=0: a 404 is what a server from before the feature
   // answers, and the client already treats that as "this server does not store them".
-  ...(MEDIA_ON ? mediaRoutes : {})
+  ...(MEDIA_ON ? mediaRoutes : {}),
+
+  // Store receipt check for the mobile "remove ads" purchase. The client only flips its local
+  // adFree flag on { adFree: true } from here; every failure — including a server with no store
+  // credentials — answers adFree:false, so an unverified purchase can never unlock anything.
+  'POST /api/purchase/validate': async (req, res) => {
+    const user = readSession(req);
+    if (!user) return json(res, 401, { error: 'not signed in' });
+    const out = await validatePurchase(await readBody(req));
+    audit(req, 'iap.validate', { user, platform: out.platform || null, ok: !!out.ok });
+    if (!out.ok) return json(res, out.code, { adFree: false, error: out.error });
+    json(res, 200, { adFree: true });
+  }
 };
 
 /* ---------- Coach: boot recovery, notifications, scheduled reviews ---------- */

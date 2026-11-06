@@ -3652,4 +3652,13 @@ export default {
   "Your webhooks stop sending while Integrations is off. They stay set up.": "Tes webhooks n’envoient plus rien tant qu’« Intégrations » est désactivé. Ils restent configurés.",
   "{0} of {1} modules on.": "{0} modules actifs sur {1}.",
   "{0} stops syncing while Health is off. Nothing is disconnected, and it catches up once Health is back.": "{0} ne se synchronise plus tant que « Santé » est désactivé. Rien n’est déconnecté, et tout se rattrape dès que « Santé » revient.",
+  'Ads': 'Publicité',
+  'Ads are off': 'Les publicités sont désactivées',
+  'Ads removed — thank you!': 'Publicités supprimées — merci !',
+  'One-time purchase — R$ 34,90': 'Achat unique — R$ 34,90',
+  'Purchase could not be verified': 'L’achat n’a pas pu être vérifié',
+  'Purchase restored': 'Achat restauré',
+  'Remove ads': 'Supprimer les publicités',
+  'Restore purchases': 'Restaurer les achats',
+  'Thanks for supporting openGym.': 'Merci de soutenir openGym.'
 }

@@ -3699,4 +3699,13 @@ export default {
   "Your webhooks stop sending while Integrations is off. They stay set up.": "Dina webhooks skickar inget medan ”Integrationer” är av. De förblir inställda.",
   "{0} of {1} modules on.": "{0} av {1} moduler på.",
   "{0} stops syncing while Health is off. Nothing is disconnected, and it catches up once Health is back.": "{0} slutar synka medan ”Hälsa” är av. Inget kopplas bort, och allt kommer ikapp när ”Hälsa” är tillbaka.",
+  'Ads': 'Annonser',
+  'Ads are off': 'Annonserna är avstängda',
+  'Ads removed — thank you!': 'Annonser borttagna — tack!',
+  'One-time purchase — R$ 34,90': 'Engångsköp — R$ 34,90',
+  'Purchase could not be verified': 'Köpet kunde inte verifieras',
+  'Purchase restored': 'Köp återställt',
+  'Remove ads': 'Ta bort annonser',
+  'Restore purchases': 'Återställ köp',
+  'Thanks for supporting openGym.': 'Tack för att du stöder openGym.'
 }

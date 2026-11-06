@@ -3652,4 +3652,13 @@ export default {
   "Your webhooks stop sending while Integrations is off. They stay set up.": "“集成”关闭期间，你的 Webhook 不会发送。设置仍然保留。",
   "{0} of {1} modules on.": "已开启 {0}/{1} 个模块。",
   "{0} stops syncing while Health is off. Nothing is disconnected, and it catches up once Health is back.": "“健康”关闭期间，{0} 会停止同步。不会断开任何连接，“健康”重新开启后会自动补上。",
+  'Ads': '广告',
+  'Ads are off': '广告已关闭',
+  'Ads removed — thank you!': '广告已移除——谢谢！',
+  'One-time purchase — R$ 34,90': '一次性购买 — R$ 34,90',
+  'Purchase could not be verified': '无法验证购买',
+  'Purchase restored': '购买已恢复',
+  'Remove ads': '移除广告',
+  'Restore purchases': '恢复购买',
+  'Thanks for supporting openGym.': '感谢你支持 openGym。'
 }

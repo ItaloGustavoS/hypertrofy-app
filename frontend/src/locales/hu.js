@@ -3655,4 +3655,13 @@ export default {
   "Your webhooks stop sending while Integrations is off. They stay set up.": "Amíg az „Integrációk” ki vannak kapcsolva, a webhookjaid nem küldenek semmit. Beállítva maradnak.",
   "{0} of {1} modules on.": "{1} modulból {0} bekapcsolva.",
   "{0} stops syncing while Health is off. Nothing is disconnected, and it catches up once Health is back.": "Amíg az „Egészség” ki van kapcsolva, a(z) {0} nem szinkronizál. A kapcsolat megmarad, és mindent bepótol, amint az „Egészség” újra be van kapcsolva.",
+  'Ads': 'Hirdetések',
+  'Ads are off': 'A hirdetések ki vannak kapcsolva',
+  'Ads removed — thank you!': 'Hirdetések eltávolítva — köszönjük!',
+  'One-time purchase — R$ 34,90': 'Egyszeri vásárlás — R$ 34,90',
+  'Purchase could not be verified': 'A vásárlást nem sikerült ellenőrizni',
+  'Purchase restored': 'Vásárlás visszaállítva',
+  'Remove ads': 'Hirdetések eltávolítása',
+  'Restore purchases': 'Vásárlások visszaállítása',
+  'Thanks for supporting openGym.': 'Köszönjük, hogy támogatod az openGymet.'
 }

@@ -25,13 +25,13 @@ import { speak, speechSupported, SPEECH_RATES, speechRateOf } from '../lib/speec
 import { sampleCue } from '../lib/spoken-cues.js'
 import { muscleTargetsSheet } from '../components/WeeklySets.jsx'
 import { aboutYouSheet } from '../components/StrengthLevel.jsx'
-import { api, webauthnOK, passkeyRegister, passkeyError, IS_ANDROID } from '../lib/api.js'
+import { api, webauthnOK, passkeyRegister, passkeyError, validatePurchase, IS_ANDROID } from '../lib/api.js'
 import { pushSupported, enablePush, disablePush, sendTestPush, syncPushSubscription } from '../lib/push.js'
 import { wakeLockSupported } from '../lib/wakelock.js'
 import { t, tn, LANGS, INSTR_LANGS, EXERCISE_NAME_LANGS, baseLang, dateLocale } from '../lib/i18n.js'
 import { effectiveLang } from '../lib/default-lang.js'
 import { DEMO, REPO } from '../lib/demo.js'
-import { MOBILE, isAndroid, shareExport, shareExportBlob, syncReminder } from '../lib/mobile.js'
+import { MOBILE, isAndroid, shareExport, shareExportBlob, syncReminder, purchasePremium, restorePurchases } from '../lib/mobile.js'
 import { NUDGE_COPY, NUDGE_TONES, toneOf } from '../lib/nudge.js'
 import { referencedFiles } from '../lib/media-refs.js'
 import { mediaStore } from '../lib/media-store.js'
@@ -1277,6 +1277,34 @@ export default function Settings({ page = null, find = null, via = null, entryKe
     }} />
 }
 
+// Mobile only: the one-time purchase that hides the banner. Once bought, the sell row goes
+// away and only the "you own this" line stays — there is nothing left to offer.
+function PremiumCard() {
+  const S = useStore(s => s.S)
+  const update = useStore(s => s.update)
+  const toast = useUI(s => s.toast)
+  const busy = useRef(false)
+  if (S.adFree) return <Section title={t('Ads')}>
+    <Row icon="crown" iconTint="var(--gold)" title={t('Ads are off')} subtitle={t('Thanks for supporting openGym.')} />
+  </Section>
+  const run = async (fn, okMsg) => {
+    if (busy.current) return   // a second tap while the store sheet is open must not buy twice
+    busy.current = true
+    try {
+      const out = await fn(validatePurchase)
+      if (out?.ok) { update(s => { s.adFree = true }); toast(okMsg) }
+      else toast(t('Purchase could not be verified'))
+    } catch (e) { toast(t('Purchase could not be verified')) }
+    finally { busy.current = false }
+  }
+  return <Section title={t('Ads')}>
+    <Row icon="crown" iconTint="var(--gold)" title={t('Remove ads')} subtitle={t('One-time purchase — R$ 34,90')}
+      accessory="chevron" onClick={() => run(purchasePremium, t('Ads removed — thank you!'))} />
+    <Row icon="history" iconTint="var(--blue)" title={t('Restore purchases')}
+      accessory="chevron" onClick={() => run(restorePurchases, t('Purchase restored'))} />
+  </Section>
+}
+
 function SettingsRoot({ ctx, preview, open, user, sync, home, go, entryKey }) {
   // The router's key for this history entry, taken once. From the router rather than
   // window.history: drawn under an edge swipe back the page is the entry before the current one.
@@ -1319,6 +1347,7 @@ function SettingsRoot({ ctx, preview, open, user, sync, home, go, entryKey }) {
           <Icon name="chevronRight" className="lrow-c" />
         </button>
       </Section>
+      {MOBILE && <PremiumCard />}
       {ROOT_GROUPS.map(g => g.filter(id => pageVisible(id, ctx))).filter(g => g.length).map(g => (
         <Section key={g[0]}>
           {g.map(id => <Row key={id} icon={PAGES[id].icon} iconTint={PAGES[id].tint} title={t(PAGES[id].title)}
@@ -1334,6 +1363,7 @@ function SettingsRoot({ ctx, preview, open, user, sync, home, go, entryKey }) {
     </>}
   </div>
 }
+
 
 // The whole point is that the two scales are one judgement counted from opposite ends, and a
 // paragraph is a bad way to say that — the conversion table shows it in one look. Reading down
