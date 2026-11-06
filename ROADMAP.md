@@ -15,6 +15,22 @@ new exercise database (v1.4.0).
 - Next, in order: Google Play for everyone, F-Droid & integrations (v1.4.5) →
   Wear OS out of beta & Health Connect (v1.4.6) → the progression engine & circuits (v1.4.7) → the list after that
 
+## The rebrand port (Hypertrofy) — this branch is the v2 cut
+
+`hypertrofy-port-v2` is where the rebrand work now lives, and it is a **cut from `origin/main`
+(v1.4.4)**, not from the old port. The old branch (`hypertrofy-port`) is frozen with the metrics and
+the in-house AI on top of v1.2.13; the v2 branch took the money with it and let upstream take the
+rest.
+
+What arrived from upstream for free, because it already existed: the AI Coach (`api/coach/`, OpenAI
+compatible, so OpenRouter needs no new code), body measurements, progress photos, wearables, rate
+limits, admin-dashboard Coach config. The phases that duplicated those were dropped, and the Phase 1
+cuts (MCP, admin dashboard, demo build) went back in with them.
+
+What the port still owns on top of v1.4.4: the AdMob banner and the one-time "remove ads" purchase
+(`openGym_premium_remove_ads`, R$ 34,90), receipt validation server-side, the Settings card. See
+the phases below.
+
 ---
 
 ## v1.3.2 and v1.3.3: Cleaner workout  (released 2026-09-05)
