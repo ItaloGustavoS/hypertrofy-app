@@ -18,7 +18,6 @@ import { EXDB } from '../lib/exercises.js'
 import { emptyCoach, coachAvailable, hasConsent, CONSENT_VERSION, CATEGORY_TEXT, appendChat, defaultTrainingDays } from '../lib/coach.js'
 import { requestPlan, disclosure, JOB_ERRORS, isDeclined, coachVia } from '../lib/coach-api.js'
 import { consentTarget, allowAi } from '../lib/coach-consent.js'
-import { DEMO } from '../lib/demo.js'
 import { useCoachGate } from '../lib/use-coach-gate.js'
 import { MOBILE } from '../lib/mobile.js'
 import { activeProfile } from '../lib/equipment.js'
@@ -99,7 +98,7 @@ export default function CoachIntake() {
     // data-sharing sheet asks before the first request (lib/coach-api.js ensureAiConsent). The
     // yes counts for that provider and host too, so a first-timer is asked once, not twice.
     // Only when the disclosure arrived: a screen that could not say where to is not a yes to it.
-    const target = !DEMO && consentTarget(info, coachVia())
+    const target = consentTarget(info, coachVia())
     if (target && !target.local) allowAi(target).catch(() => {})
     update(s => { s.coach = { ...(s.coach || emptyCoach()), consent: { agreedAt: new Date().toISOString(), version: CONSENT_VERSION } } })
     if (reconsentOnly) nav('/coach', { replace: true })

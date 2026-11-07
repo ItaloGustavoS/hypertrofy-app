@@ -2,15 +2,14 @@
 // The door every Coach job goes through asks first (Apple 5.1.2(i)): once per provider and host,
 // before the first request that would send training data there. Pinned here with the real
 // coach-api.js and coach-consent.js; the sheet itself is a stand-in that answers as told, and
-// no request ever leaves (api.js, the phone's pipeline and the demo are all fakes).
+// no request ever leaves (api.js and the phone's pipeline are both fakes).
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 const mocks = vi.hoisted(() => ({
-  DEMO: false, MOBILE: false, coachLocal: null,
+  MOBILE: false, coachLocal: null,
   disclosure: { provider: 'openai', providerLabel: 'OpenAI API', host: 'api.openai.com', categories: [], version: 1 },
   answer: true,
 }))
-vi.mock('./demo.js', () => ({ get DEMO() { return mocks.DEMO }, DEMO_SEEDED: 'gym_demo_seeded_v1', REPO: '' }))
 vi.mock('./mobile.js', () => ({ get MOBILE() { return mocks.MOBILE }, readJsonFile: async () => null, writeJsonFile: async () => {} }))
 vi.mock('./api.js', () => ({
   api: vi.fn(async path => (path === '/api/coach/disclosure' ? mocks.disclosure : { job: { id: 'j1' } })),
@@ -23,15 +22,10 @@ vi.mock('./coach-local.js', () => ({
   localDisclosure: vi.fn(async () => mocks.disclosure),
   localReview: vi.fn(async () => ({ job: { id: 'local-1' } })),
 }))
-vi.mock('./coach-demo.js', () => ({
-  demoDisclosure: vi.fn(() => ({ provider: 'demo' })),
-  demoReview: vi.fn(async () => ({ job: { id: 'demo-1' } })),
-}))
 
 const { api } = await import('./api.js')
 const { askAiConsent } = await import('../components/CoachConsentSheet.jsx')
 const local = await import('./coach-local.js')
-const demo = await import('./coach-demo.js')
 const { requestReview, requestPlan, refinePlan, requestDebrief, isDeclined } = await import('./coach-api.js')
 const { aiConsents, withdrawAi, _resetAiConsent } = await import('./coach-consent.js')
 
@@ -42,7 +36,7 @@ beforeEach(() => {
   localStorage.clear()
   _resetAiConsent()
   Object.assign(mocks, {
-    DEMO: false, MOBILE: false, coachLocal: null, answer: true,
+    MOBILE: false, coachLocal: null, answer: true,
     disclosure: { provider: 'openai', providerLabel: 'OpenAI API', host: 'api.openai.com', categories: [], version: 1 },
   })
 })
@@ -133,12 +127,3 @@ describe('the phone with its own key', () => {
   })
 })
 
-describe('the demo', () => {
-  it('never asks: its Coach is canned and nothing leaves the device', async () => {
-    mocks.DEMO = true
-    await requestReview('')
-    expect(askAiConsent).not.toHaveBeenCalled()
-    expect(demo.demoReview).toHaveBeenCalledTimes(1)
-    expect(api).not.toHaveBeenCalled()
-  })
-})

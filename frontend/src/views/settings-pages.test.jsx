@@ -156,29 +156,6 @@ describe('the root', () => {
     expect(mocks.navs).toEqual([['/settings/alerts'], ['/coach/setup'], ['/settings/account']])
   })
 
-  it('in a hosted app, an admin gets the Coach row too, straight to the Coach card of the admin dashboard', () => {
-    mocks.config = { coach: { enabled: true } }
-    mocks.user = { id: 'u1', name: 'Dana' }
-    mount()
-    expect(titles()).not.toContain('AI Coach')
-    mocks.user = { id: 'u1', name: 'Dana', admin: true }
-    mount()
-    expect(rowTitled('AI Coach').textContent).toContain('Admin')
-    act(() => rowTitled('AI Coach').click())
-    expect(mocks.navs).toEqual([['/admin', { state: { section: 'coach' } }]])
-  })
-
-  it('only while the server offers the Coach, so the row never leads to an admin page without it (#683)', () => {
-    mocks.user = { id: 'u1', name: 'Dana', admin: true }
-    mount()
-    expect(titles()).not.toContain('AI Coach')
-    mocks.config = { coach: null }
-    mount()
-    expect(titles()).not.toContain('AI Coach')
-    mocks.config = { coach: { enabled: true } }
-    mount()
-    expect(titles()).toContain('AI Coach')
-  })
 
   it('searches every setting and a hit goes to its page with the row to flash', () => {
     mount()

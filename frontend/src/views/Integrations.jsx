@@ -4,7 +4,6 @@ import { useStore } from '../store/useStore.js'
 import { useUI } from '../store/useUI.js'
 import { t } from '../lib/i18n.js'
 import { api } from '../lib/api.js'
-import { DEMO } from '../lib/demo.js'
 import { MOBILE } from '../lib/mobile.js'
 import { fmtAgo } from '../lib/format.js'
 import { copyText } from '../lib/clipboard.js'
@@ -115,14 +114,14 @@ export default function IntegrationsPage({ android = false, ios = false }) {
   const toast = useUI(s => s.toast)
   const fileRef = useRef(null)
   const offered = config?.integrations?.providers || []
-  const server = useServerIntegrations(!!user && !DEMO && offered.length > 0)
+  const server = useServerIntegrations(!!user && offered.length > 0)
   const health = useHealth()
   const platform = MOBILE ? (ios ? 'ios' : android ? 'android' : health?.platform || platformNow()) : null
   const S = useStore(s => s.S)
   const ctx = {
-    mobile: MOBILE, platform, user, demo: DEMO, admin: !!user?.admin, health, server: server.data, offered,
+    mobile: MOBILE, platform, user, admin: !!user?.admin, health, server: server.data, offered,
     mod: id => isOn(S, id),
-    coach: coachAvailable(config, user, { demo: DEMO }), coachMode: coachLocal?.mode === 'server' || coachLocal?.mode === 'byok' ? coachLocal.mode : null,
+    coach: coachAvailable(config, user), coachMode: coachLocal?.mode === 'server' || coachLocal?.mode === 'byok' ? coachLocal.mode : null,
   }
   const dir = directory(ctx)
 

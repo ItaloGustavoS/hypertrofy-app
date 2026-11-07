@@ -15,7 +15,7 @@ globalThis.IS_REACT_ACT_ENVIRONMENT = true
    waiting for its push does not flash it. The store is a stand-in: its `sync` is what each test
    sets; ServerSync.jsx (the words and the actions) is the real one. */
 const mocks = vi.hoisted(() => {
-  const state = { MOBILE: false, DEMO: false, webauthn: true, user: null, guest: false, onboarding: false, sync: null, S: {}, sheets: [], navs: [] }
+  const state = { MOBILE: false, webauthn: true, user: null, guest: false, onboarding: false, sync: null, S: {}, sheets: [], navs: [] }
   state.toast = vi.fn()
   state.syncNow = vi.fn(async () => state.sync)
   state.passkeyLogin = vi.fn(async () => ({ id: 'u1', name: 'andi' }))
@@ -40,7 +40,6 @@ vi.mock('../store/useUI.js', () => {
 })
 vi.mock('react-router-dom', () => ({ useNavigate: () => to => mocks.navs.push(to) }))
 vi.mock('../lib/mobile.js', () => ({ get MOBILE() { return mocks.MOBILE } }))
-vi.mock('../lib/demo.js', () => ({ get DEMO() { return mocks.DEMO } }))
 vi.mock('../lib/api.js', () => ({ webauthnOK: () => mocks.webauthn, passkeyLogin: (...a) => mocks.passkeyLogin(...a) }))
 vi.mock('../sheets.jsx', () => ({ askAddDeviceData: vi.fn() }))
 // What the connect sheet was opened with is the point; its own form is tested elsewhere.
@@ -58,7 +57,7 @@ const network = on => {
 let host, root
 beforeEach(() => {
   network(true)
-  Object.assign(mocks, { MOBILE: false, DEMO: false, webauthn: true, user: { id: 'u1', name: 'andi' }, guest: false, onboarding: false, sync: sync('ok'), S: {} })
+  Object.assign(mocks, { MOBILE: false, webauthn: true, user: { id: 'u1', name: 'andi' }, guest: false, onboarding: false, sync: sync('ok'), S: {} })
   mocks.sheets.length = 0
   mocks.navs.length = 0
   mocks.toast.mockClear(); mocks.syncNow.mockClear(); mocks.passkeyLogin.mockClear(); mocks.update.mockClear()
@@ -316,15 +315,6 @@ describe('a sign-in waiting for its question', () => {
 })
 
 describe('where it never shows', () => {
-  it('the public demo, which has no server by design', () => {
-    mocks.DEMO = true
-    mocks.user = null
-    mocks.guest = true
-    mocks.sync = sync('local')
-    render()
-    expect(bar()).toBeNull()
-  })
-
   it('the phone\'s first-launch choice', () => {
     mocks.MOBILE = true
     mocks.user = null

@@ -7,7 +7,6 @@
 
 import { useEffect, useState, useCallback, useRef } from 'react'
 import { api } from './api.js'
-import { DEMO } from './demo.js'
 import { MOBILE } from './mobile.js'
 import { t, tn, getLang } from './i18n.js'
 import { useStore } from '../store/useStore.js'
@@ -17,12 +16,6 @@ import { useUI } from '../store/useUI.js'
 const POLL_MS = 3000        // a job is running: often enough to feel live
 const IDLE_MS = 60000       // a Coach screen is open but nothing is running
 
-// The demo build has no backend, so it answers these locally with a canned proposal built
-// from its own seeded profile (lib/coach-demo.js). Everything downstream — validation,
-// staleness, apply, revert, the log — runs unchanged; only the provider is faked. The module
-// is imported dynamically so none of it lands in a self-hosted bundle.
-let demoMod = null
-const demo = async () => (demoMod = demoMod || await import('./coach-demo.js'))
 const S = () => useStore.getState().S
 // Each request says which language the app is in: a profile that never picked one has no stored
 // `lang` worth trusting — it is worked out per device (#303, lib/default-lang.js) — and the
@@ -69,10 +62,9 @@ export const settleAwaited = id => { if (!id || awaited === id) awaited = null }
    provider and host on this device (lib/coach-consent.js). The demo answers locally and a model
    on your own network is not a third party, so neither asks. "Not now" rejects with code
    'declined' and `quiet`, which the screens let pass without a toast: you said no, you know. */
-export const coachVia = () => (DEMO ? 'demo' : LOCAL() ? 'device' : 'server')
+export const coachVia = () => (LOCAL() ? 'device' : 'server')
 export const isDeclined = e => e?.code === 'declined'
 export async function ensureAiConsent() {
-  if (DEMO) return true
   const { consentTarget, hasAiConsent, allowAi } = await import('./coach-consent.js')
   const target = consentTarget(await disclosure(), coachVia())
   if (!target || target.local || await hasAiConsent(target)) return true
@@ -82,18 +74,18 @@ export async function ensureAiConsent() {
 }
 const asked = fn => async (...a) => { await ensureAiConsent(); return fn(...a) }
 
-export const coachStatus = async () => DEMO ? (await demo()).demoStatus() : LOCAL() ? (await local()).localStatus() : api('/api/coach/status')
-const _requestReview = async note => DEMO ? (await demo()).demoReview(S()) : LOCAL() ? (await local()).localReview(S(), note) : api('/api/coach/review', { method: 'POST', body: JSON.stringify({ note: note || '', lang: getLang() }) })
+export const coachStatus = async () => LOCAL() ? (await local()).localStatus() : api('/api/coach/status')
+const _requestReview = async note => LOCAL() ? (await local()).localReview(S(), note) : api('/api/coach/review', { method: 'POST', body: JSON.stringify({ note: note || '', lang: getLang() }) })
 export const requestReview = (...a) => asked(_requestReview)(...a).then(track)
-const _requestPlan = async intake => DEMO ? (await demo()).demoPlan(S(), intake) : LOCAL() ? (await local()).localPlan(S(), intake) : api('/api/coach/plan', { method: 'POST', body: JSON.stringify({ intake, lang: getLang() }) })
+const _requestPlan = async intake => LOCAL() ? (await local()).localPlan(S(), intake) : api('/api/coach/plan', { method: 'POST', body: JSON.stringify({ intake, lang: getLang() }) })
 export const requestPlan = (...a) => asked(_requestPlan)(...a).then(track)
-const _refinePlan = async text => DEMO ? (await demo()).demoRefine(S()) : LOCAL() ? (await local()).localRefine(S(), text) : api('/api/coach/plan', { method: 'POST', body: JSON.stringify({ refine: text, lang: getLang() }) })
+const _refinePlan = async text => LOCAL() ? (await local()).localRefine(S(), text) : api('/api/coach/plan', { method: 'POST', body: JSON.stringify({ refine: text, lang: getLang() }) })
 export const refinePlan = (...a) => asked(_refinePlan)(...a).then(track)
-const _requestDebrief = async workoutId => DEMO ? (await demo()).demoDebrief(S(), workoutId) : LOCAL() ? (await local()).localDebrief(S(), workoutId) : api('/api/coach/debrief', { method: 'POST', body: JSON.stringify({ workoutId: workoutId || null, lang: getLang() }) })
+const _requestDebrief = async workoutId => LOCAL() ? (await local()).localDebrief(S(), workoutId) : api('/api/coach/debrief', { method: 'POST', body: JSON.stringify({ workoutId: workoutId || null, lang: getLang() }) })
 export const requestDebrief = (...a) => asked(_requestDebrief)(...a).then(track)
 // A question in the chat, answered in words (the `ask` job). The session running here goes along
 // (lib/coach-context.js): the server never holds it.
-const _askCoach = async text => DEMO ? (await demo()).demoAsk(S(), text) : LOCAL() ? (await local()).localAsk(S(), text, todayForCoach(S())) : api('/api/coach/ask', { method: 'POST', body: JSON.stringify({ text, today: todayForCoach(S()), lang: getLang() }) })
+const _askCoach = async text => LOCAL() ? (await local()).localAsk(S(), text, todayForCoach(S())) : api('/api/coach/ask', { method: 'POST', body: JSON.stringify({ text, today: todayForCoach(S()), lang: getLang() }) })
 export const askCoach = (...a) => asked(_askCoach)(...a).then(track)
 // "Ask the Coach" on an exercise mid-workout (the `adapt` job): `entry` is its index in the running
 // session, `reason` one of pain/busy/short/great/tired/other, `text` optional. The session goes
@@ -103,7 +95,7 @@ const _requestAdapt = async ({ entry, reason, text } = {}) => {
   const today = todayForCoach(st)
   if (!today) throw Object.assign(new Error(t('There’s no workout running.')), { code: 'invalid' })
   const body = { today, entry, reason: reason || 'other', text: String(text || '').trim(), activeId: st.active?.id || null }
-  return DEMO ? (await demo()).demoAdapt(st, body) : LOCAL() ? (await local()).localAdapt(st, body) : api('/api/coach/adapt', { method: 'POST', body: JSON.stringify({ ...body, lang: getLang() }) })
+  return LOCAL() ? (await local()).localAdapt(st, body) : api('/api/coach/adapt', { method: 'POST', body: JSON.stringify({ ...body, lang: getLang() }) })
 }
 export const requestAdapt = (...a) => asked(_requestAdapt)(...a).then(track)
 // An automatic review, if one is due (lib/coach-schedule.js asks while the app is open). Only a
@@ -111,7 +103,7 @@ export const requestAdapt = (...a) => asked(_requestAdapt)(...a).then(track)
 // question was asked when they were switched on, and nobody is there to ask it now: a "yes"
 // withdrawn since (Coach menu, AI data sharing) means no run, not a dialog out of nowhere.
 export async function scheduledReview() {
-  if (DEMO || !LOCAL()) return null
+  if (!LOCAL()) return null
   const { consentTarget, hasAiConsent } = await import('./coach-consent.js')
   const target = consentTarget(await disclosure(), 'device')
   if (target && !target.local && !await hasAiConsent(target)) return null
@@ -122,7 +114,7 @@ export async function scheduledReview() {
 // when it comes to the foreground, and says it once per proposal.
 const ANNOUNCED_KEY = 'gym_coach_announced'
 export async function scheduledNotice() {
-  if (DEMO || LOCAL() || !MOBILE) return null
+  if (LOCAL() || !MOBILE) return null
   const p = (await api('/api/coach/status'))?.pending
   if (!p || p.trigger !== 'scheduled') return null
   try { if (localStorage.getItem(ANNOUNCED_KEY) === p.id) return null; localStorage.setItem(ANNOUNCED_KEY, p.id) } catch { /* said again next time, at worst */ }
@@ -150,11 +142,11 @@ async function announceProposal(pending) {
 
 // The room: anonymous medians across the profiles on this instance that opted in. Only a
 // server has a room; a phone with its own key and the demo both answer locally.
-export const cohortStats = async () => DEMO ? (await demo()).demoCohort(S()) : LOCAL() ? { ok: false, enabled: false } : api('/api/coach/cohort')
-export const setCohortShare = async share => (DEMO || LOCAL()) ? { ok: true, sharing: !!share } : api('/api/coach/cohort/share', { method: 'POST', body: JSON.stringify({ share: !!share }) })
-export const resolvePending = async body => DEMO ? (await demo()).demoResolve() : LOCAL() ? (await local()).localResolve(body) : api('/api/coach/pending/resolve', { method: 'POST', body: JSON.stringify(body) })
-export const forgetCoach = async () => DEMO ? (await demo()).demoResolve() : LOCAL() ? (await local()).localForget() : api('/api/coach/forget', { method: 'POST', body: '{}' })
-export const disclosure = async () => DEMO ? (await demo()).demoDisclosure() : LOCAL() ? (await local()).localDisclosure() : api('/api/coach/disclosure')
+export const cohortStats = async () => LOCAL() ? { ok: false, enabled: false } : api('/api/coach/cohort')
+export const setCohortShare = async share => LOCAL() ? { ok: true, sharing: !!share } : api('/api/coach/cohort/share', { method: 'POST', body: JSON.stringify({ share: !!share }) })
+export const resolvePending = async body => LOCAL() ? (await local()).localResolve(body) : api('/api/coach/pending/resolve', { method: 'POST', body: JSON.stringify(body) })
+export const forgetCoach = async () => LOCAL() ? (await local()).localForget() : api('/api/coach/forget', { method: 'POST', body: '{}' })
+export const disclosure = async () => LOCAL() ? (await local()).localDisclosure() : api('/api/coach/disclosure')
 
 /**
  * Live job/proposal state.

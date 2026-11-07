@@ -13,10 +13,11 @@ Not in this folder (added at deploy time):
 - `app-store-badge.svg`: Apple's official "Download on the App Store" badge, shown once the
   download card's `data-appstore` says `live`. The APKs themselves are not here any more: the
   download buttons point at the GitHub release (`releases/latest/download/<name>`)
-- `demo/` — the browser-only demo build of the app, embedded in the `#demo` section and
-  reachable on its own at `/demo/`. Built from `../frontend` with `VITE_DEMO=1`, with the
-  180 px exercise media from `../catalogue/media` staged into `demo/exercise-media/` by
-  `../scripts/catalogue/stage-media.mjs` (see the `pages` job in `../.gitlab-ci.yml`).
+- `demo/` — the app built with `VITE_MOBILE` unset, embedded in the `#demo` section and
+  reachable on its own at `/demo/`. It runs as guest: everything stays in the browser's
+  localStorage, so it needs no backend. The 180 px exercise media from `../catalogue/media`
+  is staged into `demo/exercise-media/` by `../scripts/catalogue/stage-media.mjs` (see the
+  `pages` job in `../.gitlab-ci.yml`).
   Never put larger media here (see `../catalogue/media/NOTICE.md`). It has to live on
   this host: the site frames it, and `X-Frame-Options: SAMEORIGIN` would block it from
   anywhere else.

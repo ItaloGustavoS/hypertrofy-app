@@ -757,15 +757,14 @@ verify:scan:
 # The browser-only demo: https://opengym-bc111a.gitlab.io/
 # (that opaque host is GitLab's "unique domain" for Pages, on by default; the tidier
 # https://duartesantos8.gitlab.io/opengym/ 308s to it. Settings → Pages turns it off.)
-# Pages serves static files only, so this build has no backend — VITE_DEMO=1 makes the
-# app boot straight into guest mode with a seeded example history (frontend/src/lib/demo.js).
+# Pages serves static files only, so this build has no backend: the app boots into guest
+# mode, with everything in localStorage.
 # Vite's base is './', so the bundle drops into a subdirectory unchanged.
 pages:
   extends: .node
   stage: deploy
   needs: ["test:frontend"]
   variables:
-    VITE_DEMO: "1"
   cache:
     key:
       files:

@@ -82,8 +82,8 @@ flowchart TB
   survive a reload.
 - **Logic in `lib/`.** Anything that decides what you lift next, or reads a logged session back, is
   a pure function with a test beside it. Views stay thin.
-- **Platform switches.** `lib/mobile.js` (`MOBILE`), `lib/channel.js` (APK or store build) and the
-  `VITE_DEMO` flag for the demo. Native code is only reached through Capacitor plugins.
+- **Platform switches.** `lib/mobile.js` (`MOBILE`) and `lib/channel.js` (APK or store build).
+  Native code is only reached through Capacitor plugins.
 
 ## Sync
 
