@@ -1,4 +1,4 @@
-package ch.duartesantos.opengym.wear
+package com.hypertrofy.app.wear
 
 /**
  * The Wearable Data Layer between the phone app (app/: WatchBridgePlugin, WatchListenerService,

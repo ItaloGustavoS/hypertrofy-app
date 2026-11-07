@@ -24,4 +24,4 @@ sdk.dir=/path/to/Android/Sdk
 google.play.sa.json=/path/to/google-play-sa.json
 
 # Google Play package name — must match applicationId in app/build.gradle.
-google.play.package.name=ch.duartesantos.opengym
+google.play.package.name=com.hypertrofy.app

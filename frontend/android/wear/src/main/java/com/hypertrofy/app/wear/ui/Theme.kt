@@ -1,4 +1,4 @@
-package ch.duartesantos.opengym.wear.ui
+package com.hypertrofy.app.wear.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color

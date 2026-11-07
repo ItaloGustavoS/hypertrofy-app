@@ -1,4 +1,4 @@
-package ch.duartesantos.opengym;
+package com.hypertrofy.app;
 
 
 /** The APK from GitHub and opengym.ch installs its own updates (InstallPlugin). */

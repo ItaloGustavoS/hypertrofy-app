@@ -17,6 +17,6 @@
     android:previewLayout="@layout/widget_small"
     android:previewImage="@mipmap/ic_launcher"
     android:description="@string/widget_desc"
-    android:configure="ch.duartesantos.opengym.OpenGymWidgetConfigure"
+    android:configure="com.hypertrofy.app.OpenGymWidgetConfigure"
     android:widgetFeatures="reconfigurable"
     android:widgetCategory="home_screen" />

@@ -3854,7 +3854,7 @@ paths:
               properties:
                 productId:
                   type: string
-                  enum: [openGym_premium_remove_ads]
+                  enum: [hypertrofy_premium_remove_ads]
                 purchaseToken:
                   type: string
                   description: >-

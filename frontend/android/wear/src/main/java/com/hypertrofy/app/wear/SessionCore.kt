@@ -1,4 +1,4 @@
-package ch.duartesantos.opengym.wear
+package com.hypertrofy.app.wear
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonArray

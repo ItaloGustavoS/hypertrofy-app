@@ -1,4 +1,4 @@
-package ch.duartesantos.opengym;
+package com.hypertrofy.app;
 
 /**
  * The battery side of the rest countdown, kept free of Android classes so it is unit tested.

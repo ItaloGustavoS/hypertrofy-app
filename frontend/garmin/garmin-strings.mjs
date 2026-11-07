@@ -54,7 +54,7 @@ const OWN = {
   },
   waiting_phone: {
     eng: 'Waiting for your phone. Open openGym there if it takes a while.',
-    deu: 'Warte aufs Handy. Öffne dort openGym, falls es dauert.',
+    deu: 'Warte aufs Handy. Öffne dort Hypertrofy, falls es dauert.',
     fre: 'On attend ton téléphone. Ouvre openGym dessus si ça traîne.',
     spa: 'Esperando a tu móvil. Abre openGym allí si tarda.',
     ita: 'In attesa del telefono. Apri openGym lì se ci mette tanto.',

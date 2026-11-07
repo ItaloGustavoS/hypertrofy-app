@@ -12,7 +12,7 @@ import fs from 'node:fs';
 
 // Duplicated (not imported) from frontend/src/lib/monetization.js — a tiny pure constant,
 // not worth sharing across the two runtimes.
-export const PREMIUM_PRODUCT_ID = 'openGym_premium_remove_ads';
+export const PREMIUM_PRODUCT_ID = 'hypertrofy_premium_remove_ads';
 const PLATFORMS = ['android', 'ios'];
 
 const b64u = s => Buffer.from(s).toString('base64url');

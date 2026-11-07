@@ -1,4 +1,4 @@
-package ch.duartesantos.opengym.wear
+package com.hypertrofy.app.wear
 
 import android.app.PendingIntent
 import android.content.Context

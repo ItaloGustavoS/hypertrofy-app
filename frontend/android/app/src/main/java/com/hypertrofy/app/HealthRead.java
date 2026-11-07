@@ -1,4 +1,4 @@
-package ch.duartesantos.opengym;
+package com.hypertrofy.app;
 
 import androidx.health.connect.client.records.HeartRateRecord;
 import androidx.health.connect.client.records.WeightRecord;

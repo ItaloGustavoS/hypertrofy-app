@@ -1,4 +1,4 @@
-package ch.duartesantos.opengym;
+package com.hypertrofy.app;
 
 import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;

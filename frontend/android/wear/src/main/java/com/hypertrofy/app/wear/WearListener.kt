@@ -1,4 +1,4 @@
-package ch.duartesantos.opengym.wear
+package com.hypertrofy.app.wear
 
 import com.google.android.gms.wearable.DataEvent
 import com.google.android.gms.wearable.DataEventBuffer

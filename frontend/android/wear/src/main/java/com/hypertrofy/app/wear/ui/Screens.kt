@@ -1,4 +1,4 @@
-package ch.duartesantos.opengym.wear.ui
+package com.hypertrofy.app.wear.ui
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -56,14 +56,14 @@ import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.items
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material3.Text
-import ch.duartesantos.opengym.wear.Entry
-import ch.duartesantos.opengym.wear.R
-import ch.duartesantos.opengym.wear.ReadySession
-import ch.duartesantos.opengym.wear.Rest
-import ch.duartesantos.opengym.wear.SessionCore
-import ch.duartesantos.opengym.wear.SessionState
-import ch.duartesantos.opengym.wear.WearStore
-import ch.duartesantos.opengym.wear.WorkoutSummary
+import com.hypertrofy.app.wear.Entry
+import com.hypertrofy.app.wear.R
+import com.hypertrofy.app.wear.ReadySession
+import com.hypertrofy.app.wear.Rest
+import com.hypertrofy.app.wear.SessionCore
+import com.hypertrofy.app.wear.SessionState
+import com.hypertrofy.app.wear.WearStore
+import com.hypertrofy.app.wear.WorkoutSummary
 import kotlinx.coroutines.delay
 import kotlin.math.abs
 

@@ -54,7 +54,7 @@ public class WatchBridgePlugin: CAPPlugin, CAPBridgedPlugin, WCSessionDelegate {
         CAPPluginMethod(name: "dropClips", returnType: CAPPluginReturnPromise),
     ]
 
-    private let queue = DispatchQueue(label: "ch.opengym.watch-events")
+    private let queue = DispatchQueue(label: "com.hypertrofy.app.watch-events")
 
     override public func load() {
         guard WCSession.isSupported() else { return }
@@ -82,7 +82,7 @@ public class WatchBridgePlugin: CAPPlugin, CAPBridgedPlugin, WCSessionDelegate {
 
     /// A workout started on the phone: the watch app opens with it (Settings → Apple Watch, "Open on
     /// the watch"). HealthKit wakes the watch app with the workout's planned type (the page's
-    /// `type`, else strength training), and the watch starts its workout session (OpenGymWatchApp's
+    /// `type`, else strength training), and the watch starts its workout session (HypertrofyWatchApp's
     /// delegate). Only with a paired watch that has the app; anything else resolves { ok: false }
     /// and nothing happens.
     @objc func openOnWatch(_ call: CAPPluginCall) {
@@ -170,7 +170,7 @@ public class WatchBridgePlugin: CAPPlugin, CAPBridgedPlugin, WCSessionDelegate {
 
     /// The clips already on their way for each workout, by exercise.
     private var clipsSent: [String: Set<String>] = [:]
-    private let clipQueue = DispatchQueue(label: "ch.opengym.watch-clips", qos: .utility)
+    private let clipQueue = DispatchQueue(label: "com.hypertrofy.app.watch-clips", qos: .utility)
 
     @objc func sendClips(_ call: CAPPluginCall) {
         guard let wid = call.getString("wid"), WCSession.isSupported() else { call.resolve(["sent": 0]); return }

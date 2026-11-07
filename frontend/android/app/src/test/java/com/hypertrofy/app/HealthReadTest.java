@@ -1,4 +1,4 @@
-package ch.duartesantos.opengym;
+package com.hypertrofy.app;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -50,7 +50,7 @@ public class HealthReadTest {
     public void weighInsCarryTheirOriginAndClientId() {
         Metadata scale = new Metadata(Metadata.RECORDING_METHOD_AUTOMATICALLY_RECORDED, "rec-1", new DataOrigin("com.withings.wiscale2"),
                 Instant.ofEpochMilli(5), null, 0, null);
-        Metadata ours = new Metadata(Metadata.RECORDING_METHOD_MANUAL_ENTRY, "rec-2", new DataOrigin("ch.duartesantos.opengym"),
+        Metadata ours = new Metadata(Metadata.RECORDING_METHOD_MANUAL_ENTRY, "rec-2", new DataOrigin("com.hypertrofy.app"),
                 Instant.ofEpochMilli(5), "opengym-bw-2026-10-15", 1, null);
         List<HealthRead.Weight> out = HealthRead.weights(Arrays.asList(
                 new WeightRecord(Instant.ofEpochMilli(1_000), ZoneOffset.UTC, Mass.kilograms(81.25), scale),

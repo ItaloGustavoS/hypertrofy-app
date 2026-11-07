@@ -22,7 +22,7 @@ set -uo pipefail
 APK=${1:?debug apk}
 ADB=${ADB:-/opt/android-sdk/platform-tools/adb}
 CDP=${CDP:-/root/homelab/scripts/android-repro/cdp.mjs}
-PKG=${PKG:-ch.duartesantos.opengym.test}
+PKG=${PKG:-com.hypertrofy.app.test}
 PREFS=shared_prefs/opengym_gym_reminder.xml
 PORT=${PORT:-47731}
 EXEMPT=${EXEMPT:-battery}
@@ -39,7 +39,7 @@ count() { $ADB shell dumpsys notification --noredact | grep -c "android.title=St
 checking() { $ADB shell dumpsys notification --noredact | grep -c "android.title=String (Checking if you made it"; }
 note() { $ADB exec-out run-as "$PKG" cat "$PREFS" 2>/dev/null | grep -o '<string name="lastNote">[^<]*' | sed 's/.*>//'; }
 foreground() {
-  $ADB shell am start -n "$PKG/ch.duartesantos.opengym.MainActivity" >/dev/null 2>&1
+  $ADB shell am start -n "$PKG/com.hypertrofy.app.MainActivity" >/dev/null 2>&1
   for i in $(seq 1 60); do
     $ADB shell cat /proc/net/unix | grep -q "webview_devtools_remote_$($ADB shell pidof $PKG | tr -d '\r')" && break
     sleep 3

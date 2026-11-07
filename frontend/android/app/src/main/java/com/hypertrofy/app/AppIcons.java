@@ -1,4 +1,4 @@
-package ch.duartesantos.opengym;
+package com.hypertrofy.app;
 
 /**
  * The home-screen icons and the launcher entry each one is (AppIconPlugin). Every icon is an

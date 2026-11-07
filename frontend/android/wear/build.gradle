@@ -23,10 +23,10 @@ def phoneName = (phoneGradle =~ /versionName\s+"([^"]+)"/)[0][1]
 ext.WEAR_VERSION_OFFSET = 10000
 
 android {
-    namespace = "ch.duartesantos.opengym.wear"
+    namespace = "com.hypertrofy.app.wear"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "ch.duartesantos.opengym"
+        applicationId "com.hypertrofy.app"
         minSdkVersion rootProject.ext.wearMinSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode phoneCode + WEAR_VERSION_OFFSET

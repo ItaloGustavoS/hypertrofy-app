@@ -1,4 +1,4 @@
-package ch.duartesantos.opengym;
+package com.hypertrofy.app;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

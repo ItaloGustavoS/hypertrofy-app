@@ -1,4 +1,4 @@
-package ch.duartesantos.opengym;
+package com.hypertrofy.app;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;

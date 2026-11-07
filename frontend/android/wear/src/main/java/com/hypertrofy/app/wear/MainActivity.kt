@@ -1,4 +1,4 @@
-package ch.duartesantos.opengym.wear
+package com.hypertrofy.app.wear
 
 import android.content.Context
 import android.os.Bundle
@@ -8,8 +8,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import androidx.wear.compose.material3.AppScaffold
 import androidx.wear.compose.material3.TimeText
-import ch.duartesantos.opengym.wear.ui.OpenGymTheme
-import ch.duartesantos.opengym.wear.ui.WearApp
+import com.hypertrofy.app.wear.ui.OpenGymTheme
+import com.hypertrofy.app.wear.ui.WearApp
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.map
