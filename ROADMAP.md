@@ -24,8 +24,19 @@ rest.
 
 What arrived from upstream for free, because it already existed: the AI Coach (`api/coach/`, OpenAI
 compatible, so OpenRouter needs no new code), body measurements, progress photos, wearables, rate
-limits, admin-dashboard Coach config. The phases that duplicated those were dropped, and the Phase 1
-cuts (MCP, admin dashboard, demo build) went back in with them.
+limits, admin-dashboard Coach config. The phases that duplicated those were dropped.
+
+The Phase 1 cuts were then redone against v1.4.4 — MCP server, dashboard UI and demo build are gone
+again — but narrower than before, because upstream now builds on some of that surface:
+
+- **MCP** (`mcp/`, the nix package, the CI job): removed outright.
+- **Admin dashboard**: only the screens. `ADMIN_UIDS`, `/api/admin/*`, the admin socket and the
+  Coach config endpoints stay — the Coach is configured through them, integrations hide themselves
+  from non-admins with the flag, and recovery codes depend on it. There is no UI, so those calls
+  are made against the API.
+- **Demo build**: `VITE_DEMO`, the seeded boot and the canned Coach answers are gone. Pages now
+  serves the app as plain guest mode, and `demoSeed.js` survives only as a fixture for the Stats
+  and StructuralBalance tests.
 
 What the port still owns on top of v1.4.4: the AdMob banner and the one-time "remove ads" purchase
 (`openGym_premium_remove_ads`, R$ 34,90), receipt validation server-side, the Settings card. See
