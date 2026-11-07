@@ -8,7 +8,7 @@
    outside is through payload.build()'s aggregates, which needs a real DATA_DIR and the rest of the
    coach module graph — the same setup payload.test.js already uses under node:test. The frontend
    imports below are safe under plain node: workout-model.js and progression.js have no Vite- or
-   React-only syntax, the same reason mcp/'s own tests import frontend/src/lib directly. */
+   React-only syntax, the same reason these tests import frontend/src/lib directly. */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { tempData, sampleState } from './helpers.mjs';

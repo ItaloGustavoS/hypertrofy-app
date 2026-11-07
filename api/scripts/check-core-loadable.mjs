@@ -4,7 +4,7 @@
  * The core is imported by two runtimes: the server under bare node, and the phone under Vite.
  * Vite forgives things node does not — `?raw`, `import.meta.glob`, JSON without an import
  * attribute — so a change made with the frontend in mind can leave vitest green and kill the
- * server at startup. mcp/scripts/check-node-loadable.mjs exists because exactly that happened
+ * server at startup. This check exists because exactly that happened
  * once. Run by bare `node` on purpose — being outside vitest IS the check.
  */
 import { readdirSync } from 'node:fs';

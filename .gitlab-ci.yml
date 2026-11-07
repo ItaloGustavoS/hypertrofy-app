@@ -195,42 +195,6 @@ test:frontend:
     - !reference [.rules, not_on_schedule]
     - when: on_success
 
-test:mcp:
-  extends: .node
-  stage: test
-  cache:
-    key:
-      files:
-        - mcp/package-lock.json
-        - api/package-lock.json
-    paths:
-      - mcp/.npm
-  script:
-    # log_workout's end-to-end test drives the real api/server.js: the api's dependencies too
-    # (as test:api installs them), or that test fails here rather than skipping.
-    - (cd api && npm ci --cache ../mcp/.npm --prefer-offline --omit=optional)
-    - cd mcp
-    - npm ci --cache .npm --prefer-offline --ignore-scripts
-    - npx vitest run
-        --reporter=default --reporter=junit --outputFile.junit=junit.xml
-        --coverage --coverage.reporter=text-summary --coverage.reporter=cobertura
-    # The one check the vitest suite structurally cannot make. The MCP server is a bare node
-    # process, but vitest runs its tests through Vite — import.meta.glob, .jsx imports and
-    # ?raw all resolve happily there. That is how a Vite-only import reached a shared lib
-    # module with 33 green tests standing over a server that died on startup.
-    - npm run check:node-loadable
-  coverage: '/Lines\s*:\s*(\d+\.?\d*)%/'
-  artifacts:
-    when: always
-    reports:
-      junit: mcp/junit.xml
-      coverage_report:
-        coverage_format: cobertura
-        path: mcp/coverage/cobertura-coverage.xml
-  rules:
-    - !reference [.rules, not_on_schedule]
-    - when: on_success
-
 test:api:
   extends: .node
   stage: test
@@ -294,7 +258,6 @@ build:images:
   stage: build
   needs:
     - test:frontend
-    - test:mcp
     - test:api
     - job: release:preflight
       optional: true

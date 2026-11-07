@@ -53,16 +53,6 @@ updates:
         patterns: ['*']
         update-types: ['major']
 
-  # MCP bridge — mcp/package.json
-  - package-ecosystem: npm
-    directory: /mcp
-    schedule:
-      interval: monthly
-    open-pull-requests-limit: 2
-    groups:
-      mcp:
-        patterns: ['*']
-        update-types: ['minor', 'patch']
 
   # Base images — api/Dockerfile (node:22-alpine)
   - package-ecosystem: docker

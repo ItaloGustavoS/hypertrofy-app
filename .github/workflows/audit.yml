@@ -44,13 +44,13 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: npm audit (runtime fails on high, dev tooling reported)
-        run: node scripts/ci/deps-audit.mjs frontend api mcp
+        run: node scripts/ci/deps-audit.mjs frontend api
       - name: Outdated packages (report only)
         if: always()
         run: |
           {
             echo "### Outdated packages"
-            for d in frontend api mcp; do
+            for d in frontend api; do
               echo "#### $d"
               echo '```'
               (cd "$d" && npm outdated --long 2>/dev/null || true) | head -60

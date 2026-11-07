@@ -20,8 +20,8 @@
 // `S.exMerged` records each merge, `{ [sourceId]: { into, _ts } }`, stamped per key like the other
 // settings maps (sync-merge.js STAMPED_MAPS). It is how the merge stays a merge on every copy:
 // a workout another device logged against the source before it heard of the merge is moved over
-// when the two copies meet (sync-merge.js mergeStates → applyExerciseMerges), and the MCP bridge
-// reads it the same way (mcp/src/state.js). Undo clears the record (`into: null`, stamped) and puts
+// when the two copies meet (sync-merge.js mergeStates → applyExerciseMerges). Undo clears the
+// record (`into: null`, stamped) and puts
 // everything back as it was.
 import { stampWorkout } from './sync-merge.js'
 import { betterWeight, isCustomEx, EXIDX } from './exercises.js'

@@ -35,8 +35,8 @@ let
     ADMIN_UIDS = if cfg.adminUids != "" then cfg.adminUids else null;
   };
 
-  # Hardening shared by the API and MCP units. The MCP server reads the same data files,
-  # so it gets the same sandbox.
+  # Hardening shared by the API and web units. They read the same data files,
+  # so they get the same sandbox.
   serviceHardening = {
     NoNewPrivileges = true;
     ProtectSystem = "strict";
@@ -231,20 +231,6 @@ in
       };
     };
 
-    mcp = {
-      enable = lib.mkEnableOption "openGym MCP server (stdio bridge for LLM clients)";
-
-      uid = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
-        default = null;
-        description = ''
-          The openGym user ID (from db.json "users"[].id) the MCP server serves.
-          When null, the server auto-picks when exactly one user exists; with multiple
-          users this option must be set. Use the `environment` escape hatch for the
-          same effect.
-        '';
-      };
-    };
   };
 
   config = lib.mkMerge [
@@ -312,28 +298,6 @@ in
           services.opengym.web.root = "${packages.opengym-frontend}/share/opengym";
           services.opengym.media.root = "${cfg.web.root}/exercise-media";
 
-          systemd.services.opengym-mcp = lib.mkIf cfg.mcp.enable {
-            description = "openGym MCP server";
-            after = [ "network.target" ];
-            wantedBy = [ "multi-user.target" ];
-            environment = {
-              # The MCP server reads OPENGYM_DATA (not DATA_DIR) to locate the data files.
-              OPENGYM_DATA = cfg.dataDir;
-            } // lib.optionalAttrs (cfg.mcp.uid != null) {
-              OPENGYM_UID = cfg.mcp.uid;
-            };
-            serviceConfig = lib.mkMerge [
-              {
-                ExecStart = "${packages.opengym-mcp}/bin/opengym-mcp";
-                StandardInput = "null";
-                StandardOutput = "journal";
-                User = "opengym";
-                Group = "opengym";
-                Restart = "on-failure";
-              }
-              serviceHardening
-            ];
-          };
         }
         # Optional: let the module configure an nginx virtualHost for openGym itself.
         (lib.mkIf cfg.nginx.enable {

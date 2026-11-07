@@ -11,5 +11,4 @@ in
 {
   opengym-frontend = callPackage ./frontend.nix { inherit version; };
   opengym-api = callPackage ./api.nix { inherit version; };
-  opengym-mcp = callPackage ./mcp.nix { inherit version; };
 }

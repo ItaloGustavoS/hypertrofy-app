@@ -363,7 +363,7 @@ export function matchExercise(name) {
 }
 
 /**
- * What a name could mean, for a caller that must not guess (the MCP's log_workout): the one
+ * What a name could mean, for a caller that must not guess: the one
  * catalogue id it names, or every candidate when it names more than one, so the user picks.
  *
  * The same steps as matchExercise, which an import keeps using unchanged: there a near miss is
