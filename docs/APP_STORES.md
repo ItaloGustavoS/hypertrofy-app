@@ -1,6 +1,6 @@
-# openGym in Google Play and the App Store
+# Hypertrofy in Google Play and the App Store
 
-openGym ships to phones three ways, all from the same code and the same version number:
+Hypertrofy ships to phones three ways, all from the same code and the same version number:
 
 | | Where | Who installs updates | Built where |
 |---|---|---|---|
@@ -37,7 +37,7 @@ ever sees the repo's 180 px media.
   the APK and the web, Settings → About & updates links to Buy Me a Coffee, Ko-fi and GitHub
   Sponsors: plain links that open in the browser, unlock nothing, and never pop up on their own.
   On the iPhone the same section has a link to writing an App Store review (no review prompt,
-  App Review 5.6.1). **The Google Play build has no donation links**, only "Rate openGym on
+  App Review 5.6.1). **The Google Play build has no donation links**, only "Rate Hypertrofy on
   Google Play": Play's Payments policy (section 4) says an app "may not lead users to a payment
   method other than Google Play's billing system", and its exceptions (section 3) cover
   "tax exempt donations" only, which a one-person open-source project is not. The listing and the
@@ -58,9 +58,9 @@ cd gym-app        # the release checkout, at the release tag
 export ANDROID_HOME=/opt/android-sdk
 K=/root/.config/opengym
 scripts/android/build-release.sh $K/opengym-release.keystore $K/keystore.pass $K/key.alias ~/release
-#  → openGym-X.Y.Z.apk, openGym-Plus-X.Y.Z.apk, openGym-HD-X.Y.Z.apk (each + .sha256, and
+#  → Hypertrofy-X.Y.Z.apk, Hypertrofy-Plus-X.Y.Z.apk, Hypertrofy-HD-X.Y.Z.apk (each + .sha256, and
 #    SHA256SUMS) for the GitHub release (APK_ONLY=1: only these),
-#    openGym-X.Y.Z.aab for Google Play
+#    Hypertrofy-X.Y.Z.aab for Google Play
 ```
 
 Each is built from its own phone build: the **Standard** APK with the box-free 180 px animations
@@ -91,7 +91,7 @@ language from a folder (`--notes`). `alpha` is Play's name for the closed testin
 ### iPhone
 
 The IPA carries the app, the asset pack downloader extension (`AnimationPacksDownloader`), the
-widget extension (`OpenGymWidgets`: widgets and the Live Activity) and the Apple Watch app with its
+widget extension (`HypertrofyWidgets`: widgets and the Live Activity) and the Apple Watch app with its
 own widget. Each is a separate bundle id with its own App Store provisioning profile.
 
 1. **Compile (CI).** The `iOS` workflow (`.github/workflows/ios.yml`, job `device-archive`) runs
@@ -104,7 +104,7 @@ own widget. Each is a separate bundle id with its own App Store provisioning pro
    ```sh
    EXT_PROFILE=downloader.mobileprovision WIDGETS_PROFILE=widgets.mobileprovision \
    WATCH_PROFILE=watch.mobileprovision WATCH_WIDGET_PROFILE=watch-widget.mobileprovision \
-   scripts/ios/finish-ipa.sh App-unsigned.ipa dist.p12 dist.pass openGym_AppStore.mobileprovision
+   scripts/ios/finish-ipa.sh App-unsigned.ipa dist.p12 dist.pass Hypertrofy_AppStore.mobileprovision
    ```
    It puts the phone bundle into the app, signs every bundle with its own profile's entitlements
    (App Group, HealthKit where the profile and the app ask for it), and refuses an IPA from
@@ -196,7 +196,7 @@ it from the tagged source). The changelog for a version is `changelogs/<versionC
    run a closed test with at least 12 testers for 14 days in a row before it can publish to
    production; the Discord community is the obvious tester pool. An *organisation* account
    (needs a D-U-N-S number) skips that.
-2. Create the app: name openGym, default language English, free, no ads.
+2. Create the app: name Hypertrofy, default language English, free, no ads.
 3. **App signing:** choose to use your own key ("Use existing app signing key", Play's PEPK
    tool exports it encrypted). Then Play signs with the same key as the APK and people can
    switch from the APK to Play keeping their data. With a key Google generates, the two are
@@ -235,15 +235,15 @@ on the phone (Settings → Reset, or uninstall).
 
 1. Apple Developer Program (99 USD a year, as an individual; the seller name shown is your
    legal name).
-2. App Store Connect → new app "openGym: Workout Tracker" (plain "openGym" is taken as an App
-   Store name; the home screen still says openGym), bundle id `ch.opengym.app`. The iPhone app
+2. App Store Connect → new app "Hypertrofy: Workout Tracker" (plain "Hypertrofy" is taken as an App
+   Store name; the home screen still says Hypertrofy), bundle id `ch.opengym.app`. The iPhone app
    has its own bundle id because `ch.duartesantos.opengym` is held by another Apple team (an
    Xcode build of the public code reserves it); Android keeps `ch.duartesantos.opengym`.
 3. Signing material, all doable from Linux:
    - `openssl req -new -newkey rsa:2048 -nodes -keyout dist.key -out dist.csr -subj "/CN=Duarte Santos/emailAddress=…"`,
      upload the CSR under Certificates → Apple Distribution, download `distribution.cer`, then
      `openssl x509 -inform der -in distribution.cer -out dist.pem && openssl pkcs12 -export -legacy -inkey dist.key -in dist.pem -out dist.p12`.
-   - Profiles → an App Store Connect profile for `ch.opengym.app` → `openGym_AppStore.mobileprovision`,
+   - Profiles → an App Store Connect profile for `ch.opengym.app` → `Hypertrofy_AppStore.mobileprovision`,
      and one each for `ch.opengym.app.AnimationPacksDownloader`, `ch.opengym.app.widgets`,
      `ch.opengym.app.watchkitapp` and `ch.opengym.app.watchkitapp.widgets`. The app, the downloader,
      the widgets and the watch widget share the App Group `group.ch.opengym.app`; the app and the

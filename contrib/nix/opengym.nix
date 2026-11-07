@@ -77,7 +77,7 @@ in
   ];
 
   options.services.opengym = {
-    enable = lib.mkEnableOption "openGym self-hosted gym tracker";
+    enable = lib.mkEnableOption "Hypertrofy self-hosted gym tracker";
 
     package = lib.mkOption {
       type = lib.types.attrsOf lib.types.package;
@@ -86,7 +86,7 @@ in
         the flake's packages (built from its locked nixpkgs) when the module comes from the
         flake; otherwise built from this system's nixpkgs
       '';
-      description = "openGym package set (typically the flake output).";
+      description = "Hypertrofy package set (typically the flake output).";
     };
 
     dataDir = lib.mkOption {
@@ -115,7 +115,7 @@ in
 
     rpName = lib.mkOption {
       type = lib.types.str;
-      default = "openGym";
+      default = "Hypertrofy";
       description = "Display name for passkey registration prompts.";
     };
 
@@ -193,7 +193,7 @@ in
     };
 
     nginx = {
-      enable = lib.mkEnableOption "an nginx virtualHost for openGym, managed via services.nginx";
+      enable = lib.mkEnableOption "an nginx virtualHost for Hypertrofy, managed via services.nginx";
 
       hostName = lib.mkOption {
         type = lib.types.str;
@@ -205,7 +205,7 @@ in
         type = lib.types.bool;
         default = false;
         description = ''
-          Serve openGym over TLS with a Let's Encrypt certificate (services.nginx enableACME +
+          Serve Hypertrofy over TLS with a Let's Encrypt certificate (services.nginx enableACME +
           forceSSL). Also requires security.acme.acceptTerms = true in your configuration.
         '';
       };
@@ -261,7 +261,7 @@ in
           users.users.opengym = {
             isSystemUser = true;
             group = "opengym";
-            description = "openGym service user";
+            description = "Hypertrofy service user";
           };
 
           users.groups.opengym = { };
@@ -271,7 +271,7 @@ in
           ];
 
           systemd.services.opengym-api = {
-            description = "openGym API server";
+            description = "Hypertrofy API server";
             after = [ "network.target" ];
             wantedBy = [ "multi-user.target" ];
             environment = cfg.environment // apiEnv;
@@ -299,7 +299,7 @@ in
           services.opengym.media.root = "${cfg.web.root}/exercise-media";
 
         }
-        # Optional: let the module configure an nginx virtualHost for openGym itself.
+        # Optional: let the module configure an nginx virtualHost for Hypertrofy itself.
         (lib.mkIf cfg.nginx.enable {
           services.nginx = {
             enable = true;
@@ -326,7 +326,7 @@ in
                   };
                   # exercise-media/ is served from root like the rest of the app. The files
                   # are named after the exercise and never change within a build, so let
-                  # browsers keep them. They are licensed for openGym only (NOTICE.md):
+                  # browsers keep them. They are licensed for Hypertrofy only (NOTICE.md):
                   # Cross-Origin-Resource-Policy keeps other sites from embedding them.
                   "/exercise-media/" = {
                     extraConfig = ''

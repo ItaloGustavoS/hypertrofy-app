@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <!-- Health Connect (#200): its client library asks for Android 8 and Health Connect itself
          needs 9. The app keeps running on older phones, where HealthConnectPlugin answers
          "unsupported" before touching the library. -->
@@ -220,9 +218,7 @@
 
         <!-- AdMob needs the app ID at manifest-merge time, so it comes in as a placeholder
              filled from local.properties (see app/build.gradle) instead of being committed. -->
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="${admobAppId}" />
+        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="${admobAppId}" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -233,9 +229,7 @@
         </provider>
 
         <!-- Rest-over alarm. Explicit class, no intent-filter: only this app can send it. -->
-        <receiver
-            android:name=".RestAlertReceiver"
-            android:exported="false" />
+        <receiver android:name=".RestAlertReceiver" android:exported="false" />
 
         <!-- Reposts the rest countdown every second so the notification shade keeps the
              clock and a shrinking bar after the WebView is frozen. The lock screen shows
@@ -243,21 +237,17 @@
              not media playback. -->
         <!-- The Wear OS watch app's events (WatchBridgePlugin): each one stored even with the app
              closed, then let go of in the Data Layer. Only our own watch app's paths. -->
-        <service
-            android:name=".WatchListenerService"
-            android:exported="true">
+        <service android:name=".WatchListenerService" android:exported="true">
             <intent-filter>
                 <action android:name="com.google.android.gms.wearable.DATA_CHANGED" />
                 <data android:scheme="wear" android:host="*" android:pathPrefix="/opengym/event/" />
             </intent-filter>
         </service>
-        <service
-            android:name=".RestTimerService"
-            android:exported="false"
-            android:foregroundServiceType="specialUse">
+        <service android:name=".RestTimerService" android:exported="false" android:foregroundServiceType="specialUse">
             <property
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-                android:value="Shows how long is left in the rest between sets." />
+                android:value="Shows how long is left in the rest between sets."
+            />
         </service>
 
         <!-- The background check before a nudge or a reminder (NudgeCheckJob): asks the paired
@@ -266,26 +256,20 @@
         <service
             android:name=".NudgeCheckJob"
             android:permission="android.permission.BIND_JOB_SERVICE"
-            android:exported="false" />
+            android:exported="false"
+        />
 
         <!-- Gym reminder (#614): the platform's proximity alert for a gym fires this (GymReminder).
              Explicit, not exported: nothing but that alert's own PendingIntent reaches it. -->
-        <receiver
-            android:name=".GymReminderReceiver"
-            android:exported="false" />
+        <receiver android:name=".GymReminderReceiver" android:exported="false" />
         <!-- Gym reminder: the short check with live location after the phone entered a gym's wide
              approach zone (GymScanService). At most 15 minutes, at most 3 a day; its notification
              is a silent one. Started by the approach alert's broadcast (Android 12+: only with
              unrestricted battery or exact alarms allowed, see GymReminder.launchCheck), never exported. -->
-        <service
-            android:name=".GymScanService"
-            android:exported="false"
-            android:foregroundServiceType="location" />
+        <service android:name=".GymScanService" android:exported="false" android:foregroundServiceType="location" />
         <!-- Proximity alerts are gone after a restart or an app update: registered again here.
              Only the system sends these two broadcasts. -->
-        <receiver
-            android:name=".GymReminderBootReceiver"
-            android:exported="true">
+        <receiver android:name=".GymReminderBootReceiver" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
@@ -295,16 +279,11 @@
         <!-- The Home Screen widget (v1.4.4): what it shows comes from the app (WidgetBridgePlugin),
              a tap opens the app at that screen. The configure screen picks what it shows; it
              only ever writes this app's own widget settings. -->
-        <receiver
-            android:name=".OpenGymWidgetProvider"
-            android:exported="true"
-            android:label="@string/widget_name">
+        <receiver android:name=".OpenGymWidgetProvider" android:exported="true" android:label="@string/widget_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/opengym_widget_info" />
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/opengym_widget_info" />
         </receiver>
         <activity
             android:name=".OpenGymWidgetConfigure"

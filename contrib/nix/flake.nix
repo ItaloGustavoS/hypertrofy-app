@@ -1,5 +1,5 @@
 {
-  description = "openGym — self-hosted gym & body-weight tracker";
+  description = "Hypertrofy — self-hosted gym & body-weight tracker";
 
   inputs = {
     # A release branch, not nixos-unstable: this flake is contributed packaging that has to
@@ -171,7 +171,7 @@
             }
             EOF
 
-            echo "openGym running at http://localhost:$WEB_PORT (API on :$API_PORT, data in $DATA_DIR) — Ctrl-C to stop"
+            echo "Hypertrofy running at http://localhost:$WEB_PORT (API on :$API_PORT, data in $DATA_DIR) — Ctrl-C to stop"
             ${pkgs.caddy}/bin/caddy run --config "$CGFILE"
           ''}";
         };
@@ -196,7 +196,7 @@
             git
           ];
           shellHook = ''
-            echo "openGym dev shell (Node.js $(node --version))"
+            echo "Hypertrofy dev shell (Node.js $(node --version))"
             echo "  cd frontend && npm install && npm run dev"
             echo "  cd api && npm install && node server.js"
           '';
@@ -204,7 +204,7 @@
       }
     )
     // {
-      # Wraps the module so NixOS configurations using it get openGym packages built from this
+      # Wraps the module so NixOS configurations using it get Hypertrofy packages built from this
       # flake's LOCKED nixpkgs input. Importing contrib/nix/opengym.nix directly falls back to
       # the importing system's nixpkgs.
       nixosModules.opengym =

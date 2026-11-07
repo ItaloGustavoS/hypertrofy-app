@@ -1,4 +1,4 @@
-# Rebrand: openGym → Hypertrofy
+# Rebrand: Hypertrofy → Hypertrofy
 
 Status: planned, not started. Decisions below were taken on 2026-11-07.
 
@@ -59,7 +59,7 @@ The smallest diff that changes what the stores and the OS see.
   `CFBundleURLName`, the app group `group.ch.opengym.app` → `group.com.hypertrofy.app` in both
   `.entitlements` files and every `Info.plist` that repeats it, the nudge task id, and the
   keychain `kSecAttrService` fallbacks.
-- The widget target keeps its folder name (`OpenGymWidgets`) for now: renaming it means
+- The widget target keeps its folder name (`HypertrofyWidgets`) for now: renaming it means
   editing the Xcode project by hand, and the name is not user-visible. Revisit on a Mac.
 - Product id: `frontend/src/lib/monetization.js`, its test, `api/purchase.js`,
   `api/openapi.yaml`, `.env.example` prose.
@@ -71,7 +71,7 @@ is not possible without a JDK/Android SDK.
 
 ## Commit 2 — the name, everywhere the user can see it
 
-- Locales: `openGym` → `Hypertrofy` in all 19 packs, same spelling everywhere.
+- Locales: `Hypertrofy` → `Hypertrofy` in all 19 packs, same spelling everywhere.
 - `frontend/src` strings, `frontend/public/manifest.json`, `index.html`, share text, the
   backup filename `opengym-backup-*.json` → `hypertrofy-backup-*.json`, and the Android
   auto-backup folder `AUTO_BACKUP_DIR` in `frontend/src/lib/mobile.js`.

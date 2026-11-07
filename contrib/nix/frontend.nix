@@ -38,7 +38,7 @@ buildNpmPackage rec {
     mkdir -p $out/share/opengym
     cp -r dist/* $out/share/opengym/
     # The exercise stills and animations come from the source tree (catalogue/media, 180 px,
-    # licensed from Gym visual for openGym only: see catalogue/media/NOTICE.md). The same script
+    # licensed from Gym visual for Hypertrofy only: see catalogue/media/NOTICE.md). The same script
     # the demo and Android builds use puts them at exercise-media/ next to the app, which is
     # where the app asks for them. Nothing is downloaded, at build time or at runtime.
     env -u APP_MEDIA_DIR node ../scripts/catalogue/stage-media.mjs $out/share/opengym
@@ -46,7 +46,7 @@ buildNpmPackage rec {
   '';
 
   meta = with lib; {
-    description = "openGym frontend — self-hosted gym & body-weight tracker PWA";
+    description = "Hypertrofy frontend — self-hosted gym & body-weight tracker PWA";
     homepage = "https://gitlab.com/DuarteSantos8/opengym";
     license = licenses.agpl3Plus;
     platforms = nodejs.meta.platforms;

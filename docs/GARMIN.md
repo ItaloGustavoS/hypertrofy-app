@@ -1,4 +1,4 @@
-# openGym on Garmin
+# Hypertrofy on Garmin
 
 A Connect IQ watch app for Garmin watches, the Apple Watch and Wear OS apps' little sibling: the
 phone stays the source of truth, the watch follows the workout the phone runs, logs sets on it and
@@ -43,7 +43,7 @@ Garmin screens are small (176 to 454 px) and many are MIP (memory-in-pixel: 64 c
 sunlight) or, on the Instinct, black and white. So: white on black, the numbers in the system's
 number fonts as big as the screen allows, one accent colour that means "this is what you change or
 press" (the value UP and DOWN move, Done, a streak kept this week), and no animation beyond the rest
-ring. The accent is openGym's green on AMOLED and the palette's own bright lime on MIP (so it is not
+ring. The accent is Hypertrofy's green on AMOLED and the palette's own bright lime on MIP (so it is not
 rounded to a dull green); the Instinct builds use white instead (`(:mono)` in `source/Ui.mc`, picked
 per device in `monkey.jungle`). Every text line is cut to the width the round screen really has at
 its height, and every touch target is at least a finger wide.
@@ -135,7 +135,7 @@ views/settings-pages.js like the Apple Watch and Zepp OS pages.
    Garmin app simply finds no phone. This needs a check against the CLA and AGPL notes in
    NOTICE.md before it ships.
 4. **Opening the app on the watch** when a workout starts on the phone: the Mobile SDK's
-   `openApplication` shows a prompt on the watch ("open openGym?"); the Settings → Apple Watch
+   `openApplication` shows a prompt on the watch ("open Hypertrofy?"); the Settings → Apple Watch
    "Open on the watch" switch can drive it.
 
 This was left out of v1.4.4 on purpose: adding a closed-source SDK and a second link to both phone
@@ -150,16 +150,16 @@ in Garmin Connect with its duration, heart rate and calories, and counts towards
 intensity minutes and the rest of Garmin's numbers. Saved at Finish, thrown away at Discard; if the
 app is closed mid-workout, what was recorded is kept and not started again for that workout.
 
-**Double counting.** openGym on the phone can write each workout to Health Connect (Android) or
+**Double counting.** Hypertrofy on the phone can write each workout to Health Connect (Android) or
 Apple Health (iPhone), and Garmin Connect can share its activities there too (Apple Health on the
 iPhone; Health Connect on Android, depending on the Garmin Connect version and its settings). With
 both on, the hub has the same workout twice and its calories add up twice. What the user can do
 today, and what the docs and the store listing should say:
 
-- keep openGym's Health Connect / Apple Health export on and turn Garmin Connect's sharing of
+- keep Hypertrofy's Health Connect / Apple Health export on and turn Garmin Connect's sharing of
   activities off, **or**
 - keep Garmin's sharing and turn the watch's "Also save to Garmin Connect" off, **or**
-- keep Garmin's recording and turn openGym's export off (Garmin then writes the workout, openGym
+- keep Garmin's recording and turn Hypertrofy's export off (Garmin then writes the workout, Hypertrofy
   only reads its heart rate back, which v1.4.3 already does for any watch).
 
 A better fix for later, on the phone: when the Garmin bridge reports that the watch recorded a
@@ -172,15 +172,15 @@ The **Garmin Connect Developer Program** (Health API, Activity API, Training API
 Courses) is separate from Connect IQ: it is a server-to-server integration with Garmin Connect, for
 companies. It needs an application to Garmin (company name, use case, privacy policy, a server that
 receives Garmin's pushes), Garmin's approval, and a signed agreement; approved partners get consumer
-keys. What it would give openGym:
+keys. What it would give Hypertrofy:
 
-| API | What | Use for openGym |
+| API | What | Use for Hypertrofy |
 | --- | --- | --- |
 | Activity API | every activity's summary and FIT file, pushed after each sync | import runs, rides and Garmin's own strength activities (with their sets) into the log, automatically |
-| Health API | daily summaries: steps, heart rate, resting HR, sleep, stress, Body Battery, body composition (Index scale weigh-ins) | weigh-ins and resting HR into openGym without a phone hub in between |
+| Health API | daily summaries: steps, heart rate, resting HR, sleep, stress, Body Battery, body composition (Index scale weigh-ins) | weigh-ins and resting HR into Hypertrofy without a phone hub in between |
 | Training API | push workouts (including strength workouts with exercises, sets and reps) to the user's Garmin Connect calendar | today's routine shows up in Garmin's native strength activity on every Garmin, no Connect IQ app needed |
 
-It does not fit openGym's model as it is: keys are per company, not per server, so every
+It does not fit Hypertrofy's model as it is: keys are per company, not per server, so every
 self-hosted instance would need the owner's keys, or the owner would run a relay server that every
 instance talks to. That is a third-party service in the middle, the opposite of "no third-party
 account, no telemetry". If it is ever done, it should be an opt-in relay with its own privacy note.
@@ -219,7 +219,7 @@ You need the Connect IQ SDK and the device files:
    "$SDK/bin/monkeyc" -f monkey.jungle -d fr265 -y developer_key.der -o bin/test.prg -t
    "$SDK/bin/monkeydo" bin/test.prg fr265 -t
    # the store package, every watch in manifest.xml
-   "$SDK/bin/monkeyc" -f monkey.jungle -y developer_key.der -o bin/openGym.iq -e -r -w
+   "$SDK/bin/monkeyc" -f monkey.jungle -y developer_key.der -o bin/Hypertrofy.iq -e -r -w
    ```
 
    The compiler parses with gradual type checking on: a few hundred "Cannot determine if container
@@ -261,7 +261,7 @@ changing them there. 17 languages; Connect IQ has no Hindi or Bengali, and one P
    left to see is memory on the small watches and how each screen looks.
 5. Wire up the phone side ("The phone side (to do)"), then test with a real Garmin: borrow one or
    ask a Garmin owner from Discord for a sideload test.
-6. Publish: apps.garmin.com/developer → Upload an app → `openGym.iq`, with the store listing
+6. Publish: apps.garmin.com/developer → Upload an app → `Hypertrofy.iq`, with the store listing
    (name, description, at least one screenshot per screen shape, the icon, category Health &
    Fitness), the privacy policy URL (the app sends heart rate only to the user's own phone app),
    and "requires a companion app" pointing at the Play Store and App Store listings. Garmin reviews

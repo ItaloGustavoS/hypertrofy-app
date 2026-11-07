@@ -1,4 +1,4 @@
-# openGym on Wear OS
+# Hypertrofy on Wear OS
 
 A watch app for Wear OS 3 and later: Samsung Galaxy Watch 4 and newer, Pixel Watch, OnePlus Watch,
 TicWatch, Fossil Gen 6 and the rest. It is the Apple Watch app's twin: the phone stays the source
@@ -6,7 +6,7 @@ of truth, and the watch follows the workout the phone runs, logs sets on it and 
 routine by itself.
 
 **Status: beta since v1.4.4.** It builds and its tests pass, but it has met few real watches yet.
-On the watch it is labelled "openGym Beta"; on Google Play it ships to the Wear OS closed-testing
+On the watch it is labelled "Hypertrofy Beta"; on Google Play it ships to the Wear OS closed-testing
 track first. Drop the label (`app_name` in `wear/wear-strings.mjs`) once testers confirm it.
 
 ## What it does
@@ -94,7 +94,7 @@ The watch app goes into the phone app's listing (same package), as its own bundl
    factor → Wear OS**, and accept the Wear OS terms.
 2. Store listing → the Wear OS section: at least one Wear OS screenshot (384 × 384 or larger,
    round content on a square canvas) and, optionally, a Wear-specific description.
-3. Upload `openGym-Wear-<version>.aab` to the **Wear OS** track (closed testing first; Wear OS has
+3. Upload `Hypertrofy-Wear-<version>.aab` to the **Wear OS** track (closed testing first; Wear OS has
    its own dedicated tracks), with the same release notes.
 4. Data safety: unchanged in kind (heart rate stays on the device and goes only to the user's own
    phone app), but add "Health info: heart rate" as collected, not shared, if the review asks.

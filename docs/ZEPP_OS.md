@@ -1,4 +1,4 @@
-# openGym on Zepp OS
+# Hypertrofy on Zepp OS
 
 A watch app for Amazfit watches on Zepp OS 3 and later (API level 3.0): Balance and Balance 2,
 GTR 4, GTS 4, Active and Active 2, Active Edge, Cheetah, Falcon, T-Rex 2, 3 and Ultra, Bip 5 and 6,
@@ -35,23 +35,23 @@ No exercise media goes to the watch: text and numbers only.
 ## How it talks to the phone
 
 A Zepp OS app has two halves: the watch app, and a **Side Service** that runs inside the Zepp phone
-app (JavaScript in Zepp's own sandbox). The openGym phone app cannot be that Side Service, and the
-Side Service cannot call into the openGym app. Two bridges were possible:
+app (JavaScript in Zepp's own sandbox). The Hypertrofy phone app cannot be that Side Service, and the
+Side Service cannot call into the Hypertrofy app. Two bridges were possible:
 
-1. **The user's own openGym server** (chosen). The Side Service has `fetch`, so it talks to the
-   server the user already runs, with a token of its own. The openGym page (phone app or web app,
+1. **The user's own Hypertrofy server** (chosen). The Side Service has `fetch`, so it talks to the
+   server the user already runs, with a token of its own. The Hypertrofy page (phone app or web app,
    signed in) leaves its snapshot there and picks up the watch's events.
-2. **Localhost on the phone**: the openGym app serving `http://127.0.0.1:<port>` for the Side
-   Service. Not chosen: iOS suspends a backgrounded app, so nothing would answer while openGym is
+2. **Localhost on the phone**: the Hypertrofy app serving `http://127.0.0.1:<port>` for the Side
+   Service. Not chosen: iOS suspends a backgrounded app, so nothing would answer while Hypertrofy is
    not in front, it needs a native HTTP server in both phone apps, and whether the Zepp app's fetch
    may reach the loopback address over plain HTTP is not documented.
 
-The server bridge needs no central server (each openGym is self-hosted, and the watch talks only to
+The server bridge needs no central server (each Hypertrofy is self-hosted, and the watch talks only to
 its owner's), works with Android, iPhone and the web app alike, and needs no native code. The price:
 **it needs a server**. A phone app running on its own, with no server, has no Zepp watch.
 
 ```
-watch app  --'sync' {events}-->  Side Service  --POST /api/watch/box-->  your server  <--  openGym page
+watch app  --'sync' {events}-->  Side Service  --POST /api/watch/box-->  your server  <--  Hypertrofy page
            <--{accepted, json}--               <--{accepted, json}------             (PUT snapshot,
                                                                                        GET events, ack)
 ```
@@ -87,7 +87,7 @@ workout mailbox and nothing of the account, and ends with every session.
 set, start or finish. The page sends a snapshot whenever the workout changes and looks for events
 every 15 seconds while it is in front, and when it comes back to the front. Like the other watches,
 the watch runs the session on its own while the phone sleeps in a pocket; what it logged is applied
-when the openGym page next wakes up.
+when the Hypertrofy page next wakes up.
 
 Contract tests: `watch-zepp/test/session.test.js` parses the same `snapshot.json` the Wear OS watch
 parses and builds the same `events.json` (frontend/android/wear/src/test/resources), which
@@ -128,7 +128,7 @@ cd watch-zepp
 npm ci                    # the Zepp toolchain (zeus-cli), locally, nothing global
 npm test                  # session logic, the store, the page on five screen sizes
 npm run strings           # lib/strings.js and the .po files, from the Wear OS strings + its own
-npx zeus build            # dist/<appId>-openGym-<version>-<time>.zab, every Zepp OS 3+ screen
+npx zeus build            # dist/<appId>-Hypertrofy-<version>-<time>.zab, every Zepp OS 3+ screen
 npx zeus preview          # a QR code for the Zepp app (needs a Zepp developer account login)
 ```
 
@@ -155,23 +155,23 @@ assigns (below).
    developer account), then `npx zeus preview` and pick your watch. It prints a QR code.
 3. In the Zepp app: Profile → your watch → Developer mode → Scan, and scan the code. The app installs
    on the watch.
-4. Pair it: in openGym, Settings → Zepp OS watch → Pair a watch. In the Zepp app, open the openGym
-   app's settings (Profile → your watch → App settings → openGym), type the server address and the
-   code shown, and tap Pair. Open openGym on the watch.
+4. Pair it: in Hypertrofy, Settings → Zepp OS watch → Pair a watch. In the Zepp app, open the Hypertrofy
+   app's settings (Profile → your watch → App settings → Hypertrofy), type the server address and the
+   code shown, and tap Pair. Open Hypertrofy on the watch.
 
 **From the Zepp App Store (the owner's steps):**
 
-1. Register at the Zepp developer console (console.zepp.com) and create a Mini Program "openGym";
+1. Register at the Zepp developer console (console.zepp.com) and create a Mini Program "Hypertrofy";
    put the appId it assigns into `watch-zepp/app.json`.
 2. `npx zeus build`, and upload the `.zab` under the app's version. Fill in the listing: name,
    description, the category (Health / Sports), the icon, and screenshots per screen shape (the
    console asks for round 480 × 480 and square 390 × 450 at least; the simulator takes them).
-3. Privacy: heart rate is read on the watch and goes only to the user's own openGym server; no data
+3. Privacy: heart rate is read on the watch and goes only to the user's own Hypertrofy server; no data
    to the developer or any third party. Say that in the privacy form, with the link to the
    project's privacy text.
 4. Licence: the code is AGPL; no exercise media is in the package (text and numbers only), so the
    Gym visual licence does not apply to it.
-5. Submit for review. The review installs it on real watches; a reviewer without an openGym server
+5. Submit for review. The review installs it on real watches; a reviewer without an Hypertrofy server
    needs one to see more than "Pair me first", so give them a demo server address and a fresh
    pairing code (codes last ten minutes: give them an account to sign in with instead, and say where
    to find Settings → Zepp OS watch).
@@ -186,7 +186,7 @@ assigns (below).
   the heart-rate sensor's rate, the shortcut card's size and tap, and the Zepp app's fetch and
   settings page on Android and iPhone.
 - **A server is needed.** A phone app on its own, with no server, cannot reach a Zepp watch.
-- **Not instant.** Up to 15 seconds each way while both apps are open; while the phone's openGym
+- **Not instant.** Up to 15 seconds each way while both apps are open; while the phone's Hypertrofy
   page sleeps, the watch's sets wait on the server and are applied when it wakes. The workout itself
   never waits: it runs on the watch.
 - **While the watch app is closed** nothing syncs: Zepp OS runs the Side Service only while the watch

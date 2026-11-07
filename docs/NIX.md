@@ -1,7 +1,7 @@
-# openGym on NixOS — Flake & NixOS Module
+# Hypertrofy on NixOS — Flake & NixOS Module
 
-openGym can run natively on NixOS through its **Nix flake** and **NixOS module** — no Docker, no
-`docker compose`. The flake builds every openGym component (frontend with the exercise media, API)
+Hypertrofy can run natively on NixOS through its **Nix flake** and **NixOS module** — no Docker, no
+`docker compose`. The flake builds every Hypertrofy component (frontend with the exercise media, API)
 as reproducible Nix packages; the module declares the whole stack as systemd services managed by
 your NixOS configuration. This document covers both.
 
@@ -34,14 +34,14 @@ your NixOS configuration. This document covers both.
 - read-only options exposing the built frontend and media directories so *your* web server can
   serve them (or `nginx.enable = true` for the module to manage one — see §4),
 - `environment` / `environmentFile` — escape hatches to pass extra environment variables to the
-  API (for variables openGym doesn't know about yet). See [Module options reference](#6-module-options-reference).
+  API (for variables Hypertrofy doesn't know about yet). See [Module options reference](#6-module-options-reference).
 
 The module **does not own a web server by default**: it hands you the `web.root` store path (the
 exercise media are inside it) to wire into your own reverse proxy (Caddy, nginx, Traefik, …).
-openGym needs everything on **one origin** (passkeys require it), and NixOS deployments already run
-a proxy — so the module integrates openGym into *yours* instead of re-implementing a web server
-itself. See §4. If you'd rather have openGym's web server managed for you, set
-`services.opengym.nginx.enable = true` and the module configures an nginx virtualHost for openGym
+Hypertrofy needs everything on **one origin** (passkeys require it), and NixOS deployments already run
+a proxy — so the module integrates Hypertrofy into *yours* instead of re-implementing a web server
+itself. See §4. If you'd rather have Hypertrofy's web server managed for you, set
+`services.opengym.nginx.enable = true` and the module configures an nginx virtualHost for Hypertrofy
 (only then is `services.nginx` enabled; on the Caddy-native default it is force-disabled).
 
 ### Configuration flow
@@ -122,7 +122,7 @@ The URL contract the frontend expects ([`frontend/src/lib/exercises.js`](../fron
 
 The exercise media come from `catalogue/media` in the source tree, copied next to the app at build
 time by `scripts/catalogue/stage-media.mjs` (the same step the demo and app builds use). Nothing is
-downloaded, at build time or at runtime. They are licensed from Gym visual for openGym only and
+downloaded, at build time or at runtime. They are licensed from Gym visual for Hypertrofy only and
 stay at 180 px; don't publish that directory on its own (see [`NOTICE.md`](../NOTICE.md)).
 
 ### Caddy
@@ -152,7 +152,7 @@ module (where `config` is in scope) so the store paths resolve from the module's
 }
 ```
 
-The API must **keep** its `/api` prefix (openGym routes on it), so `/api` uses a plain `handle`
+The API must **keep** its `/api` prefix (Hypertrofy routes on it), so `/api` uses a plain `handle`
 that passes the full URI through. Order matters: `/api` must be handled before the catch-all
 `handle` that serves the SPA. The exercise media are files under `web.root`, so `file_server`
 serves them; `try_files` only falls back to `/index.html` for paths that don't exist.
@@ -214,7 +214,7 @@ word-for-word.
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # the flake lives in a subdirectory — ?dir= points at it
-    opengym.url = "github:DuarteSantos8/openGym?dir=contrib/nix";
+    opengym.url = "github:DuarteSantos8/Hypertrofy?dir=contrib/nix";
   };
 
   outputs = { self, nixpkgs, opengym, ... }: {
@@ -294,7 +294,7 @@ at `web.root`.
 
 ### Extra environment variables
 
-openGym's server is env-var driven, so from time to time a new variable reaches the project
+Hypertrofy's server is env-var driven, so from time to time a new variable reaches the project
 before the module grows an option for it. Two options cover the gap — and they are **mutually
 exclusive** (setting both is an evaluation error):
 
@@ -345,13 +345,13 @@ for other modules to consume — setting them yourself is an error.
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `enable` | `bool` | `false` | Enable openGym (user, services, directories). |
+| `enable` | `bool` | `false` | Enable Hypertrofy (user, services, directories). |
 | `package` | `attrsOf package` | packages built from source | The package set: `{ opengym-frontend, opengym-api }`. Override to serve pre-built binaries (e.g. from a cache). |
 | `dataDir` | `path` | `/var/lib/opengym` | Persistent data directory — `db.json`, per-user `state-<uid>.json`, `secret`, `vapid.json`, `audit.log`. With the default `/var/lib/opengym`, systemd's `StateDirectory` creates (and cleans up) it; a custom path is created by a tmpfiles rule and `ReadWritePaths` points at it instead. |
 | `apiPort` | `port` | `3000` | Port the API listens on (internal — reachable via your reverse proxy, front it yourself if you open the firewall). |
 | `rpId` | `str` | `localhost` | WebAuthn Relying Party ID. Bare hostname, must match the address bar exactly. |
 | `origin` | `str` | `http://localhost:8080` | Full origin for CSRF validation. Must match the address bar exactly (scheme + host, no trailing slash). |
-| `rpName` | `str` | `openGym` | Display name shown when the browser prompts for a passkey. |
+| `rpName` | `str` | `Hypertrofy` | Display name shown when the browser prompts for a passkey. |
 | `sessionDays` | `ints.unsigned` | `90` | Session cookie lifetime, in days. |
 | `adminUids` | `str` | `""` | Comma-separated user IDs granted the admin dashboard. Empty = no admin. |
 | `inviteOnly` | `bool` | `false` | Require an invite code to create a new profile. |
@@ -368,7 +368,7 @@ for other modules to consume — setting them yourself is an error.
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `nginx.enable` | `bool` | `false` | Have the module configure an nginx virtualHost for openGym via `services.nginx` (SPA root + fallback, `/api` proxy, cache header on `/exercise-media/`, gzip/optimisation). When `false` (Caddy-native default) the module force-disables `services.nginx`. |
+| `nginx.enable` | `bool` | `false` | Have the module configure an nginx virtualHost for Hypertrofy via `services.nginx` (SPA root + fallback, `/api` proxy, cache header on `/exercise-media/`, gzip/optimisation). When `false` (Caddy-native default) the module force-disables `services.nginx`. |
 | `nginx.hostName` | `str` | `"${rpId}"` | Server name the virtualHost listens on. |
 | `nginx.enableACME` | `bool` | `false` | Serve over TLS: `enableACME` + `forceSSL` on the vhost. Requires `security.acme.acceptTerms = true`. |
 
@@ -437,11 +437,11 @@ routine update — see the passkey caveat in §4.
 | No passkey prompt / "verification failed" | `rpId`/`origin` don't match the address bar. Ask the server what it loaded: `journalctl -u opengym-api -b \| grep 'gym-api on'`.  See §4 and `docs/SELF_HOSTING.md`. |
 | App loads but exercises show no image/animation | Your web server doesn't serve `web.root` for `/exercise-media/*`, for example because an older config still routes `/img/` and `/gif/` or sends everything unknown to `index.html` without trying the file first. `curl -I https://your-host/exercise-media/NOTICE.md` should answer 200. |
 | `/api` returns 502/404 | Your proxy's `apiPort` (`services.opengym.apiPort`) differs from what `reverse_proxy`/`proxy_pass` targets. |
-| `nginx` is silently gone after enabling the module | Expected on the Caddy-native default (`nginx.enable = false`): the module sets `services.nginx.enable = false`. Set `services.opengym.nginx.enable = true` to have the module configure nginx for openGym (or `lib.mkForce true` to manage it yourself). |
+| `nginx` is silently gone after enabling the module | Expected on the Caddy-native default (`nginx.enable = false`): the module sets `services.nginx.enable = false`. Set `services.opengym.nginx.enable = true` to have the module configure nginx for Hypertrofy (or `lib.mkForce true` to manage it yourself). |
 | Service won't start | `journalctl -u opengym-api -xe`. Common: custom `dataDir` not created/owned correctly (the tmpfiles rule should handle it; check `systemd-tmpfiles --create`). |
 | Eval fails: `environment and environmentFile are mutually exclusive` | Pick one. Set extra vars either as a Nix attrset (`environment`) or in a file (`environmentFile`), never both. |
 | You expected a binary cache | The flake builds from source; override `services.opengym.package` (or `packages.*` via a cache/overlay) to substitute binaries. |
-| Exercise media licensing | © Aliaksandr Makatserchyk, Gym visual, licensed for use in openGym only and not covered by the AGPL. They ship at 180 px; don't re-host them on their own. See [`NOTICE.md`](../NOTICE.md) |
+| Exercise media licensing | © Aliaksandr Makatserchyk, Gym visual, licensed for use in Hypertrofy only and not covered by the AGPL. They ship at 180 px; don't re-host them on their own. See [`NOTICE.md`](../NOTICE.md) |
 | `nix run .#opengym` serves a blank site | The app now serves frontend + API + media behind a local Caddy. If something's off, check the log line it prints (ports/`DATA_DIR`) and that nothing else already binds `:3000`/`:8080` — pass `OPENGYM_API_PORT`/`OPENGYM_WEB_PORT` to move them. |
 
 ## See also

@@ -15,9 +15,9 @@ Everything here lives in the app under **Settings → Data & backup**, except pl
 ## Workout history from another app
 
 Export a file from your old app, then pick it under **Settings → Data & backup → Import from another app**.
-openGym works out which app it came from, matches exercise names against its library, and anything
+Hypertrofy works out which app it came from, matches exercise names against its library, and anything
 it doesn't recognise becomes one of your own exercises, so nothing in the file is dropped. Days
-that already have a workout in openGym are left alone, so importing the same file twice never
+that already have a workout in Hypertrofy are left alone, so importing the same file twice never
 duplicates anything. You see a summary (workouts, sets, matched exercises, the unit) before
 anything is written. A file that looks like one of the apps below but doesn't read as one is
 refused with a message rather than half imported.
@@ -46,13 +46,13 @@ Other files work too, as long as they have a date, an exercise name and somethin
 
 ## Liftosaur
 
-Liftosaur has two exports under **Settings**, and openGym reads both:
+Liftosaur has two exports under **Settings**, and Hypertrofy reads both:
 
 - **Export history to CSV file** gives `liftosaur_<date>.csv`: your workouts, one row per set,
   with warm-ups, RPE, timed sets and each exercise's notes.
 - **Export data to JSON file** gives `liftosaur-<date>.json`: the same history plus your
   programs. Each day of a program's first week becomes a routine ("GZCLP · Day 1"), with its sets,
-  reps, weight, warm-ups, supersets and timed sets. openGym doesn't run Liftoscript, so a
+  reps, weight, warm-ups, supersets and timed sets. Hypertrofy doesn't run Liftoscript, so a
   progression (`progress: lp(5lb)`) and anything the plain numbers leave out (a rep range, an
   AMRAP set, a weight in % of your 1RM or by RPE) come along as a note on the exercise. Routines
   you imported before are left alone. Programs from before Liftosaur's workout planner are skipped.
@@ -64,7 +64,7 @@ Exercises are matched with their equipment: Liftosaur's "Front Raise" is the dum
 
 Liftoff has no export button. The unofficial, open-source
 [liftoff-export-cli](https://github.com/quantcli/liftoff-export-cli) logs in with your account and
-writes JSON that openGym reads:
+writes JSON that Hypertrofy reads:
 
 ```sh
 liftoff-export auth login
@@ -73,8 +73,8 @@ liftoff-export routines list --format json > liftoff-routines.json
 ```
 
 Pick either file. Workouts bring their warm-ups, notes, cardio (distance and time) and timed sets;
-routines become openGym routines. The file doesn't say whether a weight is kg or lb, so weights
-are imported as written: use the same unit in openGym as in Liftoff. The summary will remind you.
+routines become Hypertrofy routines. The file doesn't say whether a weight is kg or lb, so weights
+are imported as written: use the same unit in Hypertrofy as in Liftoff. The summary will remind you.
 
 ## StrongLifts 5×5
 
@@ -89,21 +89,21 @@ In Fitbod, open **Log**, tap **⋯** and choose **Export Data**; you get `Workou
 describes them; the menu may be named a little differently in your version).
 Warm-up sets, cardio (time and distance) and timed holds come along; weights are in kg in this
 file, whatever your Fitbod setting. On Android there's no export button: Fitbod's support can send
-you a data extract (`exercise_name`, `weight_kg`, ...), which openGym reads too.
+you a data extract (`exercise_name`, `weight_kg`, ...), which Hypertrofy reads too.
 
 ## JEFIT
 
 Sign in at [jefit.com](https://www.jefit.com/my-jefit/settings), open **Settings → Data Controls →
 Export Data** and download the CSV (steps as [JeFit2Hevy](https://github.com/sondrealf/JeFit2Hevy)
-describes them). openGym reads its exercise logs (`60x10,65x8` per exercise and
+describes them). Hypertrofy reads its exercise logs (`60x10,65x8` per exercise and
 day) and takes the time of each workout from its session. JEFIT doesn't write the unit, so weights
 are imported as written.
 
 ## Not supported (yet)
 
-Boostcamp, GymBook and Alpha Progression don't document an export format openGym could read
+Boostcamp, GymBook and Alpha Progression don't document an export format Hypertrofy could read
 safely, and wger has no export of its workout log (its API names exercises by number only). If you have one of these files, a sample
-(with your numbers changed) in a [GitHub issue](https://github.com/DuarteSantos8/openGym/issues)
+(with your numbers changed) in a [GitHub issue](https://github.com/DuarteSantos8/Hypertrofy/issues)
 is the fastest way to get it added. A CSV with a date, an exercise and a weight or reps column
 usually works already, see [your own CSV](#your-own-csv).
 
@@ -112,7 +112,7 @@ usually works already, see [your own CSV](#your-own-csv).
 With **Hevy Pro** you can skip the CSV:
 
 1. In Hevy, open [Settings → Developer](https://hevy.com/settings?developer) and create an API key.
-2. In openGym, go to **Settings → Data & backup → Import from Hevy** and paste the key. It's used for this
+2. In Hypertrofy, go to **Settings → Data & backup → Import from Hevy** and paste the key. It's used for this
    import only and isn't saved.
 3. Choose workouts, routines, weigh-ins or any mix, then confirm.
 
@@ -122,7 +122,7 @@ Routines always arrive as new plans; nothing you already have is overwritten.
 
 In the Health app on your iPhone, tap your profile picture, then **Export All Health Data**. Unzip
 the result and pick `export.xml` under **Import from another app**. The file is often hundreds of
-megabytes; openGym reads only the body-weight records from it, in whatever unit each one was saved
+megabytes; Hypertrofy reads only the body-weight records from it, in whatever unit each one was saved
 in, and keeps every one with its time, so a morning and an evening weigh-in are both there (#859).
 A record at a time the day already has is skipped, so importing the same file twice adds nothing.
 Charts and the trend use one value per day, the one **Settings → Units & language → Daily weigh-in
@@ -130,7 +130,7 @@ value** picks: the morning (first) one, which is the default, the day's average,
 
 A CSV with a date column and a weight column works the same way: a date with a time
 (`2026-10-28 07:12`) keeps the time, and a date alone keeps one weigh-in for that day (the file's
-last), added only to a day that has none yet. The body CSV openGym exports itself writes one row per
+last), added only to a day that has none yet. The body CSV Hypertrofy exports itself writes one row per
 weigh-in that way and reads back the same. So does Strong's
 measurements export (Settings → Export Data, the file with *Measurement Type* and *Value*
 columns): only its weight rows are read, each in the unit it was logged in.
@@ -158,11 +158,11 @@ library.
 - **Export backup (JSON)** saves your whole profile as one file. **Export with photos & videos
   (.zip)** includes your media as well.
 - **Import backup** restores such a file and *replaces* everything currently in the app.
-- **Auto-backup on changes** (phone app only) saves a dated copy to `Documents/openGym` after each
+- **Auto-backup on changes** (phone app only) saves a dated copy to `Documents/Hypertrofy` after each
   workout or routine edit and keeps the newest 14. Point a sync app at that folder to get them off
   the phone, or, on Android, choose the sync app's own folder under Settings → Data & backup → **Backup folder**.
 
-If you host openGym yourself, backing up the `./data` folder covers every profile at once; see
+If you host Hypertrofy yourself, backing up the `./data` folder covers every profile at once; see
 [backups](SELF_HOSTING.md#6-backups).
 
 ## Your own CSV

@@ -90,7 +90,7 @@ The first two block the store entries themselves, because the ids are permanent.
 
 | # | need | blocks | owner |
 |---|---|---|---|
-| 1 | **Exercise media licence** from [gymvisual.com](https://gymvisual.com/) — the stills and animations are licensed to openGym only, and a commercial fork needs its own | any store upload | you |
+| 1 | **Exercise media licence** from [gymvisual.com](https://gymvisual.com/) — the stills and animations are licensed to Hypertrofy only, and a commercial fork needs its own | any store upload | you |
 | 2 | **Rebrand**, commits 1–3 of [`REBRAND.md`](REBRAND.md) | creating the store entries | code |
 | 3 | JDK 21 + Android SDK + a release keystore, generated once and backed up | Android release build | you |
 | 4 | macOS + Xcode + an Apple Developer account | iOS archive | you |

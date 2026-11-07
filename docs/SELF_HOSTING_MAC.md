@@ -1,6 +1,6 @@
-# openGym on a Mac at home (Colima and Tailscale)
+# Hypertrofy on a Mac at home (Colima and Tailscale)
 
-A way to run openGym on a spare Mac, with no Docker Desktop, no domain and no reverse proxy.
+A way to run Hypertrofy on a spare Mac, with no Docker Desktop, no domain and no reverse proxy.
 [Colima](https://github.com/abiosoft/colima) runs the containers, and
 [Tailscale Serve](https://tailscale.com/kb/1242/tailscale-serve) gives the server an `https://` address
 that your phone can use for passkeys and pairing. The address only works inside your own tailnet
@@ -32,13 +32,13 @@ Homebrew's `docker-compose` is a CLI plugin. Tell the `docker` command where it 
 
 (`/usr/local/lib/docker/cli-plugins` on an Intel Mac.) Check with `docker compose version`.
 
-## 2. Get openGym
+## 2. Get Hypertrofy
 
 Clone it somewhere that is **not** iCloud Drive or another synced folder (`~/Dev/opengym` works). The
 `./data` folder is written all the time and does not like being synced.
 
 ```bash
-git clone https://github.com/DuarteSantos8/openGym ~/Dev/opengym
+git clone https://github.com/DuarteSantos8/Hypertrofy ~/Dev/opengym
 cd ~/Dev/opengym
 cp .env.example .env
 ```
@@ -89,7 +89,7 @@ The first profile becomes the admin. Once it exists, add `INVITE_ONLY=1` to `.en
 1. On the phone, turn Tailscale on.
 2. In the browser where you are signed in: Settings, Account, **Pair the mobile app**. You get an
    8-character code that lasts 5 minutes.
-3. In the openGym app: Settings, Account, **Connect to my server**. Enter your `https://` address and the
+3. In the Hypertrofy app: Settings, Account, **Connect to my server**. Enter your `https://` address and the
    code.
 
 More on pairing in [MOBILE.md](./MOBILE.md).

@@ -1,11 +1,11 @@
 # Modules
 
-openGym can be a plain training log or the whole lot. **Settings → Modules** switches whole
+Hypertrofy can be a plain training log or the whole lot. **Settings → Modules** switches whole
 feature areas on and off, so the app shows only what you use. The idea came from the community on
 Discord (thanks seals187 and Shadowbyte): "it's important not to overload the app with 1000
 functions and settings".
 
-These are parts of openGym itself, not third-party plugins. Nothing outside the app can add code.
+These are parts of Hypertrofy itself, not third-party plugins. Nothing outside the app can add code.
 
 ## What stays on
 
