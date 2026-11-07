@@ -56,10 +56,17 @@ describe('packDrawingId', () => {
     expect(packDrawingId(once, 'male')).toBe('5965')
   })
   it('agrees with lib/exercises.js gifSrc for every catalogue exercise', async () => {
-    const { gifSrc } = await import('./exercises.js')
+    const { gifSrc, remoteGifUrl } = await import('./exercises.js')
     for (const ex of EXDB) {
       for (const fig of ['male', 'female']) {
-        expect(gifSrc(ex, fig).split('/').pop().replace(/\.(mp4|webp)$/, ''), ex.id + ' ' + fig).toBe(packDrawingId(ex, fig))
+        const src = gifSrc(ex, fig)
+        if (/^https?:\/\//.test(src)) {
+          // Remote ExerciseDB v1 GIF (mapped). Figure/drawing selection is honored by
+          // exercises.js remoteFor; the URL uses v1's alphanumeric id, not packDrawingId.
+          expect(src, ex.id + ' ' + fig).toMatch(/\.gif(\?|$)/)
+        } else {
+          expect(src.split('/').pop().replace(/\.(mp4|webp|gif)$/, ''), ex.id + ' ' + fig).toBe(packDrawingId(ex, fig))
+        }
       }
     }
   })

@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { useStore } from '../store/useStore.js'
 import { t } from '../lib/i18n.js'
 import { MOBILE } from '../lib/mobile.js'
-import { gifSrc, figureOf } from '../lib/exercises.js'
+import { gifSrc, figureOf, remoteGifUrl } from '../lib/exercises.js'
 import { fmtMB } from '../lib/media-limits.js'
 import { BUILTIN_PX, packId, parsePackId, wantedQuality, clipSources } from '../lib/anim-quality.js'
 import { subscribe, getState, installedBases, deviceInfo, refresh, ensureWanted, writePrefs, download, remove, downloadBytes, diagnose, offeredQualities, targetPack, ALL_PACKS } from '../lib/anim-packs.js'
@@ -21,7 +21,8 @@ export const useAnimPacks = () => useSyncExternalStore(subscribe, getState, getS
  */
 export function useAnimSources(ex, figure) {
   const packs = useAnimPacks()
-  const builtin = ex?.gif ? gifSrc(ex, figure) : null
+  // Remote ExerciseDB v1 media (mapped by id) has no ex.gif field but gifSrc resolves it.
+  const builtin = (ex?.gif || remoteGifUrl(ex)) ? gifSrc(ex, figure) : null
   if (!MOBILE) return { still: false, sources: builtin ? [builtin] : [] }
   const choice = packs.available ? packs.prefs.choice : (packs.prefs.choice === 'still' ? 'still' : 'builtin')
   return clipSources({ ex, figure, choice, device: deviceInfo(), installed: installedBases(packs), builtin })

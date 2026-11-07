@@ -1,10 +1,20 @@
 import { EXDB, EXALIAS } from './exercises-data.js'
 import MUSCLE_MAP from './exercise-muscle-map.json' with { type: 'json' }
 import V13_IDS from './catalogue-v13-ids.json' with { type: 'json' }
+import MEDIA_MAP from './exercise-media-map.json'
 import { t, getVersion, exerciseNameSearchText } from './i18n-core.js'
 import { exerciseAliases, aliasSnapshot } from './exercise-aliases.js'
 
 export { EXDB }
+
+// ExerciseDB v1 (AscendAPI) media: local id -> { exerciseId, gifUrl, confidence }.
+// The GIF is fetched on first view and cached on device (see exercise-media.js);
+// bundled GymVisual still/clip files are no longer shipped for these exercises.
+export const remoteGifUrl = ex => {
+  const id = ex && (typeof ex === 'string' ? ex : ex.id)
+  return (id && MEDIA_MAP[id] && MEDIA_MAP[id].gifUrl) || null
+}
+export const hasRemoteMedia = ex => !!remoteGifUrl(ex)
 
 // EXDB carries each exercise as the catalogue describes it in words (target, secondary muscles).
 // Where someone has drawn the muscles more precisely (catalogue "muscleMap": the compound lifts,
@@ -205,9 +215,28 @@ export const figureOf = S => (S?.exFigure === 'female' || S?.exFigure === 'male'
   ? S.exFigure
   : (S?.body === 'female' ? 'female' : 'male')
 const drawing = (ex, figure) => (figure === 'female' ? ex.fv : figure === 'male' ? ex.mv : null) || null
-export const imgSrc = (ex, figure) => IMG_BASE + (drawing(ex, figure) ? drawing(ex, figure) + '.webp' : ex.img)
+// The ExerciseDB v1 GIF is the only media for a mapped exercise (fetched + cached on
+// device). It serves as both the animation and the still/poster; there is no separate
+// bundled still.webp/clip.mp4 for these once GymVisual media is removed.
+const remoteFor = (ex, figure) => {
+  const d = drawing(ex, figure)
+  if (d && MEDIA_MAP[d] && MEDIA_MAP[d].gifUrl) return MEDIA_MAP[d].gifUrl
+  const id = ex && ex.id
+  return (id && MEDIA_MAP[id] && MEDIA_MAP[id].gifUrl) || null
+}
+export const imgSrc = (ex, figure) => {
+  const r = remoteFor(ex, figure)
+  if (r) return r
+  const file = drawing(ex, figure) ? drawing(ex, figure) + '.webp' : ex.img
+  return file ? IMG_BASE + file : null
+}
 const clipFile = f => (CLIP_EXT !== '.mp4' && f.endsWith('.mp4') ? f.slice(0, -4) + CLIP_EXT : f)
-export const gifSrc = (ex, figure) => GIF_BASE + clipFile(drawing(ex, figure) ? drawing(ex, figure) + '.mp4' : ex.gif)
+export const gifSrc = (ex, figure) => {
+  const r = remoteFor(ex, figure)
+  if (r) return r
+  const file = drawing(ex, figure) ? drawing(ex, figure) + '.mp4' : ex.gif
+  return file ? GIF_BASE + clipFile(file) : null
+}
 // The catalogue's animations are short MP4 loops; a fork's or an older build's may still be GIFs.
 export const isVideoSrc = src => /\.(mp4|webm)(\?|$)/i.test(src || '')
 

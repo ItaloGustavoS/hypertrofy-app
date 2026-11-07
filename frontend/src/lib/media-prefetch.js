@@ -18,7 +18,8 @@
 // bounded by the plan (a few MB for a typical one) and each file goes once.
 //
 // Not in the phone app: it has no service worker, and its media comes from the CDN.
-import { EXIDX, imgSrc, gifSrc, isCustomEx, figureOf } from './exercises.js'
+import { EXIDX, imgSrc, gifSrc, isCustomEx, figureOf, remoteGifUrl } from './exercises.js'
+import { prefetchExerciseMedia } from './exercise-media-cache.js'
 
 // The worker's media cache, public/sw.js MEDIA. Duplicated because the worker is not bundled;
 // sw-media.test.js pins the two together.
@@ -43,6 +44,9 @@ export function planMediaUrls(S, base = globalThis.location?.href, index = EXIDX
     // A custom exercise's photo or video is not a file of the shipped dataset: it lives in the
     // local media store and has its own prefetch (lib/media-sync.js). An unknown id has nothing.
     if (!ex || isCustomEx(ex)) continue
+    // Remote ExerciseDB media is warmed into the device cache (decision 3), not the SW media cache.
+    const remote = remoteGifUrl(ex)
+    if (remote) { urls.add(remote); continue }
     for (const src of [ex.gif && gifSrc(ex, figureOf(S)), ex.img && imgSrc(ex, figureOf(S))]) {
       if (!src) continue
       const u = new URL(src, base)
@@ -83,9 +87,13 @@ export function prefetchAllowed(nav = globalThis.navigator) {
  * and it stops as soon as the connection stops qualifying or the server keeps refusing.
  */
 export async function prefetchMedia(urls, { cache, fetchImpl = globalThis.fetch, allowed = prefetchAllowed } = {}) {
-  const missing = cache
-    ? (await Promise.all(urls.map(async u => ((await cache.match(u).catch(() => null)) ? null : u)))).filter(Boolean)
-    : urls.slice()
+  // Remote ExerciseDB GIFs persist in the exercise-media Cache Storage cache (decision 3),
+  // not in the service worker's same-origin media cache.
+  const remote = urls.filter(u => /^https?:/i.test(u) && !/^https?:\/\/[^/]*$/.test('') && /static\.exercisedb\.dev\/media\//.test(u))
+  const local = urls.filter(u => !remote.includes(u))
+  const missing = cache && local.length
+    ? (await Promise.all(local.map(async u => ((await cache.match(u).catch(() => null)) ? null : u)))).filter(Boolean)
+    : local.slice()
   let next = 0
   let fetched = 0
   let failures = 0
@@ -101,7 +109,9 @@ export async function prefetchMedia(urls, { cache, fetchImpl = globalThis.fetch,
     }
   }
   await Promise.all(Array.from({ length: CONCURRENCY }, lane))
-  return { wanted: urls.length, missing: missing.length, fetched }
+  // Warm remote media best-effort; counted as fetched when attempted (cache dedupes internally).
+  if (remote.length && allowed()) await Promise.all(remote.map(u => prefetchExerciseMedia(u).catch(() => {})))
+  return { wanted: urls.length, missing: missing.length + remote.length, fetched: fetched + remote.length }
 }
 
 /**

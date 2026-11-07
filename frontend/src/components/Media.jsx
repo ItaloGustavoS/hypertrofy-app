@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { imgSrc, gifSrc, isVideoSrc, isCustomEx, figureOf } from '../lib/exercises.js'
+import { imgSrc, gifSrc, isVideoSrc, isCustomEx, figureOf, remoteGifUrl } from '../lib/exercises.js'
 import { MOBILE } from '../lib/mobile.js'
+import { cachedExerciseSrc, isRemoteExerciseMedia } from '../lib/exercise-media-cache.js'
 import { useStore } from '../store/useStore.js'
 import { t, exerciseNameFor } from '../lib/i18n.js'
 import Icon from './Icon.jsx'
@@ -43,18 +44,29 @@ function BuiltinMedia({ ex, id, compact, minimizable }) {
   // (Settings → Animation quality, components/Animations.jsx): the sources are the best file
   // first and the built-in one last, and one that will not load hands over to the next before the
   // still is shown. 'Still only' asks for no animation at all. Elsewhere: the built-in file.
+  // Remote ExerciseDB v1 media (mapped by id) is a single GIF with no bundled ex.gif field.
+  const remote = !!remoteGifUrl(ex)
   const anim = useAnimSources(ex, body)
   const sourcesKey = anim.sources.join('|')
   const [tried, setTried] = useState({ key: sourcesKey, i: 0 })
   const at = tried.key === sourcesKey ? tried.i : 0
-  const gif = anim.sources[Math.min(at, Math.max(0, anim.sources.length - 1))] || gifSrc(ex, body)
-  const clip = ex.gif && isVideoSrc(gif) ? gif : null
+  const rawGif = anim.sources[Math.min(at, Math.max(0, anim.sources.length - 1))] || gifSrc(ex, body)
+  const [cachedGif, setCachedGif] = useState(() => (rawGif && isRemoteExerciseMedia(rawGif) ? null : rawGif))
+  useEffect(() => {
+    if (!rawGif || !isRemoteExerciseMedia(rawGif)) { setCachedGif(rawGif); return }
+    let on = true
+    setCachedGif(null)
+    cachedExerciseSrc(rawGif).then(u => { if (on) setCachedGif(u) }).catch(() => { if (on) setCachedGif(rawGif) })
+    return () => { on = false }
+  }, [rawGif])
+  const gif = cachedGif || rawGif
+  const clip = !remote && ex.gif && isVideoSrc(rawGif) ? rawGif : null
   const clipSrc = useClipInMemory(clip)
-  if (!ex.gif) return null
+  if (!ex.gif && !remote) return null
   if (minimizable && gifSize === 'off') return null
   const mini = minimizable && gifSize === 'mini'
   const toggleSize = e => { e.stopPropagation(); update(s => { s.gifSize = mini ? 'full' : 'mini' }) }
-  const showGif = playing && failed == null && !anim.still
+  const showGif = playing && failed == null && !anim.still && !!gif
   const onError = () => {
     if (showGif && at < anim.sources.length - 1) { setTried({ key: sourcesKey, i: at + 1 }); return }
     setFailed(showGif ? 'gif' : 'all')
@@ -64,6 +76,7 @@ function BuiltinMedia({ ex, id, compact, minimizable }) {
     if (anim.still) return
     setPlaying(p => !p)
   }
+  const still = imgSrc(ex, body)
   return (
     <div className={'exmedia' + (compact ? ' compact' : '') + (mini ? ' mini' : '') + (failed === 'all' ? ' broken' : '')} id={id} onClick={onTap}>
       {failed === 'all'
@@ -75,8 +88,8 @@ function BuiltinMedia({ ex, id, compact, minimizable }) {
               aria-label={exerciseNameFor(ex)} onError={onError} />
           : showGif && clip
             // the phone app is still reading the clip into memory: the still holds its place
-            ? <img decoding="async" draggable={false} src={imgSrc(ex, body)} alt={exerciseNameFor(ex)} />
-          : <img decoding="async" draggable={false} src={showGif ? gif : imgSrc(ex, body)} alt={exerciseNameFor(ex)} onError={onError} />}
+            ? <img decoding="async" draggable={false} src={still} alt={exerciseNameFor(ex)} />
+          : <img decoding="async" draggable={false} src={showGif ? gif : (still || gif)} alt={exerciseNameFor(ex)} onError={onError} />}
       {minimizable && (
         <button className="giftoggle" onClick={toggleSize}>
           <Icon name={mini ? 'expand' : 'minimize'} />{mini ? t('Expand') : t('Minimize')}
@@ -172,14 +185,26 @@ export function autoplayClip(el) {
 // A still that will not load (offline and never cached, a lapsed session on a gated instance, a
 // CDN hiccup) gets the same neutral tile as an exercise without media, instead of the browser's
 // broken-image glyph in a list of them (#281). The failure is remembered per image, so a list
-// that re-renders does not ask again; a new exercise in the same slot tries its own.
+// that re-renders does not ask again; a new exercise in the same slot tries its own. Remote
+// ExerciseDB v1 GIFs resolve through the cache first, so nothing references an uncached origin
+// URL here (#3).
 export function Thumb(p) {
   return isCustomEx(p.ex) ? <CustomThumb {...p} /> : <BuiltinThumb {...p} />
 }
 function BuiltinThumb({ ex }) {
   const body = useStore(s => figureOf(s.S))
-  const src = ex.img ? imgSrc(ex, body) : null
+  const remote = !!remoteGifUrl(ex)
+  const raw = remote ? imgSrc(ex, body) : (ex.img || ex.fv || ex.mv ? imgSrc(ex, body) : null)
+  const [src, setSrc] = useState(null)
   const [broken, setBroken] = useState(null)
+  useEffect(() => {
+    let live = true
+    setBroken(null)
+    if (!raw) { setSrc(null); return () => { live = false } }
+    if (!remote) { setSrc(raw); return () => { live = false } }
+    cachedExerciseSrc(raw).then(u => { if (live) setSrc(u) }, () => { if (live) setSrc(raw) })
+    return () => { live = false }
+  }, [raw, remote])
   if (!src || broken === src) return <div className="thumb thumb-x"><Icon name="dumbbell" /></div>
   return <img className="thumb" loading="lazy" decoding="async" draggable={false} src={src} alt="" onError={() => setBroken(src)} />
 }

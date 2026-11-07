@@ -16,7 +16,7 @@
 // phone's print views load it with no base URL (ios PrintPlugin.swift, android PrintPlugin.java),
 // so a relative path would never load there. Loading happens before the print starts, with a
 // deadline: whatever is not decoded by then is left out and that exercise prints as text.
-import { EXIDX, imgSrc, figureOf, isCustomEx } from './exercises.js'
+import { EXIDX, imgSrc, figureOf, isCustomEx, hasRemoteMedia } from './exercises.js'
 import { mediaOf } from './media-refs.js'
 
 /** The largest catalogue picture a printout may carry, in px on either side. */
@@ -65,6 +65,10 @@ export function printPictureSource(S, id, index = EXIDX) {
     if (m.poster) return { kind: 'custom', file: m.poster }
     return m.kind === 'image' && m.size <= CUSTOM_MAX_BYTES ? { kind: 'custom', file: m } : null
   }
+  // Remote ExerciseDB media (v1 GIF, cached on device) is not the GymVisual 180px still
+  // this path was licensed for; and bundled GymVisual media may be absent (step 4). Print
+  // degrades to text for these rather than fetching a cross-origin GIF into the page.
+  if (hasRemoteMedia(ex)) return null
   if (!ex.img && !ex.fv && !ex.mv) return null
   // The still, never gifSrc or an animation pack: see the licence note at the top.
   return { kind: 'catalogue', url: imgSrc(ex, figureOf(S)) }
