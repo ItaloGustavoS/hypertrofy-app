@@ -15,7 +15,7 @@ import { effectiveRoutineIds } from './history.js'
 import { NUDGE_COPY, lineIndex, nudgeFor, nudgeMinute, toneOf } from './nudge.js'
 import { excusedOn } from './day-notes.js'
 import { stateJson } from './state-json.js'
-import { PREMIUM_PRODUCT_ID, normalizePurchase } from './monetization.js'
+import { PREMIUM_PRODUCT_ID, storePurchaseVerdict } from './monetization.js'
 
 export const MOBILE = import.meta.env.VITE_MOBILE === '1'
 
@@ -548,13 +548,10 @@ export async function hideBanner() {
   } catch (e) { return false }
 }
 
-// Android hands back a purchaseToken; StoreKit 2 gives a transaction id (what the App Store
-// Server API looks a transaction up by) plus the signed JWS. Either identifies the purchase.
-const tokenOf = tx => tx?.purchaseToken || tx?.transactionId || tx?.jwsRepresentation || ''
-
-// One-time, non-consumable purchase that sets S.adFree. The receipt is validated server-side
-// via POST /api/purchase/validate — the client never trusts the store response alone.
-export async function purchasePremium(validate) {
+// One-time, non-consumable purchase that sets S.adFree. The transaction the store resolves is
+// the receipt: Play Billing and StoreKit 2 verify it on the device, and this app has no server
+// to ask, so a purchase for our product unlocks on its own.
+export async function purchasePremium() {
   if (!MOBILE) return { ok: false }
   try {
     const { NativePurchases, PURCHASE_TYPE } = await import('@capgo/native-purchases')
@@ -562,20 +559,13 @@ export async function purchasePremium(validate) {
       productIdentifier: PREMIUM_PRODUCT_ID,
       productType: PURCHASE_TYPE.INAPP,
     })
-    const payload = normalizePurchase({
-      productId: tx?.productIdentifier || PREMIUM_PRODUCT_ID,
-      purchaseToken: tokenOf(tx),
-      platform: await nativePlatform(),
-    })
-    if (!payload) return { ok: false }
-    const verdict = await validate(payload)
-    return verdict && verdict.adFree ? { ok: true } : { ok: false }
+    return storePurchaseVerdict(tx, await nativePlatform())
   } catch (e) { return { ok: false } }
 }
 
 // restorePurchases() replays the store's own sync and returns void, so the entitlements have
-// to be read back with getPurchases() afterwards.
-export async function restorePurchases(validate) {
+// to be read back with getPurchases() afterwards. One purchase of our product is enough.
+export async function restorePurchases() {
   if (!MOBILE) return { ok: false }
   try {
     const { NativePurchases, PURCHASE_TYPE } = await import('@capgo/native-purchases')
@@ -583,14 +573,7 @@ export async function restorePurchases(validate) {
     const res = await NativePurchases.getPurchases({ productType: PURCHASE_TYPE.INAPP })
     const platform = await nativePlatform()
     for (const p of res?.purchases || []) {
-      const payload = normalizePurchase({
-        productId: p.productIdentifier || '',
-        purchaseToken: tokenOf(p),
-        platform,
-      })
-      if (!payload) continue
-      const verdict = await validate(payload)
-      if (verdict && verdict.adFree) return { ok: true }
+      if (storePurchaseVerdict(p, platform).ok) return { ok: true }
     }
     return { ok: false }
   } catch (e) { return { ok: false } }

@@ -434,9 +434,3 @@ export async function passwordRegister(name, password, code, email) {
 export async function passwordResetRedeem(name, code, next) {
   return (await post('/api/login/password-reset', { name, code, next })).user
 }
-
-// IAP receipt validation (mobile shells only). The server checks the token against
-// the store and is the only thing that may answer adFree: true.
-export async function validatePurchase(payload) {
-  return api('/api/purchase/validate', { method: 'POST', body: JSON.stringify(payload) })
-}

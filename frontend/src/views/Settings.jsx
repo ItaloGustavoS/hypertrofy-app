@@ -25,7 +25,7 @@ import { speak, speechSupported, SPEECH_RATES, speechRateOf } from '../lib/speec
 import { sampleCue } from '../lib/spoken-cues.js'
 import { muscleTargetsSheet } from '../components/WeeklySets.jsx'
 import { aboutYouSheet } from '../components/StrengthLevel.jsx'
-import { api, webauthnOK, passkeyRegister, passkeyError, validatePurchase, IS_ANDROID } from '../lib/api.js'
+import { api, webauthnOK, passkeyRegister, passkeyError, IS_ANDROID } from '../lib/api.js'
 import { pushSupported, enablePush, disablePush, sendTestPush, syncPushSubscription } from '../lib/push.js'
 import { wakeLockSupported } from '../lib/wakelock.js'
 import { t, tn, LANGS, INSTR_LANGS, EXERCISE_NAME_LANGS, baseLang, dateLocale } from '../lib/i18n.js'
@@ -1154,7 +1154,7 @@ export default function Settings({ page = null, find = null, via = null, entryKe
         {MOBILE && ios && <Row icon="star" iconTint="var(--orange)" title={t('Rate openGym on the App Store')} accessory="chevron"
           onClick={() => window.open('https://apps.apple.com/app/id6822275400?action=write-review', '_blank', 'noopener')} />}
         {play && <Row icon="star" iconTint="var(--orange)" title={t('Rate openGym on Google Play')} accessory="chevron"
-          onClick={() => window.open('https://play.google.com/store/apps/details?id=ch.duartesantos.opengym', '_blank', 'noopener')} />}
+          onClick={() => window.open('https://play.google.com/store/apps/details?id=com.hypertrofy.app', '_blank', 'noopener')} />}
         {!play && <>
           <Row icon="heart" iconTint="var(--pink)" title={t('Buy me a coffee')} subtitle="Buy Me a Coffee" accessory="chevron"
             onClick={() => window.open('https://buymeacoffee.com/duartesantos', '_blank', 'noopener')} />
@@ -1281,7 +1281,7 @@ function PremiumCard() {
     if (busy.current) return   // a second tap while the store sheet is open must not buy twice
     busy.current = true
     try {
-      const out = await fn(validatePurchase)
+      const out = await fn()
       if (out?.ok) { update(s => { s.adFree = true }); toast(okMsg) }
       else toast(t('Purchase could not be verified'))
     } catch (e) { toast(t('Purchase could not be verified')) }
