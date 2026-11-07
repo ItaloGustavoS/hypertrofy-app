@@ -39,7 +39,7 @@ again — but narrower than before, because upstream now builds on some of that 
   and StructuralBalance tests.
 
 What the port still owns on top of v1.4.4: the AdMob banner and the one-time "remove ads" purchase
-(`openGym_premium_remove_ads`, R$ 34,90), receipt validation server-side, the Settings card. See
+(`hypertrofy_premium_remove_ads`, R$ 34,90), receipt validation server-side, the Settings card. See
 the phases below.
 
 The rename itself — bundle id, product id, icon, and the name in every string — is planned in
@@ -240,7 +240,7 @@ the rest sound), and two security fixes.
 ## v1.4.5: Google Play, F-Droid & integrations  (planned for the end of November)
 
 - **openGym on Google Play, for everyone.** The closed test runs since v1.4.4 (join: https://groups.google.com/g/opengym-testers/about, then
-  https://play.google.com/apps/testing/ch.duartesantos.opengym). A new developer account needs 12 testers for 14 days before Google lets it go public.
+  https://play.google.com/apps/testing/com.hypertrofy.app). A new developer account needs 12 testers for 14 days before Google lets it go public.
   Until then the signed APK on GitHub is the Android app for everyone else
 - **F-Droid** (#325): a build without Google's barcode scanner, store texts in F-Droid's format, and
   the licensed exercise animations marked as non-free assets. Their review can take a few weeks

@@ -33,22 +33,20 @@ Only a device answers the questions the browser cannot:
 - the Android auto-backup folder is named after the new brand, and an export/import round-trip
   survives it.
 
-## 3. Blocking decision — receipt validation without a server
+## 3. Receipt validation — decided: trust the store
 
-`purchasePremium()` calls `POST /api/purchase/validate`, and `api()` throws `not-paired` on a
-phone that is not connected to a server (`frontend/src/lib/api.js`). The standalone app — the
-one that keeps everything on the phone — has no server, so today a purchase there would be
-charged and then answered "Purchase could not be verified". That is the one thing in this plan
-that must be fixed before publishing.
+The published app has no server, so there is nothing to validate against. `purchasePremium()`
+and `restorePurchases()` take the transaction the store resolves as the receipt: Play Billing and
+StoreKit 2 verify it on the device before the plugin answers, and
+`storePurchaseVerdict()` in `frontend/src/lib/monetization.js` accepts it only for
+`hypertrofy_premium_remove_ads`.
 
-| option | cost | risk |
-|---|---|---|
-| **Trust the store's own answer** (recommended). Play Billing and StoreKit 2 already return a verified, signed transaction on the device; for a non-consumable the platform also handles restore. Flip `adFree` from that result, and keep the server check for paired phones | small: a branch in `purchasePremium`/`restorePurchases` | a tampered device can fake it. The product is R$ 34,90 once — not worth a server |
-| Require pairing | none | the app's whole selling point is that it needs no server |
-| Run a validation service | a server, its cost, and the store credentials | a dependency the app otherwise does not have |
+The server-side validator (`api/purchase.js`, `POST /api/purchase/validate`) stays for a
+self-hosted instance that wants it. The app no longer calls it, and `frontend/src/lib/api.js` no
+longer exports the wrapper.
 
-Recommendation: the first. It keeps the server path for self-hosters and makes the store the
-source of truth on a standalone phone.
+Trade-off, accepted: a tampered device can fake the unlock. The product is R$ 34,90 once, and a
+validation service would cost more than it protects.
 
 ## 4. Store accounts and products
 
@@ -84,3 +82,22 @@ In this order, because each needs the previous one:
 - Watch AdMob fill rate and eCPM for a week before deciding the price of the removal.
 - The removal purchase is the only revenue; if it does not convert, the lever is the banner
   placement, not a new product.
+
+## 7. What is still needed, in order
+
+Everything here is deliberately deferred until the app compiles and passes the device checks.
+The first two block the store entries themselves, because the ids are permanent.
+
+| # | need | blocks | owner |
+|---|---|---|---|
+| 1 | **Exercise media licence** from [gymvisual.com](https://gymvisual.com/) — the stills and animations are licensed to openGym only, and a commercial fork needs its own | any store upload | you |
+| 2 | **Rebrand**, commits 1–3 of [`REBRAND.md`](REBRAND.md) | creating the store entries | code |
+| 3 | JDK 21 + Android SDK + a release keystore, generated once and backed up | Android release build | you |
+| 4 | macOS + Xcode + an Apple Developer account | iOS archive | you |
+| 5 | Play Console: app `com.hypertrofy.app`, product `hypertrofy_premium_remove_ads` at R$ 34,90, data-safety form | Android listing | you |
+| 6 | App Store Connect: same ids, App Privacy answers, privacy-policy URL | iOS listing | you |
+| 7 | AdMob: app plus one banner unit per platform, into `VITE_ADMOB_BANNER_ID_ANDROID`/`_IOS`, `admob.app.id`, and the iOS `GADApplicationIdentifier` | ads actually serving | you |
+| 8 | Privacy policy, hosted at a public URL | both listings | you |
+| 9 | Screenshots retaken after the icon and name change | both listings | you |
+| 10 | The device pass in section 2, on a real phone with a real store account | release | you |
+| 11 | `fastlane/metadata` text updated to the new name, and a tagged GitHub release | publishing | code |
