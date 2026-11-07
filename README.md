@@ -50,8 +50,9 @@ Banner ad units and the AdMob app id are per platform and per account; see `.env
 ## Where this is going
 
 [`docs/RELEASE.md`](docs/RELEASE.md) lists what is still needed for a store release and in what
-order; [`docs/REBRAND.md`](docs/REBRAND.md) covers the rename. The open item that matters most is
-the exercise media licence below.
+order; [`docs/REBRAND.md`](docs/REBRAND.md) covers the rename and [`docs/MEDIA_PLAN.md`](docs/MEDIA_PLAN.md)
+records the ExerciseDB v1 media migration. The open item that matters most before a store release
+is verifying the commercial/caching terms of the exercise media source (see §7 of the release path).
 
 ## Licence and attribution
 
@@ -62,9 +63,8 @@ fork is public at [ItaloGustavoS/hypertrofy-app](https://github.com/ItaloGustavo
 Upstream: [github.com/DuarteSantos8/Hypertrofy](https://github.com/DuarteSantos8/Hypertrofy) ·
 [gitlab.com/DuarteSantos8/opengym](https://gitlab.com/DuarteSantos8/opengym).
 
-> [!IMPORTANT]
-> **The exercise media is not AGPL.** The stills and animations are © Aliaksandr Makatserchyk,
-> [Gym visual](https://gymvisual.com/), licensed for use in Hypertrofy only. A non-commercial fork may
-> keep them unmodified with the notice; a commercial one — this fork sells ad removal — needs its
-> own licence from gymvisual.com. The exercise text in `catalogue/` is Hypertrofy's and open to
-> contributions.
+> [!NOTE]
+> **Exercise media.** The app shows 180p exercise GIFs sourced from ExerciseDB v1 and cached on the
+> device (not bundled). The commercial/caching/redistribution terms of that source were assumed
+> acceptable for this project but must be verified before a store release. The exercise text in
+> `catalogue/` remains open to contributions. See [`NOTICE.md`](NOTICE.md).

@@ -44,24 +44,24 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## Exercise media (stills and animations)
+## Exercise media
 
-The exercise stills and animations in `catalogue/media/` (and inside the published container
-images and app packages) are licensed to Hypertrofy by Gym visual. **They are not covered by
-Hypertrofy's AGPL** and not by any licence of the exercise text below.
+Exercise animations shown by the app are **180p GIFs from ExerciseDB v1** (AscendAPI), fetched on
+first view and **cached on the device** (Cache Storage, `hypertrofy-exercise-media-v1`). The app
+does not bundle those media files in the repository or in the shipped build; it resolves each of the
+1,597 mapped exercises to its `gifUrl` and stores it locally after download. See
+`catalogue/exercise-media-map-v1.json`, `frontend/src/lib/exercise-media-cache.js` and
+`frontend/src/lib/exercises.js`.
 
-> © Aliaksandr Makatserchyk, Gym visual, gymvisual.com (reuse is governed by Gym visual's Terms & Conditions; obtain your own license there before reusing the media). NOTICE TO DEVELOPERS: The exercise animations included in this project are provided strictly for use within the Hypertrofy application. Third parties have no rights to reuse, extract, or integrate these media assets into independent apps, websites, or commercial products. To use these animations for your own software, you must obtain a license directly from gymvisual.com.
+For this project the commercial, caching and redistribution terms of the ExerciseDB v1 source were
+**assumed acceptable** (recorded decision), but those terms have **not been independently certified
+here and must be verified before a store release**. If they do not permit the intended use, replace
+the media source or obtain an appropriate licence.
 
-What that means in practice:
-
-- The repository, websites and self-hosted servers carry the media at 180×180 px at most. Larger
-  versions exist only inside the compiled Hypertrofy app packages.
-- There is no public API, CDN or downloadable media pack. Don't hotlink the files or copy them out
-  of this repository or a running instance.
-- A non-commercial fork of Hypertrofy may keep the unmodified 180 px media together with this notice.
-  A commercial fork, or any other use, needs its own licence from [gymvisual.com](https://gymvisual.com/).
-- The media may not be used to train, prompt or feed any AI system, or as a basis for generated
-  images, animations or video.
+**Historical note:** releases and repository history before this change bundled Gym visual stills and
+animations (`catalogue/media/`) licensed to Hypertrofy by Aliaksandr Makatserchyk / Gym visual
+(gymvisual.com) for use in Hypertrofy only. Those files are no longer part of this build; the
+original restriction applied to them, not to the ExerciseDB-sourced media now used at runtime.
 
 ## Exercise text (names, muscles, descriptions, instructions)
 

@@ -90,7 +90,7 @@ The first two block the store entries themselves, because the ids are permanent.
 
 | # | need | blocks | owner |
 |---|---|---|---|
-| 1 | **Exercise media licence** from [gymvisual.com](https://gymvisual.com/) — the stills and animations are licensed to Hypertrofy only, and a commercial fork needs its own | any store upload | you |
+| 1 | **Exercise media terms** — the app now uses ExerciseDB v1 GIFs, fetched on first view and cached on device (no GymVisual media bundled). Commercial/caching/redistribution terms were assumed acceptable (decision 4) but **must be verified before a store release**; replace the source or get a licence if they do not permit the intended use | any store upload | you |
 | 2 | **Rebrand**, commits 1–3 of [`REBRAND.md`](REBRAND.md) | creating the store entries | code |
 | 3 | JDK 21 + Android SDK + a release keystore, generated once and backed up | Android release build | you |
 | 4 | macOS + Xcode + an Apple Developer account | iOS archive | you |
