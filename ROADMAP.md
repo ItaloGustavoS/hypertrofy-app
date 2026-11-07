@@ -42,6 +42,10 @@ What the port still owns on top of v1.4.4: the AdMob banner and the one-time "re
 (`openGym_premium_remove_ads`, R$ 34,90), receipt validation server-side, the Settings card. See
 the phases below.
 
+The rename itself — bundle id, product id, icon, and the name in every string — is planned in
+[`docs/REBRAND.md`](docs/REBRAND.md). It runs in three isolated commits so a periodic upstream
+rebase can replay it instead of resolving the same conflicts by hand.
+
 ---
 
 ## v1.3.2 and v1.3.3: Cleaner workout  (released 2026-09-05)
