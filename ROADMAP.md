@@ -46,6 +46,9 @@ The rename itself — bundle id, product id, icon, and the name in every string 
 [`docs/REBRAND.md`](docs/REBRAND.md). It runs in three isolated commits so a periodic upstream
 rebase can replay it instead of resolving the same conflicts by hand.
 
+Everything after that — compile, device test, store accounts, ads, release — is ordered in
+[`docs/RELEASE.md`](docs/RELEASE.md).
+
 ---
 
 ## v1.3.2 and v1.3.3: Cleaner workout  (released 2026-09-05)
