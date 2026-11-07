@@ -105,7 +105,6 @@ if you want to try it before installing anything.
 - Import from FitNotes, Strong, Hevy (CSV or API key) and Apple Health weight exports. Export
   everything as one JSON file, or your workouts and body data as a spreadsheet (CSV).
 - Share a plan as a small file or print it as a PDF.
-- Optional admin dashboard with invite-only signup and an activity log.
 - 20 languages, including right-to-left Arabic and Traditional Chinese. Exercise names and
   instructions are translated for most of them.
 
@@ -134,8 +133,6 @@ if you want to try it before installing anything.
   what you logged, and answers questions about your training. You approve every change. It runs
   on your server, or on the phone alone, with your own provider key (Anthropic, OpenAI, Gemini or
   any OpenAI-compatible endpoint, Ollama included).
-- An [MCP server](mcp/README.md) so an assistant like Claude Desktop can answer questions about your
-  training history, and log a workout you describe to it. Local; not part of the Docker build.
 - [Integrations](docs/INTEGRATIONS.md) in one place: Apple Health, Health Connect (Garmin, Fitbit,
   Withings and friends come in through them), imports, and signed webhooks to Home Assistant, n8n or
   ntfy when you finish a workout, set a record or weigh in.
@@ -181,7 +178,7 @@ Traefik and nginx, and there are separate guides for
 | `PORT` | Port the API listens on; the web container proxies to the same value | `3000` |
 | `RP_NAME` | Name shown in the passkey prompt | `openGym` |
 | `SESSION_DAYS` | How long a sign-in lasts, in days | `90` |
-| `ADMIN_UIDS` | User ids that get the admin dashboard, comma-separated | *(none)* |
+| `ADMIN_UIDS` | User ids with the admin role, comma-separated (Coach config, API) | *(none)* |
 | `FIRST_USER_ADMIN` | `1`: the first profile created on an empty instance becomes its admin | *(off)* |
 | `INVITE_ONLY` | Require an invite code to create a profile | *(off)* |
 | `ALLOW_GUEST` | Offer "Continue without account"; `0` requires a profile | *(on)* |
@@ -225,7 +222,7 @@ yourself and connecting to your server: [docs/MOBILE.md](docs/MOBILE.md).
 <p align="center">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/architecture-dark.png">
-  <img src="docs/diagrams/architecture.png" alt="Architecture: the phone talks HTTPS to nginx (web), which serves the app and proxies /api to the Node api; the api stores JSON in ./data. The exercise media ship inside the web image; the AI coach and MCP server are optional." width="520">
+  <img src="docs/diagrams/architecture.png" alt="Architecture: the phone talks HTTPS to nginx (web), which serves the app and proxies /api to the Node api; the api stores JSON in ./data. The exercise media ship inside the web image; the AI coach is optional." width="520">
 </picture>
 </p>
 
@@ -346,10 +343,10 @@ What that does and doesn't mean:
   are the maintainer's call. Changes are tested on a staging instance and on real phones before
   they are tagged.
 - **Tests hold the logic in place.** The training logic is covered by unit tests, and pull requests
-  run the frontend, API and MCP suites in CI. That is the guard against plausible-looking code
+  run the frontend and API suites in CI. That is the guard against plausible-looking code
   that is wrong, whoever or whatever wrote it.
 - **The app itself doesn't need an LLM.** Nothing in a default install calls an AI service. The AI
-  coach and the MCP server are opt-in, and the coach only talks to the provider you configure, with
+  coach is opt-in, and the coach only talks to the provider you configure, with
   your own key.
 
 Community pull requests are written by their authors, with whatever tools they like, and reviewed

@@ -1,9 +1,9 @@
 # openGym on NixOS — Flake & NixOS Module
 
 openGym can run natively on NixOS through its **Nix flake** and **NixOS module** — no Docker, no
-`docker compose`. The flake builds every openGym component (frontend with the exercise media, API,
-MCP server) as reproducible Nix packages; the module declares the whole stack as systemd services
-managed by your NixOS configuration. This document covers both.
+`docker compose`. The flake builds every openGym component (frontend with the exercise media, API)
+as reproducible Nix packages; the module declares the whole stack as systemd services managed by
+your NixOS configuration. This document covers both.
 
 ## 1. Technical introduction
 
@@ -16,7 +16,6 @@ managed by your NixOS configuration. This document covers both.
 | --- | --- |
 | `packages.opengym-frontend` | The React/Vite PWA, built with `buildNpmPackage`. Static files land in `$out/share/opengym`, with the exercise stills and animations from `catalogue/media` in `exercise-media/` next to them. |
 | `packages.opengym-api` | The Node.js API (`node server.js`, wrapped as `bin/opengym-api`). |
-| `packages.opengym-mcp` | The MCP server for LLM clients (`bin/opengym-mcp`): read tools, plus `log_workout` once paired (`mcp/README.md`). |
 | `packages.default` | Alias for `opengym-frontend`. |
 | `apps.opengym` | Runs the **full local stack** — API + frontend (exercise media included) behind a throwaway Caddy (`nix run .#opengym`, default `http://localhost:8080`). |
 | `apps.default` | Alias for `opengym`. |
@@ -32,7 +31,6 @@ managed by your NixOS configuration. This document covers both.
 
 - a system `opengym` user/group and the data directory (`/var/lib/opengym` by default),
 - `systemd.services.opengym-api` — a **hardened** API unit (see [Systemd hardening](#systemd-hardening)),
-- `systemd.services.opengym-mcp` — the MCP server, **only if `mcp.enable` is set**,
 - read-only options exposing the built frontend and media directories so *your* web server can
   serve them (or `nginx.enable = true` for the module to manage one — see §4),
 - `environment` / `environmentFile` — escape hatches to pass extra environment variables to the
@@ -66,14 +64,12 @@ contrib/nix/
   opengym.nix        The NixOS module (options + systemd/nginx wiring)
   frontend.nix       buildNpmPackage → $out/share/opengym (+ exercise-media/ from catalogue/media)
   api.nix            buildNpmPackage → bin/opengym-api
-  mcp.nix            buildNpmPackage → bin/opengym-mcp
   default.nix        package-set aggregator (used by both the flake and the module); reads the
                      release version from api/package.json
 ```
 
 Everything Nix lives under `contrib/nix/` so the flake stays out of the way of the project's own
-build (Docker, CI, the Node packages). The flake reads its sources — `api/`, `frontend/`, `mcp/`,
-`catalogue/` — from the repository root two levels up, so it must be evaluated *from a checkout of
+build (Docker, CI, the Node packages). The flake reads its sources — `api/`, `frontend/`, `catalogue/` — from the repository root two levels up, so it must be evaluated *from a checkout of
 the whole repo*, never from a sparse copy of `contrib/nix` alone.
 
 ## 3. Building and using the packages
@@ -86,7 +82,6 @@ cd contrib/nix
 
 nix build .#opengym-frontend         # static site + exercise media → result/share/opengym
 nix build .#opengym-api              # API → result/bin/opengym-api
-nix build .#opengym-mcp
 nix run .#opengym                    # full local stack on http://localhost:8080 (see below)
 nix develop                          # dev shell: nodejs_22, git, coreutils
 nix flake check                      # eval check + (on Linux) the VM integration test
@@ -105,7 +100,6 @@ inside it, the standard flow applies:
 ```bash
 cd frontend && npm install && npm run dev     # Vite dev server on :5173, proxies /api to :3000
 cd api && npm install && node server.js       # API on :3000
-cd mcp && npm test                            # MCP server tests
 ```
 
 ## 4. Serving the app
@@ -291,7 +285,6 @@ at `web.root`.
     auditLog = true;
     auditIp  = "net";                 # record masked network address only
 
-    mcp.enable = false;               # off unless you use an LLM client
   };
 
   security.acme.acceptTerms = true;
@@ -334,7 +327,6 @@ variables, so entries there can still override).
 | `users.users.opengym`, `users.groups.opengym` | always | system user/group |
 | tmpfiles rules | always | `dataDir` (`0750`) |
 | `systemd.services.opengym-api` | always | `Restart=on-failure`, runs as `opengym`, hardened |
-| `systemd.services.opengym-mcp` | only when `mcp.enable = true` | stdio bridge, runs as `opengym`, same sandbox as the API |
 | `services.nginx` vhost | only when `nginx.enable = true` | managed virtualHost (SPA + `/api`, exercise media from the SPA root) |
 | `services.nginx.enable = false` | only when `nginx.enable = false` | force-disabled — bring your own web server |
 
@@ -343,9 +335,6 @@ The API unit is restricted: `ProtectSystem=strict`, `ProtectHome`, `PrivateTmp`,
 `PrivateDevices`, `ProtectKernelTunables/Modules/ControlGroups`, `RestrictNamespaces`,
 `RestrictSUIDSGID`, `NoNewPrivileges`, `LockPersonality`, a system-call allowlist
 (`@system-service`, `~@privileged`), and `ReadWritePaths` limited to `dataDir` — the API can only
-write to your data directory. The MCP unit is a **stdio bridge that only reads** the same files, so
-it runs under the exact same sandbox (plus `StandardInput=null` / `StandardOutput=journal`, since a
-systemd-spawned MCP server has no client on stdin).
 
 ## 6. Module options reference
 
@@ -357,7 +346,7 @@ for other modules to consume — setting them yourself is an error.
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
 | `enable` | `bool` | `false` | Enable openGym (user, services, directories). |
-| `package` | `attrsOf package` | packages built from source | The package set: `{ opengym-frontend, opengym-api, opengym-mcp }`. Override to serve pre-built binaries (e.g. from a cache). |
+| `package` | `attrsOf package` | packages built from source | The package set: `{ opengym-frontend, opengym-api }`. Override to serve pre-built binaries (e.g. from a cache). |
 | `dataDir` | `path` | `/var/lib/opengym` | Persistent data directory — `db.json`, per-user `state-<uid>.json`, `secret`, `vapid.json`, `audit.log`. With the default `/var/lib/opengym`, systemd's `StateDirectory` creates (and cleans up) it; a custom path is created by a tmpfiles rule and `ReadWritePaths` points at it instead. |
 | `apiPort` | `port` | `3000` | Port the API listens on (internal — reachable via your reverse proxy, front it yourself if you open the firewall). |
 | `rpId` | `str` | `localhost` | WebAuthn Relying Party ID. Bare hostname, must match the address bar exactly. |
@@ -400,13 +389,6 @@ old `/var/lib/opengym/media` directory is no longer used and can be deleted.
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
 | `web.root` *(read-only)* | `path` | — | Built frontend directory (`…/opengym-frontend/share/opengym`). Serve as the SPA root with a fallback to `/index.html`. |
-
-### `mcp.*` suboptions
-
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `mcp.enable` | `bool` | `false` | Run the MCP server as a systemd service (reads the same `dataDir`; its one write tool goes through the api). Off unless you point an LLM client at it. |
-| `mcp.uid` | `string \| null` | `null` | The openGym user ID (from `db.json` `"users"[].id`) the MCP server serves. Leave unset to auto-pick when exactly one user exists; with multiple users it must be set (the server otherwise exits listing them). |
 
 ### Option → environment mapping
 

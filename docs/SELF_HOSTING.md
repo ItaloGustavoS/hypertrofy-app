@@ -247,6 +247,11 @@ FIRST_USER_ADMIN=1         # the first profile on an empty instance becomes its 
 Create your own profile before you switch `INVITE_ONLY` on: with no profile and no admin yet,
 nobody could generate the first code.
 
+> **This build ships without the dashboard UI.** The admin role, `/api/admin/*` and the Coach
+> config endpoints are all still there, and `ADMIN_UIDS` still grants them — only the screens are
+> gone. Invite codes, recovery codes and the Coach configuration are done through the API (and
+> `./data/coach.json`) instead of Settings → Account.
+
 For more admins (or on an instance that existed before `FIRST_USER_ADMIN`), copy the id from
 **Settings → Account → Account ID** (tap it to copy; it is also in `./data/db.json` under
 `users[].id`) and put it in `ADMIN_UIDS`. The same row is how anyone on your instance tells you
@@ -263,7 +268,8 @@ first profile, so switching it on now does nothing. Do this instead:
 1. Copy your id from **Settings → Account → Account ID** (tap it to copy).
 2. Put it in `.env`: `ADMIN_UIDS=<that id>`.
 3. `docker compose up -d`. Not `docker compose restart`: that keeps the old environment.
-4. Reload the app. **Settings → Account → Admin dashboard** is there now.
+4. Reload the app. The admin endpoints under `/api/admin/*` answer for your account; there is no
+   dashboard screen in this build.
 
 The [AI Coach](AI_COACH.md#turning-it-on), invite codes and recovery codes all live in that
 dashboard, so this is step one for each of them.
@@ -1022,9 +1028,10 @@ being a lost profile.
 For someone who lost every device and passkey and has no password, on any instance, with or
 without `PASSWORD_LOGIN`:
 
-- **An admin** opens the profile in the admin dashboard and taps **Recovery code**. Any admin can
-  make one for a profile that is not an admin; only the owner for an admin; nobody for the owner
-  (see below), and nobody for themselves.
+- **An admin** calls `POST /api/admin/user/recovery` with the profile's id — the dashboard button
+  that used to do this is not part of this build. Any admin can make a code for a profile that is
+  not an admin; only the owner for an admin; nobody for the owner (see below), and nobody for
+  themselves.
 - **The person** taps **Lost access? → I have a code** on the sign-in screen (or **Use a code from
   your other device**) and enters it. The device they use gets a new passkey for their profile
   and is signed in. In the phone app: redeem the code in a browser, then pair the app again.

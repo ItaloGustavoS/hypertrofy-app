@@ -7,6 +7,11 @@ running on your own server under your own provider account, off until an admin t
 > here that has not reached your instance yet is visibly absent rather than broken — the Coach
 > only appears at all once an admin has enabled it and a runtime can be reached.
 
+> **This build has no dashboard UI.** Every "Settings → Account → Admin dashboard" step below is
+> the same action on the API instead: `GET /api/admin/coach` reads the config,
+> `POST /api/admin/coach/config` writes it, and `.../connect`, `.../disconnect`, `.../models` and
+> `.../test` are the card's buttons. An admin session cookie is enough — no separate login.
+
 ---
 
 ## Two kinds of provider
