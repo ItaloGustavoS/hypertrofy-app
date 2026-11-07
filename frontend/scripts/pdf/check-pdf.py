@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Layout checks for openGym's printed PDFs (scripts/pdf/render-samples.mjs).
+"""Layout checks for Hypertrofy's printed PDFs (scripts/pdf/render-samples.mjs).
 
 Documents rendered with `probe: true` carry invisible marks:
   ~s:<id>~ / ~e:<id>~  first and last line of a block that must stay on one page

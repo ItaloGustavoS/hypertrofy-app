@@ -4,7 +4,7 @@ A gym and body-weight tracker for the phone. Everything lives on the device: no 
 backend, no sync server. One banner ad, or a one-time purchase to remove it — that is the whole
 business model.
 
-**Hypertrofy is a fork of [openGym](https://github.com/DuarteSantos8/openGym)** by Duarte Santos,
+**Hypertrofy is a fork of [Hypertrofy](https://github.com/DuarteSantos8/Hypertrofy)** by Duarte Santos,
 which is self-hosted and AGPL-3.0. The training engine, the exercise catalogue and the interface
 are his work; this fork changes how the app is packaged and paid for.
 
@@ -59,12 +59,12 @@ This fork is **AGPL-3.0**, like the project it comes from. The original notice, 
 app-store exception stay in [`NOTICE.md`](NOTICE.md) and [`LICENSE`](LICENSE); the source of this
 fork is public at [ItaloGustavoS/hypertrofy-app](https://github.com/ItaloGustavoS/hypertrofy-app).
 
-Upstream: [github.com/DuarteSantos8/openGym](https://github.com/DuarteSantos8/openGym) ·
+Upstream: [github.com/DuarteSantos8/Hypertrofy](https://github.com/DuarteSantos8/Hypertrofy) ·
 [gitlab.com/DuarteSantos8/opengym](https://gitlab.com/DuarteSantos8/opengym).
 
 > [!IMPORTANT]
 > **The exercise media is not AGPL.** The stills and animations are © Aliaksandr Makatserchyk,
-> [Gym visual](https://gymvisual.com/), licensed for use in openGym only. A non-commercial fork may
+> [Gym visual](https://gymvisual.com/), licensed for use in Hypertrofy only. A non-commercial fork may
 > keep them unmodified with the notice; a commercial one — this fork sells ad removal — needs its
-> own licence from gymvisual.com. The exercise text in `catalogue/` is openGym's and open to
+> own licence from gymvisual.com. The exercise text in `catalogue/` is Hypertrofy's and open to
 > contributions.

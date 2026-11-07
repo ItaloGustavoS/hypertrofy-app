@@ -4,7 +4,7 @@ import WatchKit
 import WidgetKit
 
 /*
- * openGym on the Apple Watch, laid out like the watch's own apps: one primary action per screen
+ * Hypertrofy on the Apple Watch, laid out like the watch's own apps: one primary action per screen
  * as a big round button in the middle, secondary actions small at the edges, the Digital Crown as
  * the obvious value control, black background, the accent colour only on the primary action.
  *
@@ -308,7 +308,7 @@ struct IdleView: View {
                 .padding(.horizontal, 4)
             }
         } else {
-            // Nothing from the phone yet (it sends only while openGym runs there): say so, rather
+            // Nothing from the phone yet (it sends only while Hypertrofy runs there): say so, rather
             // than a "no workout" that reads as if the two were in touch.
             let fresh = !store.heardFromPhone && store.ready == nil
             VStack(spacing: 10) {
@@ -319,7 +319,7 @@ struct IdleView: View {
                 Text(fresh ? LocalizedStringKey("Not synced yet") : LocalizedStringKey("No workout running"))
                     .font(.headline)
                     .multilineTextAlignment(.center)
-                Text(fresh ? LocalizedStringKey("Open openGym on your iPhone once and your routines show up here.")
+                Text(fresh ? LocalizedStringKey("Open Hypertrofy on your iPhone once and your routines show up here.")
                      : LocalizedStringKey("Start one on your iPhone and it shows up here."))
                     .font(.footnote)
                     .foregroundStyle(.secondary)

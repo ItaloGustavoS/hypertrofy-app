@@ -2,15 +2,15 @@
   "configVersion": "v3",
   "app": {
     "appId": 9990145,
-    "appName": "openGym",
+    "appName": "Hypertrofy",
     "appType": "app",
     "version": {
       "code": 10404,
       "name": "1.4.4"
     },
     "icon": "icon.png",
-    "vender": "openGym",
-    "description": "openGym on your wrist: start a routine, log sets with the crown, rest with a ring. Pairs with your own openGym server."
+    "vender": "Hypertrofy",
+    "description": "Hypertrofy on your wrist: start a routine, log sets with the crown, rest with a ring. Pairs with your own Hypertrofy server."
   },
   "permissions": [
     "data:os.device.info",
@@ -38,7 +38,7 @@
             {
               "path": "app-widget/index",
               "icon": "icon.png",
-              "name": "openGym",
+              "name": "Hypertrofy",
               "runtime": {
                 "type": "js"
               }
@@ -66,64 +66,64 @@
   },
   "i18n": {
     "en-US": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "de-DE": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "fr-FR": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "es-ES": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "it-IT": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "pt-PT": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "pt-BR": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "pl-PL": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "hu-HU": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "tr-TR": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "ru-RU": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "uk-UA": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "ar-EG": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "hi-IN": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "bn-BD": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "th-TH": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "ko-KR": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "sv-SE": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "zh-CN": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     },
     "zh-TW": {
-      "appName": "openGym"
+      "appName": "Hypertrofy"
     }
   },
   "defaultLanguage": "en-US"

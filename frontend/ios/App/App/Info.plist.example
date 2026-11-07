@@ -17,7 +17,7 @@
 #   SKAdNetworkItems                  Google publishes the list per app; without it ads
 #                                     still serve but install attribution is limited
 #
-# Required for App Store submission once the app is actually distributed there (openGym
+# Required for App Store submission once the app is actually distributed there (Hypertrofy
 # only uses standard HTTPS, no proprietary crypto):
 #
 #   <key>ITSAppUsesNonExemptEncryption</key>

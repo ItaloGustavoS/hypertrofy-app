@@ -8,7 +8,7 @@ import UserNotifications
  * The gym reminder (#614): a notification when the iPhone arrives at one of the user's gyms
  * (frontend lib/gym-reminder.js has the page's side and the rules in words).
  *
- * iOS watches the gyms itself with region monitoring (at most 20 regions per app), with openGym
+ * iOS watches the gyms itself with region monitoring (at most 20 regions per app), with Hypertrofy
  * closed and at hardly any battery cost: on arriving it launches the app in the background and
  * hands GymReminderCenter the region, which decides with GymReminderRules whether to post and
  * posts a local notification. That needs "Always" location; no background location mode

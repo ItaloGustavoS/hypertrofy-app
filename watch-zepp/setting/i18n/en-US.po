@@ -5,7 +5,7 @@ msgid "code"
 msgstr "Pairing code"
 
 msgid "how"
-msgstr "In openGym, open Settings, Zepp OS watch, Pair a watch, and type the address and code it shows here."
+msgstr "In Hypertrofy, open Settings, Zepp OS watch, Pair a watch, and type the address and code it shows here."
 
 msgid "pair"
 msgstr "Pair"
@@ -14,7 +14,7 @@ msgid "pairing"
 msgstr "Pairing…"
 
 msgid "paired"
-msgstr "Paired with {0}. Open openGym on your watch."
+msgstr "Paired with {0}. Open Hypertrofy on your watch."
 
 msgid "failed"
 msgstr "That didn’t work. Check the address and the code, a code lasts ten minutes."

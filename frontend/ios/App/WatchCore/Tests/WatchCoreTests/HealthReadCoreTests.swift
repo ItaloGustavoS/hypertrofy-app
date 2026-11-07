@@ -1,7 +1,7 @@
 import XCTest
 @testable import WatchCore
 
-/// openGym v1.4.3: what the iPhone app hands to JS when it reads heart rate and weigh-ins back
+/// Hypertrofy v1.4.3: what the iPhone app hands to JS when it reads heart rate and weigh-ins back
 /// from Apple Health.
 final class HealthReadCoreTests: XCTestCase {
     func testSamplesInsideTheWindowOldestFirst() {

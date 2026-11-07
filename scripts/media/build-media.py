@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Turns the licensed Gym visual pack into the media files openGym ships.
+"""Turns the licensed Gym visual pack into the media files Hypertrofy ships.
 
 Run by the maintainer only, against the private archive (never committed, never published):
 

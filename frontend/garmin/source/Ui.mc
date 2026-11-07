@@ -9,7 +9,7 @@ import Toybox.System;
 import Toybox.WatchUi;
 
 module Ui {
-    //! openGym's green on AMOLED (the app's --green); on MIP the palette's own bright lime, which
+    //! Hypertrofy's green on AMOLED (the app's --green); on MIP the palette's own bright lime, which
     //! shows as it is instead of being rounded to a dull green.
     (:color)
     function accent() {

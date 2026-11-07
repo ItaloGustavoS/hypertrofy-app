@@ -21,7 +21,7 @@ import java.util.Locale;
 import org.json.JSONObject;
 
 /**
- * openGym's Home Screen widget on Android: one thing big at 2x1 and 2x2, two side by side at 4x2,
+ * Hypertrofy's Home Screen widget on Android: one thing big at 2x1 and 2x2, two side by side at 4x2,
  * each picked when the widget is placed (OpenGymWidgetConfigure): the streak, the weight goal, this
  * week, the next workout, records or volume (WidgetContent). What it shows is the snapshot the app
  * wrote (WidgetBridgePlugin, lib/widgets.js), in the app's language and accent; light or dark with
@@ -55,7 +55,7 @@ public class OpenGymWidgetProvider extends AppWidgetProvider {
         return context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
     }
 
-    /** Every openGym widget on the Home Screen, drawn again (after the app wrote a new snapshot). */
+    /** Every Hypertrofy widget on the Home Screen, drawn again (after the app wrote a new snapshot). */
     static void updateAll(Context context) {
         AppWidgetManager mgr = AppWidgetManager.getInstance(context);
         int[] ids = mgr.getAppWidgetIds(new ComponentName(context, OpenGymWidgetProvider.class));

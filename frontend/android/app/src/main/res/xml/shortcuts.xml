@@ -4,8 +4,8 @@
      in the app would. Declared on every launcher alias in AndroidManifest.xml (AppIconPlugin's
      icons), since the launcher reads them from the one that is enabled.
 
-     The capabilities are Google Assistant's App Actions: "start my workout in openGym" (the
-     built-in START_EXERCISE) opens today's plan, and "log my weight in openGym" (a custom intent,
+     The capabilities are Google Assistant's App Actions: "start my workout in Hypertrofy" (the
+     built-in START_EXERCISE) opens today's plan, and "log my weight in Hypertrofy" (a custom intent,
      queries in values/voice_actions.xml) opens the weigh-in sheet with the number in. Saving it
      is still a tap: Assistant never logs anything by itself. -->
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android"

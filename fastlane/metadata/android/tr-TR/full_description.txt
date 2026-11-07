@@ -1,4 +1,4 @@
-openGym, antrenman yapan insanların, antrenman yapan insanlar için yaptığı bir antrenman takipçisi. Haftanı planla, her seti kaydet ve gerçekte ne yaptığını gör. Hesap yok, reklam yok, abonelik yok, izleme yok.
+Hypertrofy, antrenman yapan insanların, antrenman yapan insanlar için yaptığı bir antrenman takipçisi. Haftanı planla, her seti kaydet ve gerçekte ne yaptığını gör. Hesap yok, reklam yok, abonelik yok, izleme yok.
 
 PLANLA
 • 19 dilde, animasyonlu gösterimli 5.600'den fazla egzersiz
@@ -19,15 +19,15 @@ TAKİP ET
 • Geçmiş herhangi bir antrenmanı düzenle ya da kâğıda yazdığın birini ekle
 
 SENİN
-• Her şey telefonunda kalır. Senkronizasyon mu istiyorsun? Kendi openGym sunucunu bağla.
+• Her şey telefonunda kalır. Senkronizasyon mu istiyorsun? Kendi Hypertrofy sunucunu bağla.
 • Strong, Hevy ve FitNotes'tan içe aktar, her şeyi istediğin zaman dışa aktar
 • Haftanı hazırlayan isteğe bağlı yapay zekâ koçu, kendi API anahtarınla ve ancak sana sorduktan sonra
 • Ücretsiz ve açık kaynak (AGPL), toplulukla birlikte açıkça geliştirildi
 
 ANDROID'DE
-• Spor salonu hatırlatıcısı: salonlarını ekle, içeri girdiğinde openGym seni dürtsün, uygulama kapalıyken bile. Bunun için konumunu arka planda kullanır, yalnızca sen açarsan, ve yerlerin telefondan hiç çıkmaz
+• Spor salonu hatırlatıcısı: salonlarını ekle, içeri girdiğinde Hypertrofy seni dürtsün, uygulama kapalıyken bile. Bunun için konumunu arka planda kullanır, yalnızca sen açarsan, ve yerlerin telefondan hiç çıkmaz
 • İstersen Health Connect: biten antrenmanlar ve tartılar oraya gider, nabız ve tartı ölçümlerin geri gelir
 • Bugünün planını gösteren bir ana ekran widget'ı ve uygulamayı sehpanın başında açan NFC etiketleri
 • Bu F-Droid sürümünde standart 180 px animasyonlar hazır gelir, Wear OS bağlantısı yoktur, çünkü o Google Play hizmetleri ister
 
-Egzersiz animasyonları © Gym visual (gymvisual.com), openGym için lisanslıdır.
+Egzersiz animasyonları © Gym visual (gymvisual.com), Hypertrofy için lisanslıdır.

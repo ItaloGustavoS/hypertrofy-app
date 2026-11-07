@@ -8,7 +8,7 @@ import UIKit
  * the asset compiler writes their sizes and CFBundleAlternateIcons into the built Info.plist. The
  * ids and set names are the ones in src/lib/app-icon-variants.js (scripts/app-icons.mjs).
  *
- * iOS confirms the switch with its own alert ("You have changed the icon for openGym"); an app
+ * iOS confirms the switch with its own alert ("You have changed the icon for Hypertrofy"); an app
  * cannot leave it out.
  *
  * Usage from JS:

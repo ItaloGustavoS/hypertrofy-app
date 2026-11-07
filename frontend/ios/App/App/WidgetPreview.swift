@@ -55,7 +55,7 @@ enum WidgetPreview {
         guard let a = decode(WorkoutActivityAttributes.self, """
         {"v":2,"wid":"preview","start":null,"accent":"#30d158","ink":"#000000",
          "labels":{"done":"Log set","rest":"Rest","next":"Up next","allDone":"All sets done","restOver":"Rest’s over. Next set!",
-           "nextExercise":"Next exercise","skipRest":"Skip rest","openApp":"Open openGym for the next set"}}
+           "nextExercise":"Next exercise","skipRest":"Skip rest","openApp":"Open Hypertrofy for the next set"}}
         """), let s = decode(WorkoutActivityAttributes.ContentState.self, """
         {"name":"Push Day","cur":{"exId":"0025","entryIdx":0,"setIdx":2,"exName":"Barbell Bench Press","setLine":"Set 3 of 4",
           "target":"80 kg × 6","restAfter":120,"unit":0},"ahead":[],"restEndsAt":\(rest ? String(end) : "null"),"restLeft":null,
@@ -122,7 +122,7 @@ enum WidgetPreview {
                 save("live-lock-v1-open-app", CGSize(width: 370, height: 150), dark: dark, radius: 24, padding: 0) { LiveLockView(attributes: a, state: s) }
             }
         }
-        // The configurable "openGym" widget (v1.4.4): every kind small, two pairs medium.
+        // The configurable "Hypertrofy" widget (v1.4.4): every kind small, two pairs medium.
         for dark in [false, true] {
             for kind in GymWidgetKind.allCases {
                 save("pick-small-\(kind.rawValue)", CGSize(width: 170, height: 170), dark: dark) { KindBlock(model: plan, c: plan.content(kind)) }

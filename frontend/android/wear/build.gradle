@@ -1,4 +1,4 @@
-// openGym for Wear OS (docs/WEAR_OS.md). The watch follows the workout the phone runs and logs sets
+// Hypertrofy for Wear OS (docs/WEAR_OS.md). The watch follows the workout the phone runs and logs sets
 // on it; the phone stays the source of truth. It speaks the same JSON as the Apple Watch app
 // (frontend/src/lib/watch-sync.js), carried over the Wearable Data Layer instead of WatchConnectivity.
 //

@@ -1,4 +1,4 @@
-// openGym on Garmin: the session as the watch keeps it, and every change to it, as plain functions
+// Hypertrofy on Garmin: the session as the watch keeps it, and every change to it, as plain functions
 // over one Dictionary. A port of the Wear OS watch's SessionCore.kt (itself a port of the Apple
 // Watch's WatchCore), so all three watches handle the phone's snapshot and send the phone the same
 // events. The app only calls these, saves the state after each and sends the events they return.

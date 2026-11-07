@@ -5,7 +5,7 @@ msgid "code"
 msgstr "Код подключения"
 
 msgid "how"
-msgstr "В openGym откройте Настройки, Часы на Zepp OS, Подключить часы, и введите здесь адрес и код."
+msgstr "В Hypertrofy откройте Настройки, Часы на Zepp OS, Подключить часы, и введите здесь адрес и код."
 
 msgid "pair"
 msgstr "Подключить"
@@ -14,7 +14,7 @@ msgid "pairing"
 msgstr "Подключаю…"
 
 msgid "paired"
-msgstr "Подключено к {0}. Откройте openGym на часах."
+msgstr "Подключено к {0}. Откройте Hypertrofy на часах."
 
 msgid "failed"
 msgstr "Не вышло. Проверьте адрес и код, код действует десять минут."

@@ -10,7 +10,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // These callbacks just forward deep links / Universal Links to Capacitor,
     // since AppDelegate's equivalents are not called under the scene lifecycle.
 
-    // A link that started the app (a tap on a widget while openGym was closed) arrives here, not
+    // A link that started the app (a tap on a widget while Hypertrofy was closed) arrives here, not
     // in openURLContexts: handed on the same way, Capacitor keeps it as the launch URL the page
     // asks for (lib/widget-links.js, App.getLaunchUrl).
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {

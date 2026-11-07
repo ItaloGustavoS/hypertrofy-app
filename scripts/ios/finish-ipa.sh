@@ -25,7 +25,7 @@ PROFILE=${4:?App Store provisioning profile}
 ROOT=$(cd "$(dirname "$0")/../.." && pwd)
 FRONT="$ROOT/frontend"
 VERSION=$(node -p "require('$FRONT/package.json').version")
-OUT=${5:-"$PWD/openGym-$VERSION.ipa"}
+OUT=${5:-"$PWD/Hypertrofy-$VERSION.ipa"}
 RCODESIGN=${RCODESIGN:-rcodesign}
 WORK=$(mktemp -d "${TMPDIR:-/tmp}/finish-ipa.XXXXXX")
 trap 'rm -rf "$WORK"' EXIT

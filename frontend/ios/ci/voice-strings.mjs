@@ -117,14 +117,14 @@ export const STRINGS = {
     pl: 'Zapisz wagę', hu: 'Súly rögzítése', tr: 'Kilo kaydet', ru: 'Записать вес', uk: 'Записати вагу', ar: 'سجّل الوزن',
     hi: 'वज़न दर्ज करें', bn: 'ওজন লিখুন', th: 'บันทึกน้ำหนัก', ko: '체중 기록', 'zh-Hans': '记录体重', 'zh-Hant': '記錄體重', sv: 'Logga vikt',
   },
-  'Logs your body weight without opening openGym.': {
-    de: 'Trägt dein Körpergewicht ein, ohne openGym zu öffnen.', fr: 'Note ton poids sans ouvrir openGym.', es: 'Registra tu peso sin abrir openGym.',
-    it: 'Registra il tuo peso senza aprire openGym.', 'pt-PT': 'Regista o teu peso sem abrir o openGym.', 'pt-BR': 'Registra seu peso sem abrir o openGym.',
-    pl: 'Zapisuje twoją wagę bez otwierania openGym.', hu: 'Rögzíti a testsúlyod az openGym megnyitása nélkül.', tr: 'openGym’i açmadan kilonu kaydeder.',
-    ru: 'Записывает ваш вес, не открывая openGym.', uk: 'Записує твою вагу, не відкриваючи openGym.', ar: 'يسجّل وزنك دون فتح openGym.',
-    hi: 'openGym खोले बिना आपका वज़न दर्ज करता है।', bn: 'openGym না খুলেই আপনার ওজন লিখে রাখে।', th: 'บันทึกน้ำหนักตัวโดยไม่ต้องเปิด openGym',
-    ko: 'openGym을 열지 않고 체중을 기록합니다.', 'zh-Hans': '不打开 openGym 就记录你的体重。', 'zh-Hant': '不打開 openGym 就記錄你的體重。',
-    sv: 'Loggar din kroppsvikt utan att öppna openGym.',
+  'Logs your body weight without opening Hypertrofy.': {
+    de: 'Trägt dein Körpergewicht ein, ohne Hypertrofy zu öffnen.', fr: 'Note ton poids sans ouvrir Hypertrofy.', es: 'Registra tu peso sin abrir Hypertrofy.',
+    it: 'Registra il tuo peso senza aprire Hypertrofy.', 'pt-PT': 'Regista o teu peso sem abrir o Hypertrofy.', 'pt-BR': 'Registra seu peso sem abrir o Hypertrofy.',
+    pl: 'Zapisuje twoją wagę bez otwierania Hypertrofy.', hu: 'Rögzíti a testsúlyod az Hypertrofy megnyitása nélkül.', tr: 'Hypertrofy’i açmadan kilonu kaydeder.',
+    ru: 'Записывает ваш вес, не открывая Hypertrofy.', uk: 'Записує твою вагу, не відкриваючи Hypertrofy.', ar: 'يسجّل وزنك دون فتح Hypertrofy.',
+    hi: 'Hypertrofy खोले बिना आपका वज़न दर्ज करता है।', bn: 'Hypertrofy না খুলেই আপনার ওজন লিখে রাখে।', th: 'บันทึกน้ำหนักตัวโดยไม่ต้องเปิด Hypertrofy',
+    ko: 'Hypertrofy을 열지 않고 체중을 기록합니다.', 'zh-Hans': '不打开 Hypertrofy 就记录你的体重。', 'zh-Hant': '不打開 Hypertrofy 就記錄你的體重。',
+    sv: 'Loggar din kroppsvikt utan att öppna Hypertrofy.',
   },
   'Weight': {
     de: 'Gewicht', fr: 'Poids', es: 'Peso', it: 'Peso', 'pt-PT': 'Peso', 'pt-BR': 'Peso', pl: 'Waga', hu: 'Súly', tr: 'Kilo', ru: 'Вес', uk: 'Вага',
@@ -161,13 +161,13 @@ export const STRINGS = {
     hi: 'बताता है कि आपने लगातार कितने हफ़्ते ट्रेनिंग की।', bn: 'টানা কত সপ্তাহ ট্রেনিং করেছেন তা জানায়।', th: 'บอกว่าคุณฝึกติดต่อกันมากี่สัปดาห์',
     ko: '몇 주 연속으로 운동했는지 알려 줍니다.', 'zh-Hans': '告诉你连续训练了几周。', 'zh-Hant': '告訴你連續訓練了幾週。', sv: 'Berättar hur många veckor i rad du har tränat.',
   },
-  'Open openGym once, then ask me again.': {
-    de: 'Öffne openGym einmal, dann frag mich noch mal.', fr: 'Ouvre openGym une fois, puis redemande-moi.', es: 'Abre openGym una vez y vuelve a preguntarme.',
-    it: 'Apri openGym una volta, poi chiedimelo di nuovo.', 'pt-PT': 'Abre o openGym uma vez e pergunta-me outra vez.', 'pt-BR': 'Abra o openGym uma vez e me pergunte de novo.',
-    pl: 'Otwórz openGym raz, a potem zapytaj mnie jeszcze raz.', hu: 'Nyisd meg egyszer az openGymet, aztán kérdezz újra.', tr: 'openGym’i bir kez aç, sonra bana yine sor.',
-    ru: 'Откройте openGym один раз, а потом спросите снова.', uk: 'Відкрий openGym один раз, а тоді спитай знову.', ar: 'افتح openGym مرة واحدة، ثم اسألني من جديد.',
-    hi: 'openGym एक बार खोलें, फिर मुझसे दोबारा पूछें।', bn: 'openGym একবার খুলুন, তারপর আবার জিজ্ঞেস করুন।', th: 'เปิด openGym สักครั้ง แล้วถามฉันอีกครั้ง',
-    ko: 'openGym을 한 번 연 다음 다시 물어봐 주세요.', 'zh-Hans': '先打开一次 openGym，再来问我。', 'zh-Hant': '先打開一次 openGym，再來問我。', sv: 'Öppna openGym en gång och fråga mig sedan igen.',
+  'Open Hypertrofy once, then ask me again.': {
+    de: 'Öffne Hypertrofy einmal, dann frag mich noch mal.', fr: 'Ouvre Hypertrofy une fois, puis redemande-moi.', es: 'Abre Hypertrofy una vez y vuelve a preguntarme.',
+    it: 'Apri Hypertrofy una volta, poi chiedimelo di nuovo.', 'pt-PT': 'Abre o Hypertrofy uma vez e pergunta-me outra vez.', 'pt-BR': 'Abra o Hypertrofy uma vez e me pergunte de novo.',
+    pl: 'Otwórz Hypertrofy raz, a potem zapytaj mnie jeszcze raz.', hu: 'Nyisd meg egyszer az Hypertrofyet, aztán kérdezz újra.', tr: 'Hypertrofy’i bir kez aç, sonra bana yine sor.',
+    ru: 'Откройте Hypertrofy один раз, а потом спросите снова.', uk: 'Відкрий Hypertrofy один раз, а тоді спитай знову.', ar: 'افتح Hypertrofy مرة واحدة، ثم اسألني من جديد.',
+    hi: 'Hypertrofy एक बार खोलें, फिर मुझसे दोबारा पूछें।', bn: 'Hypertrofy একবার খুলুন, তারপর আবার জিজ্ঞেস করুন।', th: 'เปิด Hypertrofy สักครั้ง แล้วถามฉันอีกครั้ง',
+    ko: 'Hypertrofy을 한 번 연 다음 다시 물어봐 주세요.', 'zh-Hans': '先打开一次 Hypertrofy，再来问我。', 'zh-Hant': '先打開一次 Hypertrofy，再來問我。', sv: 'Öppna Hypertrofy en gång och fråga mig sedan igen.',
   },
   'You’re in the middle of %@.': {
     de: 'Du bist mitten in %@.', fr: 'Tu es en plein %@.', es: 'Estás en mitad de %@.', it: 'Sei nel mezzo di %@.', 'pt-PT': 'Estás a meio de %@.', 'pt-BR': 'Você está no meio de %@.',

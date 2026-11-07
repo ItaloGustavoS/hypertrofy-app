@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- openGym's Home Screen widget (OpenGymWidgetProvider): 2x1, 2x2 or 4x2, what it shows chosen
+<!-- Hypertrofy's Home Screen widget (OpenGymWidgetProvider): 2x1, 2x2 or 4x2, what it shows chosen
      when it is placed (OpenGymWidgetConfigure) and again later with a long press (Android 12+).
      The app redraws it whenever what it shows changed; the period only turns the day. -->
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"

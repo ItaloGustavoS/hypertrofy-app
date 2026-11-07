@@ -1,4 +1,4 @@
-// openGym on a Zepp OS watch: one page that draws one screen at a time, picked from the state
+// Hypertrofy on a Zepp OS watch: one page that draws one screen at a time, picked from the state
 // (lib/session.js, the Wear OS SessionCore's port). The screens mirror the Wear OS app's:
 //
 //   start    today's routine with one tap, Quick start, a few more; the week streak on top
@@ -106,7 +106,7 @@ Page(
       this.store = createStore(new LocalStorage())
       const own = getText('lang')
       setLang((this.store.state.settings && this.store.state.settings.lang) || (own !== 'lang' ? own : 'en'))
-      // Back to openGym when the wrist comes up, not the watch face, while a workout runs.
+      // Back to Hypertrofy when the wrist comes up, not the watch face, while a workout runs.
       try { setWakeUpRelaunch({ relaunch: true }) } catch (e) { /* older firmware */ }
       this.hrSamples = []
       this.hrAll = []
@@ -277,12 +277,12 @@ Page(
         return
       }
       if (link.paired === false) {
-        label('openGym', cy - u(110), { size: T.title, color: C.lime })
+        label('Hypertrofy', cy - u(110), { size: T.title, color: C.lime })
         label(t('not_paired'), cy - u(60), { size: T.body, color: C.text, h: u(150), wrap: true })
         return
       }
       if (!s.synced) {
-        label('openGym', cy - u(110), { size: T.title, color: C.lime })
+        label('Hypertrofy', cy - u(110), { size: T.title, color: C.lime })
         label(link.away ? t('phone_away') : t('syncing'), cy - u(50), { size: T.body, color: C.text, h: u(110), wrap: true })
         label(t('open_phone_once'), cy + u(70), { h: u(100), wrap: true })
         return

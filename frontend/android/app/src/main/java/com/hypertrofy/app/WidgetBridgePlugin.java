@@ -8,7 +8,7 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 /**
  * Hands the Home Screen widget what it shows (lib/widgets.js builds it, the same snapshot the
  * iPhone widgets get): kept in the app's own SharedPreferences, never synced or backed up anywhere
- * else, and every openGym widget drawn again with it (OpenGymWidgetProvider). The page writes only
+ * else, and every Hypertrofy widget drawn again with it (OpenGymWidgetProvider). The page writes only
  * when something the widgets show changed.
  */
 @CapacitorPlugin(name = "WidgetBridge")

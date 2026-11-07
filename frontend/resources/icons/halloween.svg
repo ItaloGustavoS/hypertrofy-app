@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 512 512">
-  <!-- openGym app icon "halloween", drawn by hand (the only one not written by scripts/app-icons.mjs,
+  <!-- Hypertrofy app icon "halloween", drawn by hand (the only one not written by scripts/app-icons.mjs,
        which renders it). The dumbbell is the glyph of resources/icon.svg in pumpkin orange; around
        it a purple night, a crescent moon, a cobweb near the corner and its spider. Only rect, circle,
        line, polyline, polygon and one radialGradient: what the script knows how to draw. -->

@@ -17,7 +17,7 @@ import android.widget.TextView;
 import org.json.JSONObject;
 
 /**
- * "What to show": opens when an openGym widget is placed, and again from its long-press menu on
+ * "What to show": opens when an Hypertrofy widget is placed, and again from its long-press menu on
  * Android 12 and later. Two lists, the widget's thing and, for the wide widget, the one beside it.
  * The words are the app's (the snapshot carries them in the app's language), English before the
  * app ever wrote one. Backing out leaves the widget unplaced, as Android expects.

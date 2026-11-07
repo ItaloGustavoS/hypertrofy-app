@@ -1,4 +1,4 @@
-// The parts of openGym a user would name, and which files belong to each. Used by
+// The parts of Hypertrofy a user would name, and which files belong to each. Used by
 // test-report.mjs to count tests and coverage per area, for test files and source files alike
 // (frontend/src/lib/plates.js and plates.test.js both land in "Plates & equipment").
 //

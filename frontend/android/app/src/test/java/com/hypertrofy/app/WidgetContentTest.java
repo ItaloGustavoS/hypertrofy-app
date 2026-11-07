@@ -76,8 +76,8 @@ public class WidgetContentTest {
 
     @Test
     public void noSnapshotAndUnknownKinds() throws Exception {
-        WidgetContent c = WidgetContent.of("weight", null, TODAY, "Open openGym once");
-        assertEquals("Open openGym once", c.caption);
+        WidgetContent c = WidgetContent.of("weight", null, TODAY, "Open Hypertrofy once");
+        assertEquals("Open Hypertrofy once", c.caption);
         assertEquals("opengym://home", c.link);
         assertEquals("streak", WidgetContent.of("nonsense", snap(), TODAY, "").kind);
         assertEquals("week", WidgetContent.defaultSecond("streak"));

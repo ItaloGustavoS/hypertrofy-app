@@ -104,7 +104,7 @@ describe('the Christmas icon', () => {
   it('a lime dumbbell in a Santa hat, wrapped with a red ribbon, on a dark winter night', () => {
     const shapes = scene(read(v.art))
     const at = (x, y) => shapes.find(s => s.hit(x, y)).color(x, y).map(Math.round)
-    expect(at(256, 256)).toEqual([163, 230, 53])    // the bar, openGym lime
+    expect(at(256, 256)).toEqual([163, 230, 53])    // the bar, Hypertrofy lime
     expect(at(165, 140)).toEqual([230, 57, 70])     // the hat
     expect(at(357, 300)).toEqual([230, 57, 70])     // the ribbon
     expect(at(150, 164)).toEqual([248, 249, 250])   // the hat's brim

@@ -1,4 +1,4 @@
-openGym är en träningslogg gjord av folk som lyfter, för folk som lyfter. Planera veckan, logga varje set och se vad du faktiskt gjorde. Inget konto, ingen reklam, ingen prenumeration, ingen spårning.
+Hypertrofy är en träningslogg gjord av folk som lyfter, för folk som lyfter. Planera veckan, logga varje set och se vad du faktiskt gjorde. Inget konto, ingen reklam, ingen prenumeration, ingen spårning.
 
 PLANERA
 • Över 5 600 övningar med animerade demos, på 19 språk
@@ -19,15 +19,15 @@ FÖLJ UPP
 • Ändra vilket gammalt pass som helst, eller logga ett du skrev på papper
 
 DITT
-• Allt stannar på din telefon. Vill du synka? Koppla din egen openGym-server.
+• Allt stannar på din telefon. Vill du synka? Koppla din egen Hypertrofy-server.
 • Importera från Strong, Hevy och FitNotes; exportera allt när du vill
 • Valfri AI-coach som skissar din vecka, med din egen API-nyckel och först när den har frågat dig
 • Fri och öppen källkod (AGPL), byggd öppet tillsammans med communityn
 
 PÅ ANDROID
-• Gympåminnelse: lägg till dina gym så hör openGym av sig när du kliver in, även när appen är stängd. Den använder din plats i bakgrunden för det, bara om du slår på det, och dina platser lämnar aldrig telefonen
+• Gympåminnelse: lägg till dina gym så hör Hypertrofy av sig när du kliver in, även när appen är stängd. Den använder din plats i bakgrunden för det, bara om du slår på det, och dina platser lämnar aldrig telefonen
 • Health Connect om du vill: färdiga pass och vägningar går dit, puls och vågens vägningar kommer tillbaka
 • En hemskärmswidget med dagens pass, och NFC-klistermärken som öppnar appen vid ditt rack
 • Den här F-Droid-versionen har standardanimationerna i 180 px inbyggda och ingen Wear OS-koppling, eftersom den kräver Google Play-tjänster
 
-Övningsanimationer © Gym visual (gymvisual.com), licensierade för openGym.
+Övningsanimationer © Gym visual (gymvisual.com), licensierade för Hypertrofy.

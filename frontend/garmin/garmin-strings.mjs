@@ -53,22 +53,22 @@ const OWN = {
     swe: 'Nästa övning är på väg från telefonen.', zhs: '下一个动作正从手机赶来。', zht: '下一個動作正從手機趕來。',
   },
   waiting_phone: {
-    eng: 'Waiting for your phone. Open openGym there if it takes a while.',
+    eng: 'Waiting for your phone. Open Hypertrofy there if it takes a while.',
     deu: 'Warte aufs Handy. Öffne dort Hypertrofy, falls es dauert.',
-    fre: 'On attend ton téléphone. Ouvre openGym dessus si ça traîne.',
-    spa: 'Esperando a tu móvil. Abre openGym allí si tarda.',
-    ita: 'In attesa del telefono. Apri openGym lì se ci mette tanto.',
-    por: 'À espera do telemóvel. Abre lá o openGym se demorar.',
-    pol: 'Czekam na telefon. Otwórz tam openGym, jeśli to potrwa.',
-    hun: 'Várok a telefonra. Ha sokáig tart, nyisd meg ott az openGymet.',
-    tur: 'Telefonun bekleniyor. Uzun sürerse orada openGym’i aç.',
-    rus: 'Ждём телефон. Если долго, откройте там openGym.',
-    ukr: 'Чекаю на телефон. Якщо довго, відкрий там openGym.',
-    ara: 'بانتظار هاتفك. افتح openGym عليه إذا تأخر.',
-    tha: 'กำลังรอโทรศัพท์ ถ้านานไป ให้เปิด openGym บนโทรศัพท์',
-    kor: '휴대폰을 기다리는 중이에요. 오래 걸리면 거기서 openGym을 열어 주세요.',
-    swe: 'Väntar på telefonen. Öppna openGym där om det dröjer.',
-    zhs: '正在等手机。太久的话，在手机上打开 openGym。', zht: '正在等手機。太久的話，在手機上打開 openGym。',
+    fre: 'On attend ton téléphone. Ouvre Hypertrofy dessus si ça traîne.',
+    spa: 'Esperando a tu móvil. Abre Hypertrofy allí si tarda.',
+    ita: 'In attesa del telefono. Apri Hypertrofy lì se ci mette tanto.',
+    por: 'À espera do telemóvel. Abre lá o Hypertrofy se demorar.',
+    pol: 'Czekam na telefon. Otwórz tam Hypertrofy, jeśli to potrwa.',
+    hun: 'Várok a telefonra. Ha sokáig tart, nyisd meg ott az Hypertrofyet.',
+    tur: 'Telefonun bekleniyor. Uzun sürerse orada Hypertrofy’i aç.',
+    rus: 'Ждём телефон. Если долго, откройте там Hypertrofy.',
+    ukr: 'Чекаю на телефон. Якщо довго, відкрий там Hypertrofy.',
+    ara: 'بانتظار هاتفك. افتح Hypertrofy عليه إذا تأخر.',
+    tha: 'กำลังรอโทรศัพท์ ถ้านานไป ให้เปิด Hypertrofy บนโทรศัพท์',
+    kor: '휴대폰을 기다리는 중이에요. 오래 걸리면 거기서 Hypertrofy을 열어 주세요.',
+    swe: 'Väntar på telefonen. Öppna Hypertrofy där om det dröjer.',
+    zhs: '正在等手机。太久的话，在手机上打开 Hypertrofy。', zht: '正在等手機。太久的話，在手機上打開 Hypertrofy。',
   },
   record_gc: {
     eng: 'Also save to Garmin Connect', deu: 'Auch in Garmin Connect speichern', fre: 'Enregistrer aussi dans Garmin Connect',
@@ -116,7 +116,7 @@ for (const [lang, [folder, pack]] of Object.entries(LANGS)) {
   const dir = join(here, lang === 'eng' ? 'resources' : `resources-${lang}`, 'strings')
   mkdirSync(dir, { recursive: true })
   const body = Object.keys(strings).sort().map(k => `    <string id="${k}">${strings[k]}</string>`).join('\n')
-  writeFileSync(join(dir, 'strings.xml'), `<!-- openGym on Garmin, ${lang}. Written by frontend/garmin/garmin-strings.mjs: change that, not this. -->
+  writeFileSync(join(dir, 'strings.xml'), `<!-- Hypertrofy on Garmin, ${lang}. Written by frontend/garmin/garmin-strings.mjs: change that, not this. -->
 <strings>
 ${body}
 </strings>

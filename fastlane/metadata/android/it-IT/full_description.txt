@@ -1,4 +1,4 @@
-openGym è un tracker di allenamento fatto da gente che solleva, per gente che solleva. Pianifica la settimana, registra ogni serie e guarda cosa hai fatto davvero. Niente account, niente pubblicità, niente abbonamento, niente tracciamento.
+Hypertrofy è un tracker di allenamento fatto da gente che solleva, per gente che solleva. Pianifica la settimana, registra ogni serie e guarda cosa hai fatto davvero. Niente account, niente pubblicità, niente abbonamento, niente tracciamento.
 
 PIANIFICA
 • Oltre 5.600 esercizi con dimostrazioni animate, in 19 lingue
@@ -19,15 +19,15 @@ TIENI TRACCIA
 • Modifica qualsiasi allenamento passato, o aggiungine uno fatto su carta
 
 TUO
-• Tutto resta sul tuo telefono. Vuoi la sincronizzazione? Collega il tuo server openGym.
+• Tutto resta sul tuo telefono. Vuoi la sincronizzazione? Collega il tuo server Hypertrofy.
 • Importa da Strong, Hevy e FitNotes, esporta tutto quando vuoi
 • Coach IA opzionale che prepara la tua settimana, con la tua chiave API e solo dopo che te l'ha chiesto
 • Gratis e open source (AGPL), sviluppato in pubblico insieme alla community
 
 SU ANDROID
-• Promemoria palestra: aggiungi le tue palestre e openGym ti avvisa quando entri, anche ad app chiusa. Usa la tua posizione in background, solo se lo attivi, e i tuoi luoghi non lasciano mai il telefono
+• Promemoria palestra: aggiungi le tue palestre e Hypertrofy ti avvisa quando entri, anche ad app chiusa. Usa la tua posizione in background, solo se lo attivi, e i tuoi luoghi non lasciano mai il telefono
 • Health Connect se vuoi: allenamenti finiti e pesate ci vanno, frequenza cardiaca e pesate della bilancia tornano indietro
 • Un widget per la schermata Home con il piano di oggi, e sticker NFC che aprono l'app davanti al rack
 • Questa versione F-Droid ha dentro le animazioni standard a 180 px e nessun collegamento Wear OS, perché quello richiede i servizi Google Play
 
-Animazioni degli esercizi © Gym visual (gymvisual.com), con licenza per openGym.
+Animazioni degli esercizi © Gym visual (gymvisual.com), con licenza per Hypertrofy.

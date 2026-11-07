@@ -18,7 +18,7 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 import java.io.IOException;
 
 /**
- * openGym's NFC stickers (lib/nfc.js, components/Nfc.jsx): writes one openGym link onto a sticker,
+ * Hypertrofy's NFC stickers (lib/nfc.js, components/Nfc.jsx): writes one Hypertrofy link onto a sticker,
  * and passes on the link of a sticker that started or reached the app.
  *
  * Reading needs no session: the manifest's NDEF_DISCOVERED filter (https://opengym.ch/nfc...)
@@ -52,7 +52,7 @@ public class NfcTagsPlugin extends Plugin {
         passOn(intent);
     }
 
-    /** Whether `uri` is one of the links openGym puts on a sticker (or opengym.ch/nfc hands over). */
+    /** Whether `uri` is one of the links Hypertrofy puts on a sticker (or opengym.ch/nfc hands over). */
     static boolean isOurLink(Uri uri) {
         if (uri == null || uri.getScheme() == null) return false;
         String scheme = uri.getScheme().toLowerCase();

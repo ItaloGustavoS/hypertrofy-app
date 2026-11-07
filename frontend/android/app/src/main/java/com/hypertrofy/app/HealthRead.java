@@ -9,8 +9,8 @@ import java.util.List;
 /**
  * What HealthConnectPlugin hands to JS when it reads (v1.4.3): plain values, no Android classes,
  * so it is tested on the JVM (HealthReadTest). Heart rate as [ms, bpm] pairs inside the window
- * asked for; weigh-ins as { t, kg, id, origin, clientId }. Which of them openGym takes, and how,
- * is decided in JS (lib/health-read.js), which also skips openGym's own records.
+ * asked for; weigh-ins as { t, kg, id, origin, clientId }. Which of them Hypertrofy takes, and how,
+ * is decided in JS (lib/health-read.js), which also skips Hypertrofy's own records.
  */
 final class HealthRead {
     private HealthRead() {}

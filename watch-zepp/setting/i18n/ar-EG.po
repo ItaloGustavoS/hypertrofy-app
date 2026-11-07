@@ -5,7 +5,7 @@ msgid "code"
 msgstr "رمز الربط"
 
 msgid "how"
-msgstr "في openGym افتح الإعدادات، ثم ساعة Zepp OS، ثم ربط ساعة، واكتب هنا العنوان والرمز الظاهرين."
+msgstr "في Hypertrofy افتح الإعدادات، ثم ساعة Zepp OS، ثم ربط ساعة، واكتب هنا العنوان والرمز الظاهرين."
 
 msgid "pair"
 msgstr "ربط"
@@ -14,7 +14,7 @@ msgid "pairing"
 msgstr "جارٍ الربط…"
 
 msgid "paired"
-msgstr "تم الربط مع {0}. افتح openGym على ساعتك."
+msgstr "تم الربط مع {0}. افتح Hypertrofy على ساعتك."
 
 msgid "failed"
 msgstr "لم ينجح ذلك. تحقق من العنوان والرمز، فالرمز صالح لعشر دقائق."

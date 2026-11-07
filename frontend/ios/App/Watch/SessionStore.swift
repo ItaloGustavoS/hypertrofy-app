@@ -97,7 +97,7 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
     @Published private(set) var reachable = true
     @Published private(set) var queued = 0
     /// Whether a snapshot from the phone ever arrived on this watch. The phone sends only while
-    /// openGym runs there, so until then the start screen says to open it once.
+    /// Hypertrofy runs there, so until then the start screen says to open it once.
     @Published private(set) var heardFromPhone = UserDefaults.standard.bool(forKey: SessionStore.heardKey)
     private static let heardKey = "heardFromPhone"
     @Published private(set) var restEndsAt: Date?
@@ -594,7 +594,7 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
         summary = nil
     }
 
-    /* ---------- workouts deleted in openGym, out of Apple Health ---------- */
+    /* ---------- workouts deleted in Hypertrofy, out of Apple Health ---------- */
 
     private static let healthDeletedKey = "healthDeleted"
     private var healthDeleting = false
@@ -605,7 +605,7 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
         recentWorkouts = Array((recentWorkouts.filter { $0 != wid } + [wid]).suffix(3))
     }
 
-    /// The copies this watch saved of workouts deleted in openGym: taken out once (the ids settled
+    /// The copies this watch saved of workouts deleted in Hypertrofy: taken out once (the ids settled
     /// are remembered), and the phone told, so it stops retrying what it could not delete itself.
     private func removeDeletedFromHealth(_ gone: [String]?) {
         guard !isDemo, !healthDeleting else { return }

@@ -1,6 +1,6 @@
-# openGym — GitLab CI/CD
+# Hypertrofy — GitLab CI/CD
 #
-# GitHub is openGym's home and its Actions (.github/) test and publish it; GitLab is a mirror
+# GitHub is Hypertrofy's home and its Actions (.github/) test and publish it; GitLab is a mirror
 # (.github/workflows/mirror.yml), and this pipeline keeps it building and tested.
 #
 # What it does, in order:
@@ -518,9 +518,9 @@ build:apk:
           --ks-pass "env:ANDROID_KEYSTORE_PASSWORD" \
           --ks-key-alias "$ANDROID_KEY_ALIAS" \
           --key-pass "env:ANDROID_KEYSTORE_PASSWORD" \
-          --out "$CI_PROJECT_DIR/openGym-$VER.apk" aligned.apk
+          --out "$CI_PROJECT_DIR/Hypertrofy-$VER.apk" aligned.apk
         rm -f "$CI_PROJECT_DIR/.ks.jks"
-        "$BT/apksigner" verify --print-certs "$CI_PROJECT_DIR/openGym-$VER.apk"
+        "$BT/apksigner" verify --print-certs "$CI_PROJECT_DIR/Hypertrofy-$VER.apk"
       elif [ -n "${CI_COMMIT_TAG:-}" ]; then
         # A release must never quietly ship an APK nobody can install. If the key is missing
         # on a tag, something is wrong with the protected variables — say so and stop.
@@ -529,7 +529,7 @@ build:apk:
         exit 1
       else
         echo "No signing key on this ref — producing an UNSIGNED apk (cannot be installed)."
-        "$BT/zipalign" -f -p 4 "$UNSIGNED" "$CI_PROJECT_DIR/openGym-$VER-unsigned.apk"
+        "$BT/zipalign" -f -p 4 "$UNSIGNED" "$CI_PROJECT_DIR/Hypertrofy-$VER-unsigned.apk"
       fi
       echo "APK_VERSION=$VER" >> "$CI_PROJECT_DIR/apk.env"
     # On a release tag the APK also goes into the generic package registry, which is
@@ -541,10 +541,10 @@ build:apk:
       # Sideloading means nobody's app store checked this file for you, so publish the
       # digest next to it rather than leaving people to trust the download. Written for
       # every build (branch artifacts too), uploaded only from a release tag.
-      for apk in openGym-*.apk; do sha256sum "$apk" > "$apk.sha256"; cat "$apk.sha256"; done
-      if [ -n "${CI_COMMIT_TAG:-}" ] && [ -f "openGym-$APK_VERSION.apk" ]; then
-        echo "APK_SHA256=$(cut -d' ' -f1 "openGym-$APK_VERSION.apk.sha256")" >> apk.env
-        for f in "openGym-$APK_VERSION.apk" "openGym-$APK_VERSION.apk.sha256"; do
+      for apk in Hypertrofy-*.apk; do sha256sum "$apk" > "$apk.sha256"; cat "$apk.sha256"; done
+      if [ -n "${CI_COMMIT_TAG:-}" ] && [ -f "Hypertrofy-$APK_VERSION.apk" ]; then
+        echo "APK_SHA256=$(cut -d' ' -f1 "Hypertrofy-$APK_VERSION.apk.sha256")" >> apk.env
+        for f in "Hypertrofy-$APK_VERSION.apk" "Hypertrofy-$APK_VERSION.apk.sha256"; do
           curl --fail --silent --show-error \
             --header "JOB-TOKEN: $CI_JOB_TOKEN" \
             --upload-file "$f" \
@@ -553,10 +553,10 @@ build:apk:
         done
       fi
   artifacts:
-    name: "openGym-apk-$CI_COMMIT_REF_SLUG"
+    name: "Hypertrofy-apk-$CI_COMMIT_REF_SLUG"
     paths:
-      - "openGym-*.apk"
-      - "openGym-*.apk.sha256"
+      - "Hypertrofy-*.apk"
+      - "Hypertrofy-*.apk.sha256"
     reports:
       dotenv: apk.env
     expire_in: 30 days
@@ -613,22 +613,22 @@ build:ios:
       # An .ipa is a zip with the .app under Payload/.
       rm -rf Payload && mkdir Payload
       cp -R build/App.xcarchive/Products/Applications/App.app Payload/
-      zip -qr "$CI_PROJECT_DIR/openGym-$VER-unsigned.ipa" Payload
+      zip -qr "$CI_PROJECT_DIR/Hypertrofy-$VER-unsigned.ipa" Payload
       cd "$CI_PROJECT_DIR"
-      sha256sum "openGym-$VER-unsigned.ipa" > "openGym-$VER-unsigned.ipa.sha256"
-      cat "openGym-$VER-unsigned.ipa.sha256"
+      sha256sum "Hypertrofy-$VER-unsigned.ipa" > "Hypertrofy-$VER-unsigned.ipa.sha256"
+      cat "Hypertrofy-$VER-unsigned.ipa.sha256"
       echo "IPA_VERSION=$VER" > ipa.env
       if [ -n "${CI_COMMIT_TAG:-}" ]; then
-        for f in "openGym-$VER-unsigned.ipa" "openGym-$VER-unsigned.ipa.sha256"; do
+        for f in "Hypertrofy-$VER-unsigned.ipa" "Hypertrofy-$VER-unsigned.ipa.sha256"; do
           curl --fail --silent --show-error             --header "JOB-TOKEN: $CI_JOB_TOKEN"             --upload-file "$f"             "$CI_API_V4_URL/projects/$CI_PROJECT_ID/packages/generic/opengym-ios/$VER/$f"
           echo "uploaded $f to the generic package registry"
         done
       fi
   artifacts:
-    name: "openGym-ipa-$CI_COMMIT_REF_SLUG"
+    name: "Hypertrofy-ipa-$CI_COMMIT_REF_SLUG"
     paths:
-      - "openGym-*.ipa"
-      - "openGym-*.ipa.sha256"
+      - "Hypertrofy-*.ipa"
+      - "Hypertrofy-*.ipa.sha256"
     reports:
       dotenv: ipa.env
     expire_in: 30 days
@@ -838,17 +838,17 @@ release:
       | \`$CI_REGISTRY_IMAGE/api\` | \`$SEMVER\` \`$MINOR\` \`latest\` | \`$IMAGE_DIGEST_API\` |
       | \`$CI_REGISTRY_IMAGE/web\` | \`$SEMVER\` \`$MINOR\` \`latest\` | \`$IMAGE_DIGEST_WEB\` |
 
-      Both images are linux/amd64 + linux/arm64. The Android APK and the store apps are on the GitHub release: https://github.com/DuarteSantos8/openGym/releases/tag/$CI_COMMIT_TAG. Built from $CI_COMMIT_SHA.
+      Both images are linux/amd64 + linux/arm64. The Android APK and the store apps are on the GitHub release: https://github.com/DuarteSantos8/Hypertrofy/releases/tag/$CI_COMMIT_TAG. Built from $CI_COMMIT_SHA.
       EOF
       cat release-notes.md
   release:
     tag_name: $CI_COMMIT_TAG
-    name: "openGym $CI_COMMIT_TAG"
+    name: "Hypertrofy $CI_COMMIT_TAG"
     description: release-notes.md
     assets:
       links:
         - name: "Android APK (GitHub release)"
-          url: "https://github.com/DuarteSantos8/openGym/releases/tag/$CI_COMMIT_TAG"
+          url: "https://github.com/DuarteSantos8/Hypertrofy/releases/tag/$CI_COMMIT_TAG"
           link_type: package
         - name: "Container images (api + web)"
           url: "$CI_PROJECT_URL/container_registry"

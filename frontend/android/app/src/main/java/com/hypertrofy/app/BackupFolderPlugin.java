@@ -51,8 +51,8 @@ import java.util.regex.Pattern;
 public class BackupFolderPlugin extends Plugin {
 
     private static final int RW = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-    // The only files write and prune touch: "opengym-backup-2026-10-15.json", "...-2.json".
-    static final Pattern BACKUP_NAME = Pattern.compile("opengym-backup-\\d{4}-\\d{2}-\\d{2}(-[2-9])?\\.json");
+    // The only files write and prune touch: "hypertrofy-backup-2026-10-15.json", "...-2.json".
+    static final Pattern BACKUP_NAME = Pattern.compile("hypertrofy-backup-\\d{4}-\\d{2}-\\d{2}(-[2-9])?\\.json");
     // Writes and listings go through a content provider, which may be a cloud app: off the main
     // thread, and one at a time so two backups never race for the same name.
     private final ExecutorService io = Executors.newSingleThreadExecutor();
@@ -153,7 +153,7 @@ public class BackupFolderPlugin extends Plugin {
                 for (String[] child : children(tree)) {
                     if (BACKUP_NAME.matcher(child[0]).matches() && !child[0].equals(written)) older.add(child);
                 }
-                // Newest first by the date in the name, as the Documents/openGym prune does.
+                // Newest first by the date in the name, as the Documents/Hypertrofy prune does.
                 older.sort((a, b) -> b[0].compareTo(a[0]));
                 ContentResolver cr = getContext().getContentResolver();
                 for (int i = keep - 1; i < older.size(); i++) {

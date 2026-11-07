@@ -218,7 +218,7 @@ export function pngInfo(buf) {
 }
 
 const svgOf = (v, rects) => `<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 512 512">
-  <!-- openGym app icon "${v.id}", written by scripts/app-icons.mjs (the glyph of resources/icon.svg). -->
+  <!-- Hypertrofy app icon "${v.id}", written by scripts/app-icons.mjs (the glyph of resources/icon.svg). -->
   <rect width="512" height="512" fill="${v.bg}"/>
   <g fill="${v.fg}">
 ${rects.map(([x, y, w, h]) => `    <rect x="${x}" y="${y}" width="${w}" height="${h}"/>`).join('\n')}

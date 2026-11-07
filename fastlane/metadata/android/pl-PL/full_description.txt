@@ -1,4 +1,4 @@
-openGym to dziennik treningowy zrobiony przez ludzi, którzy ćwiczą, dla ludzi, którzy ćwiczą. Zaplanuj tydzień, zapisuj każdą serię i zobacz, co naprawdę zrobiłeś. Bez konta, bez reklam, bez subskrypcji, bez śledzenia.
+Hypertrofy to dziennik treningowy zrobiony przez ludzi, którzy ćwiczą, dla ludzi, którzy ćwiczą. Zaplanuj tydzień, zapisuj każdą serię i zobacz, co naprawdę zrobiłeś. Bez konta, bez reklam, bez subskrypcji, bez śledzenia.
 
 PLANUJ
 • Ponad 5600 ćwiczeń z animowanymi pokazami, w 19 językach
@@ -19,15 +19,15 @@ TRENUJ
 • Edytuj dowolny dawny trening albo dodaj taki, który zapisałeś na papierze
 
 TWOJE
-• Wszystko zostaje w Twoim telefonie. Chcesz synchronizację? Podłącz własny serwer openGym.
+• Wszystko zostaje w Twoim telefonie. Chcesz synchronizację? Podłącz własny serwer Hypertrofy.
 • Import ze Strong, Hevy i FitNotes, eksport wszystkiego w dowolnej chwili
 • Opcjonalny trener AI, który układa Twój tydzień, z Twoim własnym kluczem API i dopiero po zapytaniu
 • Darmowy i open source (AGPL), tworzony otwarcie razem ze społecznością
 
 NA ANDROIDZIE
-• Przypomnienie o siłowni: dodaj swoje siłownie, a openGym odezwie się, gdy wejdziesz, nawet przy zamkniętej aplikacji. Korzysta z lokalizacji w tle, tylko gdy to włączysz, a twoje miejsca nigdy nie opuszczają telefonu
+• Przypomnienie o siłowni: dodaj swoje siłownie, a Hypertrofy odezwie się, gdy wejdziesz, nawet przy zamkniętej aplikacji. Korzysta z lokalizacji w tle, tylko gdy to włączysz, a twoje miejsca nigdy nie opuszczają telefonu
 • Health Connect, jeśli chcesz: ukończone treningi i pomiary wagi trafiają tam, a tętno i pomiary z wagi wracają
 • Widżet na ekran główny z dzisiejszym planem i naklejki NFC, które otwierają aplikację przy stojaku
 • Ta wersja z F-Droid ma wbudowane standardowe animacje 180 px i nie łączy się z Wear OS, bo to wymaga usług Google Play
 
-Animacje ćwiczeń © Gym visual (gymvisual.com), na licencji dla openGym.
+Animacje ćwiczeń © Gym visual (gymvisual.com), na licencji dla Hypertrofy.

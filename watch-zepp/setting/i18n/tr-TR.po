@@ -5,7 +5,7 @@ msgid "code"
 msgstr "Eşleme kodu"
 
 msgid "how"
-msgstr "openGym’de Ayarlar, Zepp OS saat, Saat eşle’yi aç ve gösterilen adresi ve kodu buraya yaz."
+msgstr "Hypertrofy’de Ayarlar, Zepp OS saat, Saat eşle’yi aç ve gösterilen adresi ve kodu buraya yaz."
 
 msgid "pair"
 msgstr "Eşle"
@@ -14,7 +14,7 @@ msgid "pairing"
 msgstr "Eşleniyor…"
 
 msgid "paired"
-msgstr "{0} ile eşlendi. Saatinde openGym’i aç."
+msgstr "{0} ile eşlendi. Saatinde Hypertrofy’i aç."
 
 msgid "failed"
 msgstr "Olmadı. Adresi ve kodu kontrol et, bir kod on dakika geçerli."

@@ -1,4 +1,4 @@
-// openGym on a Zepp OS wrist: the app's dark look and lime accent (frontend/src/index.css), the
+// Hypertrofy on a Zepp OS wrist: the app's dark look and lime accent (frontend/src/index.css), the
 // Wear OS watch's tokens (frontend/android/wear/.../ui/Theme.kt), for small round AMOLED screens.
 //
 //   - Black is true black, not a tinted near-black: on AMOLED an off pixel costs no battery and

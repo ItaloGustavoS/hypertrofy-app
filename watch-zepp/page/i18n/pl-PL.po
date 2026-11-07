@@ -2,4 +2,4 @@ msgid "lang"
 msgstr "pl"
 
 msgid "appName"
-msgstr "openGym"
+msgstr "Hypertrofy"

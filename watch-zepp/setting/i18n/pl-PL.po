@@ -5,7 +5,7 @@ msgid "code"
 msgstr "Kod parowania"
 
 msgid "how"
-msgstr "W openGym otwórz Ustawienia, Zegarek Zepp OS, Sparuj zegarek, i wpisz tutaj adres i kod."
+msgstr "W Hypertrofy otwórz Ustawienia, Zegarek Zepp OS, Sparuj zegarek, i wpisz tutaj adres i kod."
 
 msgid "pair"
 msgstr "Sparuj"
@@ -14,7 +14,7 @@ msgid "pairing"
 msgstr "Paruję…"
 
 msgid "paired"
-msgstr "Sparowano z {0}. Otwórz openGym na zegarku."
+msgstr "Sparowano z {0}. Otwórz Hypertrofy na zegarku."
 
 msgid "failed"
 msgstr "Nie wyszło. Sprawdź adres i kod, kod działa dziesięć minut."

@@ -32,12 +32,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           path-to-signatures: signatures/cla.json
-          path-to-document: https://github.com/DuarteSantos8/openGym/blob/main/CLA.md
+          path-to-document: https://github.com/DuarteSantos8/Hypertrofy/blob/main/CLA.md
           branch: cla-signatures
           allowlist: DuarteSantos8,dependabot[bot],renovate[bot]
           custom-notsigned-prcomment: >
             Thanks for your pull request! Before it can be merged, please read the
-            [Contributor License Agreement](https://github.com/DuarteSantos8/openGym/blob/main/CLA.md)
+            [Contributor License Agreement](https://github.com/DuarteSantos8/Hypertrofy/blob/main/CLA.md)
             and sign it by commenting the sentence below. It takes a second and covers all your
             past and future contributions.
           custom-allsigned-prcomment: All contributors have signed the CLA. Thank you!

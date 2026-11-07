@@ -5,7 +5,7 @@ import CoreNFC
 #endif
 
 /**
- * openGym's NFC stickers (lib/nfc.js, components/Nfc.jsx): writes one openGym link onto a sticker
+ * Hypertrofy's NFC stickers (lib/nfc.js, components/Nfc.jsx): writes one Hypertrofy link onto a sticker
  * with Core NFC's own sheet ("Hold the top of your iPhone near the sticker").
  *
  * Reading needs nothing here: an iPhone XS or newer reads NDEF stickers in the background, and the

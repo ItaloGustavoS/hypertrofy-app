@@ -5,7 +5,7 @@ msgid "code"
 msgstr "Código de pareamento"
 
 msgid "how"
-msgstr "No openGym, abra Configurações, Relógio Zepp OS, Parear um relógio, e digite aqui o endereço e o código."
+msgstr "No Hypertrofy, abra Configurações, Relógio Zepp OS, Parear um relógio, e digite aqui o endereço e o código."
 
 msgid "pair"
 msgstr "Parear"
@@ -14,7 +14,7 @@ msgid "pairing"
 msgstr "Pareando…"
 
 msgid "paired"
-msgstr "Pareado com {0}. Abra o openGym no relógio."
+msgstr "Pareado com {0}. Abra o Hypertrofy no relógio."
 
 msgid "failed"
 msgstr "Não deu certo. Confira o endereço e o código, um código vale por dez minutos."

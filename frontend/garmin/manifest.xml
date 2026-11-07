@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- openGym on Garmin (docs/GARMIN.md). The id is the app's for good: the Connect IQ Store and the
+<!-- Hypertrofy on Garmin (docs/GARMIN.md). The id is the app's for good: the Connect IQ Store and the
      phone's bridge both find the app by it. The version is the phone app's (frontend/package.json;
      check.mjs holds them together): Connect IQ has no separate build number, and the store wants
      each upload's version higher than the last. -->

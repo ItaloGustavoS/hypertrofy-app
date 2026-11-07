@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 512 512">
-  <!-- openGym app icon "christmas", drawn by hand like "halloween" (scripts/app-icons.mjs renders it,
-       it does not write it). The dumbbell is the glyph of resources/icon.svg in the openGym lime, on
+  <!-- Hypertrofy app icon "christmas", drawn by hand like "halloween" (scripts/app-icons.mjs renders it,
+       it does not write it). The dumbbell is the glyph of resources/icon.svg in the Hypertrofy lime, on
        a winter night: a Santa hat on the left plate, the right plate wrapped as a present with a red
        ribbon and a bow, snowflakes around. Only rect, circle, line, polyline, polygon and one
        radialGradient: what the script knows how to draw. -->
@@ -90,7 +90,7 @@
     <circle cx="300" cy="404" r="5"/>
     <circle cx="160" cy="448" r="3"/>
   </g>
-  <!-- the dumbbell, openGym lime -->
+  <!-- the dumbbell, Hypertrofy lime -->
   <g fill="#a3e635">
     <rect x="80" y="242" width="352" height="28"/>
     <rect x="80" y="199" width="36" height="114"/>

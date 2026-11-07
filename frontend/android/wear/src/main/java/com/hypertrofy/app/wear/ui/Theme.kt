@@ -10,7 +10,7 @@ import androidx.wear.compose.material3.ColorScheme
 import androidx.wear.compose.material3.MaterialTheme
 
 /*
- * openGym on the wrist: the app's dark look and lime accent (frontend/src/index.css), made for a
+ * Hypertrofy on the wrist: the app's dark look and lime accent (frontend/src/index.css), made for a
  * glance between sets. One thing in lime per screen, the thing to press; numbers big, tabular and
  * bold; secondary words in a grey that still reads at 4.5:1 on black; targets 48 dp or more.
  */

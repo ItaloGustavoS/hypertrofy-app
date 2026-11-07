@@ -5,7 +5,7 @@ msgid "code"
 msgstr "Codice di abbinamento"
 
 msgid "how"
-msgstr "In openGym apri Impostazioni, Orologio Zepp OS, Abbina un orologio, e inserisci qui indirizzo e codice."
+msgstr "In Hypertrofy apri Impostazioni, Orologio Zepp OS, Abbina un orologio, e inserisci qui indirizzo e codice."
 
 msgid "pair"
 msgstr "Abbina"
@@ -14,7 +14,7 @@ msgid "pairing"
 msgstr "Abbinamento…"
 
 msgid "paired"
-msgstr "Abbinato a {0}. Apri openGym sull’orologio."
+msgstr "Abbinato a {0}. Apri Hypertrofy sull’orologio."
 
 msgid "failed"
 msgstr "Non ha funzionato. Controlla indirizzo e codice, un codice dura dieci minuti."

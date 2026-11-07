@@ -40,7 +40,7 @@ run on the maintainer's machine against the private media archive.
 | `android/make-asset-packs.mjs` | Adds the Play asset packs to the Android project for one build, and removes them again |
 | `ios/finish-ipa.sh` | Puts the app's animations into the unsigned IPA from CI and signs it for the App Store |
 | `media/make-pack-manifests.mjs` | Plans the Apple-hosted animation packs from file names alone |
-| `media/build-media.py` | Turns the Gym visual pack into the files openGym ships (ffmpeg only) |
+| `media/build-media.py` | Turns the Gym visual pack into the files Hypertrofy ships (ffmpeg only) |
 | `media/build-app-webp.py` | The phone apps' animated WebP animations |
 
 ## Kept for the record

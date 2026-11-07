@@ -46,8 +46,8 @@ import org.json.JSONObject;
  * Settings: no permission is asked for before that. What to write is worked out in JS
  * (lib/health-connect.js); this side only turns those plain objects into records.
  *
- * Every record carries openGym's own id as its clientRecordId, so writing it again replaces it,
- * and "remove" finds exactly the records openGym wrote. The version is the time of the write:
+ * Every record carries Hypertrofy's own id as its clientRecordId, so writing it again replaces it,
+ * and "remove" finds exactly the records Hypertrofy wrote. The version is the time of the write:
  * Health Connect keeps a rewritten record only when its version is higher than the stored one.
  *
  * The client's API is Kotlin suspend functions. They are called from a worker thread through
@@ -363,7 +363,7 @@ public class HealthConnectPlugin extends Plugin {
     }
 
     // Health Connect's own screen for the data apps wrote, where the user can look at and delete
-    // what openGym wrote. Without Health Connect (Android 13 and lower), its store page instead.
+    // what Hypertrofy wrote. Without Health Connect (Android 13 and lower), its store page instead.
     @PluginMethod
     public void openSettings(PluginCall call) {
         String status = sdkStatus();

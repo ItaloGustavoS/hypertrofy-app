@@ -1,4 +1,4 @@
-/* openGym on the Apple Watch, pl: Info.plist. Written by ios/ci/watch-strings.mjs. */
+/* Hypertrofy on the Apple Watch, pl: Info.plist. Written by ios/ci/watch-strings.mjs. */
 
-"NSHealthShareUsageDescription" = "openGym pokazuje tętno podczas treningu i przy każdej serii.";
-"NSHealthUpdateUsageDescription" = "openGym zapisuje treningi w Apple Zdrowie, jeśli to włączysz.";
+"NSHealthShareUsageDescription" = "Hypertrofy pokazuje tętno podczas treningu i przy każdej serii.";
+"NSHealthUpdateUsageDescription" = "Hypertrofy zapisuje treningi w Apple Zdrowie, jeśli to włączysz.";

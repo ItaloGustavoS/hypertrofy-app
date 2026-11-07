@@ -66,7 +66,7 @@ const OWN = {
     hi: 'कोई वर्कआउट नहीं चल रहा', bn: 'কোনো ওয়ার্কআউট চলছে না', th: 'ไม่มีการฝึกที่กำลังทำอยู่', ko: '진행 중인 운동이 없어요',
     'zh-Hans': '没有进行中的训练', 'zh-Hant': '沒有進行中的訓練',
   },
-  // The start screen before anything came from the phone (it sends only while openGym runs there).
+  // The start screen before anything came from the phone (it sends only while Hypertrofy runs there).
   'Not synced yet': {
     de: 'Noch nicht synchronisiert', fr: 'Pas encore synchronisé', es: 'Aún sin sincronizar', it: 'Non ancora sincronizzato',
     'pt-PT': 'Ainda não sincronizado', 'pt-BR': 'Ainda não sincronizado', pl: 'Jeszcze nie zsynchronizowano', hu: 'Még nincs szinkronizálva',
@@ -74,25 +74,25 @@ const OWN = {
     hi: 'अभी सिंक नहीं हुआ', bn: 'এখনো সিঙ্ক হয়নি', th: 'ยังไม่ได้ซิงค์', ko: '아직 동기화되지 않았어요',
     'zh-Hans': '尚未同步', 'zh-Hant': '尚未同步',
   },
-  'Open openGym on your iPhone once and your routines show up here.': {
-    de: 'Öffne openGym einmal auf dem iPhone, dann tauchen deine Routinen hier auf.',
-    fr: 'Ouvre openGym une fois sur ton iPhone et tes routines apparaissent ici.',
-    es: 'Abre openGym una vez en tu iPhone y tus rutinas aparecerán aquí.',
-    it: 'Apri openGym una volta sull’iPhone e le tue routine compariranno qui.',
-    'pt-PT': 'Abre o openGym uma vez no iPhone e as tuas rotinas aparecem aqui.',
-    'pt-BR': 'Abra o openGym uma vez no iPhone e suas rotinas aparecem aqui.',
-    pl: 'Otwórz raz openGym na iPhonie, a twoje plany pojawią się tutaj.',
-    hu: 'Nyisd meg egyszer az openGymet az iPhone-on, és itt lesznek a rutinjaid.',
-    tr: 'openGym’i iPhone’unda bir kez aç, rutinlerin burada görünür.',
-    ru: 'Откройте openGym на iPhone один раз, и ваши программы появятся здесь.',
-    uk: 'Відкрий openGym на iPhone один раз, і твої програми з’являться тут.',
-    ar: 'افتح openGym على iPhone مرة واحدة وستظهر تمارينك الروتينية هنا.',
-    hi: 'iPhone पर openGym एक बार खोलें, आपके रूटीन यहाँ दिखेंगे।',
-    bn: 'iPhone-এ openGym একবার খুলুন, আপনার রুটিন এখানে দেখা যাবে।',
-    th: 'เปิด openGym บน iPhone สักครั้ง แล้วรูทีนของคุณจะแสดงที่นี่',
-    ko: 'iPhone에서 openGym을 한 번 열면 루틴이 여기에 나타나요.',
-    'zh-Hans': '在 iPhone 上打开一次 openGym，你的训练计划就会出现在这里。',
-    'zh-Hant': '在 iPhone 上打開一次 openGym，你的訓練計畫就會出現在這裡。',
+  'Open Hypertrofy on your iPhone once and your routines show up here.': {
+    de: 'Öffne Hypertrofy einmal auf dem iPhone, dann tauchen deine Routinen hier auf.',
+    fr: 'Ouvre Hypertrofy une fois sur ton iPhone et tes routines apparaissent ici.',
+    es: 'Abre Hypertrofy una vez en tu iPhone y tus rutinas aparecerán aquí.',
+    it: 'Apri Hypertrofy una volta sull’iPhone e le tue routine compariranno qui.',
+    'pt-PT': 'Abre o Hypertrofy uma vez no iPhone e as tuas rotinas aparecem aqui.',
+    'pt-BR': 'Abra o Hypertrofy uma vez no iPhone e suas rotinas aparecem aqui.',
+    pl: 'Otwórz raz Hypertrofy na iPhonie, a twoje plany pojawią się tutaj.',
+    hu: 'Nyisd meg egyszer az Hypertrofyet az iPhone-on, és itt lesznek a rutinjaid.',
+    tr: 'Hypertrofy’i iPhone’unda bir kez aç, rutinlerin burada görünür.',
+    ru: 'Откройте Hypertrofy на iPhone один раз, и ваши программы появятся здесь.',
+    uk: 'Відкрий Hypertrofy на iPhone один раз, і твої програми з’являться тут.',
+    ar: 'افتح Hypertrofy على iPhone مرة واحدة وستظهر تمارينك الروتينية هنا.',
+    hi: 'iPhone पर Hypertrofy एक बार खोलें, आपके रूटीन यहाँ दिखेंगे।',
+    bn: 'iPhone-এ Hypertrofy একবার খুলুন, আপনার রুটিন এখানে দেখা যাবে।',
+    th: 'เปิด Hypertrofy บน iPhone สักครั้ง แล้วรูทีนของคุณจะแสดงที่นี่',
+    ko: 'iPhone에서 Hypertrofy을 한 번 열면 루틴이 여기에 나타나요.',
+    'zh-Hans': '在 iPhone 上打开一次 Hypertrofy，你的训练计划就会出现在这里。',
+    'zh-Hant': '在 iPhone 上打開一次 Hypertrofy，你的訓練計畫就會出現在這裡。',
   },
   'Start one on your iPhone and it shows up here.': {
     de: 'Starte eins auf dem iPhone, dann taucht es hier auf.', fr: 'Lance-en une sur ton iPhone et elle apparaît ici.',
@@ -192,34 +192,34 @@ const OWN = {
   'Your rest, your next set, or today\'s workout.': {
     de: 'Deine Pause, dein nächster Satz oder das Training von heute.', fr: 'Ton repos, ta prochaine série ou la séance du jour.', es: 'Tu descanso, tu próxima serie o el entreno de hoy.', it: 'Il tuo recupero, la prossima serie o l’allenamento di oggi.', 'pt-PT': 'O teu descanso, a próxima série ou o treino de hoje.', 'pt-BR': 'Seu descanso, a próxima série ou o treino de hoje.', pl: 'Twoja przerwa, następna seria albo dzisiejszy trening.', hu: 'A pihenőd, a következő sorozat vagy a mai edzés.', tr: 'Dinlenmen, sıradaki setin ya da bugünkü antrenman.', ru: 'Отдых, следующий подход или сегодняшняя тренировка.', uk: 'Відпочинок, наступний підхід або сьогоднішнє тренування.', ar: 'راحتك، أو مجموعتك التالية، أو تمرين اليوم.', hi: 'आपका आराम, अगला सेट, या आज का वर्कआउट।', bn: 'আপনার বিশ্রাম, পরের সেট, বা আজকের ওয়ার্কআউট।', th: 'ช่วงพัก เซ็ตถัดไป หรือการฝึกวันนี้', ko: '휴식, 다음 세트, 또는 오늘의 운동.', 'zh-Hans': '你的休息、下一组或今天的训练。', 'zh-Hant': '你的休息、下一組或今天的訓練。',
   },
-  'Opens openGym.': {
-    de: 'Öffnet openGym.', fr: 'Ouvre openGym.', es: 'Abre openGym.', it: 'Apre openGym.', 'pt-PT': 'Abre o openGym.', 'pt-BR': 'Abre o openGym.', pl: 'Otwiera openGym.', hu: 'Megnyitja az openGymet.', tr: 'openGym’i açar.', ru: 'Открывает openGym.', uk: 'Відкриває openGym.', ar: 'يفتح openGym.', hi: 'openGym खोलता है।', bn: 'openGym খোলে।', th: 'เปิด openGym', ko: 'openGym을 열어요.', 'zh-Hans': '打开 openGym。', 'zh-Hant': '打開 openGym。',
+  'Opens Hypertrofy.': {
+    de: 'Öffnet Hypertrofy.', fr: 'Ouvre Hypertrofy.', es: 'Abre Hypertrofy.', it: 'Apre Hypertrofy.', 'pt-PT': 'Abre o Hypertrofy.', 'pt-BR': 'Abre o Hypertrofy.', pl: 'Otwiera Hypertrofy.', hu: 'Megnyitja az Hypertrofyet.', tr: 'Hypertrofy’i açar.', ru: 'Открывает Hypertrofy.', uk: 'Відкриває Hypertrofy.', ar: 'يفتح Hypertrofy.', hi: 'Hypertrofy खोलता है।', bn: 'Hypertrofy খোলে।', th: 'เปิด Hypertrofy', ko: 'Hypertrofy을 열어요.', 'zh-Hans': '打开 Hypertrofy。', 'zh-Hant': '打開 Hypertrofy。',
   },
 }
 
 // Info.plist's own (the Apple Health permission prompts), into InfoPlist.strings.
 const PLIST = {
   NSHealthShareUsageDescription: {
-    de: 'openGym zeigt deinen Puls während des Trainings und neben jedem Satz.', fr: 'openGym affiche ton pouls pendant la séance et à côté de chaque série.',
-    es: 'openGym muestra tu pulso durante el entreno y junto a cada serie.', it: 'openGym mostra il tuo battito durante l’allenamento e accanto a ogni serie.',
-    'pt-PT': 'O openGym mostra a tua frequência cardíaca durante o treino e ao lado de cada série.', 'pt-BR': 'O openGym mostra sua frequência cardíaca durante o treino e ao lado de cada série.',
-    pl: 'openGym pokazuje tętno podczas treningu i przy każdej serii.', hu: 'Az openGym edzés közben és minden sorozat mellett mutatja a pulzusodat.',
-    tr: 'openGym antrenman sırasında ve her setin yanında nabzını gösterir.', ru: 'openGym показывает пульс во время тренировки и рядом с каждым подходом.',
-    uk: 'openGym показує пульс під час тренування і біля кожного підходу.', ar: 'يعرض openGym نبضك أثناء التمرين وبجانب كل مجموعة.',
-    hi: 'openGym वर्कआउट के दौरान और हर सेट के साथ आपकी धड़कन दिखाता है।', bn: 'openGym ওয়ার্কআউটের সময় আর প্রতিটি সেটের পাশে আপনার হার্ট রেট দেখায়।',
-    th: 'openGym แสดงอัตราการเต้นของหัวใจระหว่างฝึกและข้างแต่ละเซ็ต', ko: 'openGym이 운동 중과 각 세트 옆에 심박수를 보여줘요.',
-    'zh-Hans': 'openGym 会在训练中和每组旁显示你的心率。', 'zh-Hant': 'openGym 會在訓練中和每組旁顯示你的心率。',
+    de: 'Hypertrofy zeigt deinen Puls während des Trainings und neben jedem Satz.', fr: 'Hypertrofy affiche ton pouls pendant la séance et à côté de chaque série.',
+    es: 'Hypertrofy muestra tu pulso durante el entreno y junto a cada serie.', it: 'Hypertrofy mostra il tuo battito durante l’allenamento e accanto a ogni serie.',
+    'pt-PT': 'O Hypertrofy mostra a tua frequência cardíaca durante o treino e ao lado de cada série.', 'pt-BR': 'O Hypertrofy mostra sua frequência cardíaca durante o treino e ao lado de cada série.',
+    pl: 'Hypertrofy pokazuje tętno podczas treningu i przy każdej serii.', hu: 'Az Hypertrofy edzés közben és minden sorozat mellett mutatja a pulzusodat.',
+    tr: 'Hypertrofy antrenman sırasında ve her setin yanında nabzını gösterir.', ru: 'Hypertrofy показывает пульс во время тренировки и рядом с каждым подходом.',
+    uk: 'Hypertrofy показує пульс під час тренування і біля кожного підходу.', ar: 'يعرض Hypertrofy نبضك أثناء التمرين وبجانب كل مجموعة.',
+    hi: 'Hypertrofy वर्कआउट के दौरान और हर सेट के साथ आपकी धड़कन दिखाता है।', bn: 'Hypertrofy ওয়ার্কআউটের সময় আর প্রতিটি সেটের পাশে আপনার হার্ট রেট দেখায়।',
+    th: 'Hypertrofy แสดงอัตราการเต้นของหัวใจระหว่างฝึกและข้างแต่ละเซ็ต', ko: 'Hypertrofy이 운동 중과 각 세트 옆에 심박수를 보여줘요.',
+    'zh-Hans': 'Hypertrofy 会在训练中和每组旁显示你的心率。', 'zh-Hant': 'Hypertrofy 會在訓練中和每組旁顯示你的心率。',
   },
   NSHealthUpdateUsageDescription: {
-    de: 'openGym speichert deine Trainings in Apple Health, wenn du das einschaltest.', fr: 'openGym enregistre tes séances dans Apple Santé si tu l’actives.',
-    es: 'openGym guarda tus entrenos en Apple Salud si lo activas.', it: 'openGym salva i tuoi allenamenti in Apple Salute se lo attivi.',
-    'pt-PT': 'O openGym guarda os teus treinos no Apple Saúde se o ativares.', 'pt-BR': 'O openGym salva seus treinos no Apple Saúde se você ativar.',
-    pl: 'openGym zapisuje treningi w Apple Zdrowie, jeśli to włączysz.', hu: 'Az openGym az Apple Egészség appba menti az edzéseidet, ha bekapcsolod.',
-    tr: 'Açarsan openGym antrenmanlarını Apple Sağlık’a kaydeder.', ru: 'openGym сохраняет тренировки в Apple Здоровье, если вы это включите.',
-    uk: 'openGym зберігає тренування в Apple Здоров’я, якщо ти це ввімкнеш.', ar: 'يحفظ openGym تمارينك في Apple صحتي إذا فعّلت ذلك.',
-    hi: 'चालू करने पर openGym आपके वर्कआउट Apple Health में सहेजता है।', bn: 'চালু করলে openGym আপনার ওয়ার্কআউট Apple Health-এ সেভ করে।',
-    th: 'openGym บันทึกการฝึกลงใน Apple Health เมื่อคุณเปิดใช้', ko: '켜면 openGym이 운동을 Apple 건강에 저장해요.',
-    'zh-Hans': '打开后，openGym 会把训练保存到 Apple 健康。', 'zh-Hant': '開啟後，openGym 會把訓練儲存到 Apple 健康。',
+    de: 'Hypertrofy speichert deine Trainings in Apple Health, wenn du das einschaltest.', fr: 'Hypertrofy enregistre tes séances dans Apple Santé si tu l’actives.',
+    es: 'Hypertrofy guarda tus entrenos en Apple Salud si lo activas.', it: 'Hypertrofy salva i tuoi allenamenti in Apple Salute se lo attivi.',
+    'pt-PT': 'O Hypertrofy guarda os teus treinos no Apple Saúde se o ativares.', 'pt-BR': 'O Hypertrofy salva seus treinos no Apple Saúde se você ativar.',
+    pl: 'Hypertrofy zapisuje treningi w Apple Zdrowie, jeśli to włączysz.', hu: 'Az Hypertrofy az Apple Egészség appba menti az edzéseidet, ha bekapcsolod.',
+    tr: 'Açarsan Hypertrofy antrenmanlarını Apple Sağlık’a kaydeder.', ru: 'Hypertrofy сохраняет тренировки в Apple Здоровье, если вы это включите.',
+    uk: 'Hypertrofy зберігає тренування в Apple Здоров’я, якщо ти це ввімкнеш.', ar: 'يحفظ Hypertrofy تمارينك في Apple صحتي إذا فعّلت ذلك.',
+    hi: 'चालू करने पर Hypertrofy आपके वर्कआउट Apple Health में सहेजता है।', bn: 'চালু করলে Hypertrofy আপনার ওয়ার্কআউট Apple Health-এ সেভ করে।',
+    th: 'Hypertrofy บันทึกการฝึกลงใน Apple Health เมื่อคุณเปิดใช้', ko: '켜면 Hypertrofy이 운동을 Apple 건강에 저장해요.',
+    'zh-Hans': '打开后，Hypertrofy 会把训练保存到 Apple 健康。', 'zh-Hant': '開啟後，Hypertrofy 會把訓練儲存到 Apple 健康。',
   },
 }
 
@@ -227,7 +227,7 @@ const esc = s => String(s).replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/
 let problems = 0
 for (const [pack, lproj] of Object.entries(LANGS)) {
   const { default: dict } = await import(pathToFileURL(join(root, 'src', 'locales', pack + '.js')).href)
-  const lines = [`/* openGym on the Apple Watch, ${lproj}. Written by ios/ci/watch-strings.mjs: change that, not this. */`, '']
+  const lines = [`/* Hypertrofy on the Apple Watch, ${lproj}. Written by ios/ci/watch-strings.mjs: change that, not this. */`, '']
   const put = (k, v) => {
     if (!v) { console.error(`${lproj}: no word for "${k}"`); problems++; return }
     if (/—/.test(v)) { console.error(`${lproj}: em dash in "${k}"`); problems++ }
@@ -241,7 +241,7 @@ for (const [pack, lproj] of Object.entries(LANGS)) {
   // The widget says a few of the same words (Rest, Start workout).
   mkdirSync(join(widgets, `${lproj}.lproj`), { recursive: true })
   writeFileSync(join(widgets, `${lproj}.lproj`, 'Localizable.strings'), lines.join('\n') + '\n')
-  const plist = [`/* openGym on the Apple Watch, ${lproj}: Info.plist. Written by ios/ci/watch-strings.mjs. */`, '']
+  const plist = [`/* Hypertrofy on the Apple Watch, ${lproj}: Info.plist. Written by ios/ci/watch-strings.mjs. */`, '']
   for (const [k, tr] of Object.entries(PLIST)) {
     if (!tr[lproj] || /—/.test(tr[lproj])) { console.error(`${lproj}: ${k} missing or with an em dash`); problems++; continue }
     plist.push(`"${k}" = "${esc(tr[lproj])}";`)
@@ -252,7 +252,7 @@ for (const [pack, lproj] of Object.entries(LANGS)) {
 // that language's words to an app in English.
 {
   const keys = [...Object.keys(FROM_APP), ...Object.keys(COMPOSED), ...Object.keys(OWN)]
-  const lines = ['/* openGym on the Apple Watch, en. Written by ios/ci/watch-strings.mjs: change that, not this. */', '']
+  const lines = ['/* Hypertrofy on the Apple Watch, en. Written by ios/ci/watch-strings.mjs: change that, not this. */', '']
   for (const k of keys) lines.push(`"${esc(k)}" = "${esc(k)}";`)
   for (const dir of [out, widgets]) {
     mkdirSync(join(dir, 'en.lproj'), { recursive: true })
