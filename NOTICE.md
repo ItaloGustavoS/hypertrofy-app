@@ -53,10 +53,9 @@ does not bundle those media files in the repository or in the shipped build; it 
 `catalogue/exercise-media-map-v1.json`, `frontend/src/lib/exercise-media-cache.js` and
 `frontend/src/lib/exercises.js`.
 
-For this project the commercial, caching and redistribution terms of the ExerciseDB v1 source were
-**assumed acceptable** (recorded decision), but those terms have **not been independently certified
-here and must be verified before a store release**. If they do not permit the intended use, replace
-the media source or obtain an appropriate licence.
+The project owner reviewed the commercial, caching and redistribution terms of the ExerciseDB v1
+source and **confirmed they are acceptable for this app** (November 2026). No independent legal
+review is claimed here; if those terms change, replace the media source or obtain a licence.
 
 **Historical note:** releases and repository history before this change bundled Gym visual stills and
 animations (`catalogue/media/`) licensed to Hypertrofy by Aliaksandr Makatserchyk / Gym visual

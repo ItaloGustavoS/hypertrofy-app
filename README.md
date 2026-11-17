@@ -65,6 +65,6 @@ Upstream: [github.com/DuarteSantos8/Hypertrofy](https://github.com/DuarteSantos8
 
 > [!NOTE]
 > **Exercise media.** The app shows 180p exercise GIFs sourced from ExerciseDB v1 and cached on the
-> device (not bundled). The commercial/caching/redistribution terms of that source were assumed
-> acceptable for this project but must be verified before a store release. The exercise text in
-> `catalogue/` remains open to contributions. See [`NOTICE.md`](NOTICE.md).
+> device (not bundled). The project owner confirmed the commercial/caching/redistribution terms of
+> that source are acceptable for this app. The exercise text in `catalogue/` remains open to
+> contributions. See [`NOTICE.md`](NOTICE.md).

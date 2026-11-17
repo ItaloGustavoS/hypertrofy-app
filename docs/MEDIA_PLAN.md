@@ -32,5 +32,5 @@ v1 wins on coverage (~3.3×), animated format, and `textSource:"exercisedb"` lin
 ## Risks / notes
 - **Coverage drop:** 5632 → ~1597 exercises (28%). This is the explicit trade (2a) to clear the licence blocker. Name mapping is heuristic; review the `med`-confidence 237 matches (or promote only `high` = 1360) before the cut.
 - **Format:** current app uses still.webp + clip.mp4/webp; v1 gives GIF. The resolver/component contract changes — scope it carefully.
-- **Terms not certified:** decision 4 assumed ok; the free mirror’s commercial/caching/redistribution terms must be confirmed (gate in step 1).
+- **Terms:** confirmed by the project owner (November 2026). Re-check if the source or its terms change.
 - **Network on first view:** with (3) caching, first render of an exercise needs connectivity; subsequent renders are local. Acceptable per the stated product assumption.
