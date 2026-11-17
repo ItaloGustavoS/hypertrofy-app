@@ -23,17 +23,14 @@ export function useAnimSources(ex, figure) {
   const packs = useAnimPacks()
   // Remote ExerciseDB v1 media (mapped by id) has no ex.gif field but gifSrc resolves it.
   const builtin = (ex?.gif || remoteGifUrl(ex)) ? gifSrc(ex, figure) : null
-  if (!MOBILE) return { still: false, sources: builtin ? [builtin] : [] }
-  const choice = packs.available ? packs.prefs.choice : (packs.prefs.choice === 'still' ? 'still' : 'builtin')
-  return clipSources({ ex, figure, choice, device: deviceInfo(), installed: installedBases(packs), builtin })
+  // This fork ships no animation packs: the ExerciseDB GIF is the only animation, so the choice
+  // is just "still" (kept for people who had it) or the built-in file.
+  if (packs.prefs.choice === 'still') return { still: true, sources: [] }
+  return { still: false, sources: builtin ? [builtin] : [] }
 }
 
-/** Shell: what the device has, once, and the pack the choice wants for the figure shown. */
-export function useAnimPacksBoot() {
-  const figure = useStore(s => figureOf(s.S))
-  useEffect(() => { if (MOBILE) refresh().then(() => ensureWanted(figure)).catch(() => {}) }, [])
-  useEffect(() => { if (MOBILE && getState().checked) ensureWanted(figure) }, [figure])
-}
+/** No animation packs in this fork: nothing to check or download. */
+export function useAnimPacksBoot() {}
 
 // "Auto (360 px)", "Still only", "Built in (180 px)", "720 px".
 export function choiceLabel(choice, packs = getState(), figure = 'male') {
@@ -49,11 +46,8 @@ export function choiceLabel(choice, packs = getState(), figure = 'male') {
 }
 
 export function AnimationQualityRow() {
-  const packs = useAnimPacks()
-  const figure = useStore(s => figureOf(s.S))
-  if (!MOBILE) return null
-  return <Row icon="image" iconTint="var(--indigo)" title={t('Animation quality')} value={choiceLabel(packs.prefs.choice, packs, figure)} accessory="chevron"
-    onClick={() => useUI.getState().openSheet(close => <AnimationQualitySheet close={close} />)} />
+  // No animation packs in this fork: the setting would only offer choices we do not ship.
+  return null
 }
 
 // One pack's line under its quality: downloaded and how big on this device, on its way, waiting

@@ -1,14 +1,12 @@
 // The pictures on a printed plan (#817): one still per exercise, like the paper plan a gym hands
 // out. lib/plan-share.js planPrintHTML lays them out; this file finds and loads them.
 //
-// LICENCE. The catalogue's pictures are licensed from Gym visual (catalogue/media/NOTICE.md).
-// What may go on paper is what the web app and every self-hosted server already serve: the
-// 180 px stills (lib/exercises.js imgSrc, exercise-media/still/). Never an animation, never an
-// asset pack, never the larger files the store apps carry: those exist only inside the app
-// package, and a PDF is a file anyone can pass on. So the source here is always imgSrc, on the
-// phone too, and every loaded file is decoded and refused when it is larger than 180 px on either
-// side (a fork or a build that pointed IMG_BASE at bigger files prints text instead). When a
-// catalogue picture is on the page, the licence's attribution goes at the end of it (MEDIA_CREDIT).
+// MEDIA. This build bundles no catalogue pictures: the 1,597 catalogue exercises resolve to
+// remote ExerciseDB v1 GIFs (lib/exercises.js imgSrc), and a PDF is a file anyone can pass on, so
+// they are left out and the plan prints text (printPictureSource returns null for them). Forks
+// that still bundle 180 px stills keep printing them, and every loaded file is decoded and refused
+// when it is larger than 180 px on either side. When a catalogue picture is on the page, the
+// attribution goes at the end of it (MEDIA_CREDIT).
 //
 // A custom exercise's own photo (or a video's poster frame) is the person's, and prints too.
 //

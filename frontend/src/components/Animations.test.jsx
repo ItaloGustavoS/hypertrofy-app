@@ -111,34 +111,21 @@ describe('the setting', () => {
 })
 
 describe('what the animation shows', () => {
-  const ex = EXIDX['0001']   // drawn on both figures: the female drawing is 2476
-  it('the chosen pack first; one that will not load hands over to the next, then the built-in file, then the still', async () => {
-    mocks.ready.add('anim-720-female'); mocks.ready.add('anim-360-female')
+  const ex = EXIDX['0001']   // mapped to an ExerciseDB v1 GIF
+  it('shows the ExerciseDB GIF, never a pack path', async () => {
+    mocks.ready.add('anim-720-female')
     packs.writePrefs({ choice: 720 })
     await packs.refresh()
     await mount(<Media ex={ex} />)
-    expect(img().getAttribute('src')).toBe('app://files/packs/anim-720-female/2476.webp')
-    fire(img(), 'error')
-    expect(img().getAttribute('src')).toBe('app://files/packs/anim-360-female/2476.webp')
-    fire(img(), 'error')
-    expect(img().getAttribute('src')).toBe('exercise-media/clip/2476.webp')
-    fire(img(), 'error')
-    expect(img().getAttribute('src')).toBe('exercise-media/still/2476.webp')
+    expect(img().getAttribute('src')).toMatch(/^https:.*\.gif$/)
+    expect(img().getAttribute('src')).not.toContain('packs/')
   })
-  it('still only shows the still, and a tap does not start anything', async () => {
+  it('still only keeps the same picture, with no play hint', async () => {
     packs.writePrefs({ choice: 'still' })
     await packs.refresh()
     await mount(<Media ex={ex} />)
-    expect(img().getAttribute('src')).toMatch(/exercise-media\/still\/2476\.webp$/)
+    expect(img().getAttribute('src')).toMatch(/^https:.*\.gif$/)
     expect(host.querySelector('.gifhint')).toBeNull()
-    act(() => { host.querySelector('.exmedia').click() })
-    expect(img().getAttribute('src')).toMatch(/still\/2476\.webp$/)
-  })
-  it('a pack not downloaded yet: the built-in file meanwhile, never a blank', async () => {
-    packs.writePrefs({ choice: 1080 })
-    await packs.refresh()
-    await mount(<Media ex={ex} />)
-    expect(img().getAttribute('src')).toBe('exercise-media/clip/2476.webp')
   })
 })
 
