@@ -133,9 +133,5 @@
 	<true/>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-3940256099942544~1458002511</string>
-	<!-- Shown only if the App Tracking Transparency prompt is ever requested. Declining it
-	     just means ads stay non-personalized. -->
-	<key>NSUserTrackingUsageDescription</key>
-	<string>Allow tracking so ads can be more relevant to you. Declining keeps ads non-personalized.</string>
 </dict>
 </plist>
