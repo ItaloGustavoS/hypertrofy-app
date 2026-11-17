@@ -12,7 +12,7 @@ const TEMPLATES = [
     primary_muscle_group: 'cardio', secondary_muscle_groups: [], equipment: 'machine', is_custom: false,
   },
   {
-    id: '4E5257DE', title: 'Lat Pulldown - Close Grip (Cable)', type: 'weight_reps',
+    id: '6A6C31A5', title: 'Lat Pulldown (Cable)', type: 'weight_reps',
     primary_muscle_group: 'lats', secondary_muscle_groups: [], equipment: 'machine', is_custom: false,
   },
   {
@@ -43,7 +43,7 @@ const WORKOUT = {
     {
       index: 1,
       title: 'Latzug - Enger Griff (Kabel)',
-      exercise_template_id: '4E5257DE',
+      exercise_template_id: '6A6C31A5',
       sets: [
         { index: 0, type: 'warmup', weight_kg: 25, reps: 15, distance_meters: null, duration_seconds: null, rpe: null },
         { index: 1, type: 'normal', weight_kg: 52, reps: 15, distance_meters: null, duration_seconds: null, rpe: 8 },
@@ -74,7 +74,7 @@ describe('HEVY_ID_MAP', () => {
     B5D3A742: '0410', // Bulgarian Split Squat (Dumbbell)
     '914F3A96': '0327', // Chest Supported Incline Row (Dumbbell)
     '98237BA2': '0826', // Knee Raise Parallel Bars
-    '4E5257DE': '6392', // Lat Pulldown - Close Grip (Cable)
+    '6A6C31A5': '0150', // Lat Pulldown (Cable)
     FFDA283B: '0381', // Reverse Lunge (Dumbbell)
     '8BAB2735': '0318', // Seated Incline Curl (Dumbbell)
     '9237BAD1': '1454', // Seated Shoulder Press (Machine): its artwork is 1454, 0603's a landmine press
@@ -121,7 +121,7 @@ describe('parseHevyWorkouts', () => {
     expect(elliptical).toBeTruthy()
     expect(elliptical.sets[0]).toMatchObject({ min: 3, done: true })
 
-    const pulldown = entries.find(e => e.id === '6392')
+    const pulldown = entries.find(e => e.id === '0150')
     expect(pulldown).toBeTruthy()
     expect(pulldown.sets[0]).toMatchObject({ w: 25, r: 15, phase: 'warmup' })
     expect(pulldown.sets[1]).toMatchObject({ w: 52, r: 15, rpe: 8 })
@@ -147,7 +147,7 @@ describe('parseHevyWorkouts', () => {
 
   it('converts kg weights into a lb profile', () => {
     const parsed = parseHevyWorkouts([WORKOUT], TEMPLATES, { unit: 'lb' })
-    const pulldown = parsed.workouts[0].entries.find(e => e.id === '6392')
+    const pulldown = parsed.workouts[0].entries.find(e => e.id === '0150')
     expect(pulldown.sets.find(s => s.r === 15 && !s.phase).w).toBeCloseTo(114.6, 0)
     expect(parsed.converted).toBe(true)
   })
@@ -258,7 +258,7 @@ describe('parseHevyRoutines', () => {
       },
       {
         title: 'Latzug',
-        exercise_template_id: '4E5257DE',
+        exercise_template_id: '6A6C31A5',
         superset_id: 1,
         sets: [
           { type: 'warmup', weight_kg: 25, reps: 15 },
@@ -288,7 +288,7 @@ describe('parseHevyRoutines', () => {
     const [cardio, pull, row] = parsed.routines[0].ex
     expect(cardio.id).toBe('2141')
     expect(cardio).toMatchObject({ sets: 1, min: 3 })
-    expect(pull.id).toBe('6392')
+    expect(pull.id).toBe('0150')
     expect(pull).toMatchObject({ sets: 3, reps: 15, weight: 52, warmupSets: 1 })
     expect(row.id).toBe('0327')
     expect(pull.sg).toBeTruthy()
@@ -321,7 +321,7 @@ describe('buildHevyExerciseMap', () => {
   it('indexes every template id from the static map', () => {
     const map = buildHevyExerciseMap(TEMPLATES)
     expect(map.get('3303376C')).toBe('2141')
-    expect(map.get('4E5257DE')).toBe('6392')
+    expect(map.get('6A6C31A5')).toBe('0150')
     expect(map.get('DEADBEEF')).toBeNull()
     expect(map.size).toBe(TEMPLATES.length)
   })
@@ -340,7 +340,7 @@ describe('parseHevyWorkouts past midnight', () => {
 describe('hevySummaryCounts', () => {
   // One library exercise and one custom one, in both a workout and a routine.
   const exercises = [
-    { title: 'Lat Pulldown - Close Grip (Cable)', exercise_template_id: '4E5257DE', superset_id: null, sets: [{ type: 'normal', weight_kg: 50, reps: 10 }] },
+    { title: 'Lat Pulldown (Cable)', exercise_template_id: '6A6C31A5', superset_id: null, sets: [{ type: 'normal', weight_kg: 50, reps: 10 }] },
     { title: 'Lying Neck Rotation', exercise_template_id: 'my-own-template', superset_id: null, sets: [{ type: 'normal', weight_kg: 2, reps: 15 }] },
   ]
   const workout = { id: 'w1', title: 'Neck', start_time: '2026-01-12T10:00:00Z', end_time: '2026-01-12T11:00:00Z', exercises }

@@ -43,7 +43,7 @@ describe('Liftosaur CSV', () => {
     // The default equipment decides: a Liftosaur "Front Raise" is a dumbbell one.
     expect(entry(a, '0289').sets[0]).toMatchObject({ w: 30, r: 5 })
     expect(entry(a, '0310')).toBeTruthy()
-    expect(entry(a, '0463').sets[0]).toMatchObject({ sec: 45 })
+    expect(entry(a, '2135').sets[0]).toMatchObject({ sec: 45 })
     expect(p.unmatchedNames).toEqual(['Zottman Shuffle'])
     // Per-row units: the lb deadlift lands in kg on a kg profile.
     expect(entry(b, '0032').sets[0].w).toBeCloseTo(102.06, 2)
@@ -179,7 +179,7 @@ describe('Liftosaur JSON', () => {
     expect(db).toMatchObject({ sets: 3, reps: 8, weight: 20, warmupSets: 0, note: '3x8-12' })
     expect(db.sg).toBeTruthy()
     expect(a.ex.find(e => e.id === '0334').sg).toBe(db.sg)
-    expect(a.ex.find(e => e.id === '0463')).toMatchObject({ sets: 3, sec: 60, mode: 'time' })
+    expect(a.ex.find(e => e.id === '2135')).toMatchObject({ sets: 3, sec: 60, mode: 'time' })
     const dl = a.ex.find(e => e.id === '0032')
     expect(dl).toMatchObject({ sets: 3, pyramid: [5, 3, 1], weight: 0 })
     expect(dl.note).toBe('1x5, 1x3, 1x1 / progress: custom() {…}')
@@ -312,7 +312,7 @@ describe('Fitbod CSV', () => {
     expect(entry(w, '0025').sets.map(s => s.phase || s.w)).toEqual(['warmup', 80])
     expect(entry(w, '0025').note).toBe('felt heavy, stop at 8')
     expect(w.entries.find(e => e.sets[0].min).sets[0]).toMatchObject({ min: 10, speed: 9 })
-    expect(entry(w, '0463').sets[0]).toMatchObject({ sec: 60 })
+    expect(entry(w, '2135').sets[0]).toMatchObject({ sec: 60 })
     expect(entry(p.workouts[1], '0739')).toBeTruthy()
     expect(p.fileUnit).toBe('kg')
   })
@@ -380,7 +380,7 @@ describe('telling files apart', () => {
   })
 
   it('points every alias at an exercise that exists', () => {
-    for (const n of ['Machine Hip Abductor', 'Dumbbell Alternating Hammer Curl', 'Cable Rope Tricep Pushdown', 'Machine Assisted Pull-Up', 'Air Squats']) {
+    for (const n of ['Machine Hip Abductor', 'Dumbbell Alternating Hammer Curl', 'Cable Rope Tricep Pushdown', 'Machine Assisted Pull-Up', 'Dumbbell Step Ups']) {
       const id = matchExercise(n)
       expect(id, n).toBeTruthy()
       expect(EXIDX[id]).toBeTruthy()

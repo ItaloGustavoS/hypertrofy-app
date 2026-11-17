@@ -7,18 +7,18 @@ describe('reviewed substitutes', () => {
   it('covers every catalogue exercise, without relying on a manually mapped movement family', () => {
     const missing = EXDB.filter(exercise => !relatedSubstitutes(EXDB, exercise).length)
     expect(missing.map(e => ({ id: e.id, name: e.n }))).toEqual([])
-    expect(relatedSubstitutes(EXDB, EXIDX['8877']).every(e => e.tg === 'forearms')).toBe(true)
-    expect(relatedSubstitutes(EXDB, EXIDX['5897']).every(e => e.cat === 'yoga')).toBe(true)
+    expect(relatedSubstitutes(EXDB, EXIDX['0917']).every(e => e.tg === 'forearms')).toBe(true)
+    expect(relatedSubstitutes(EXDB, EXIDX['1494']).every(e => e.cat === 'yoga')).toBe(true)
   }, 20000)
-  it('offers lat stretches for dead hang without suggesting loaded pulls or unavailable hanging equipment', () => {
-    const ex = EXIDX['5055']
+  it('offers lat stretches for a dead hang without suggesting loaded pulls or unavailable equipment', () => {
+    const ex = EXIDX['1346']
     expect(suggestedSubstitutes(EXDB, ex)).toEqual([])
     const available = EXDB.filter(e => eqAvailable([], e))
     const related = relatedSubstitutes(available, ex)
     expect(related).toHaveLength(3)
     expect(related.every(e => e.tg === 'lats' && e.cat === 'stretching' && e.id !== ex.id)).toBe(true)
-    expect(available.some(e => e.id === '10438')).toBe(false)
-    expect(eqAvailable(['pull-up bar'], EXIDX['10438'])).toBe(true)
+    expect(available.some(e => e.id === '1339')).toBe(false)
+    expect(eqAvailable(['stability ball'], EXIDX['1339'])).toBe(true)
     expect(relatedSubstitutes(EXDB, { tg: 'lats' })).toEqual([])
     expect(relatedSubstitutes(EXDB, null)).toEqual([])
   })

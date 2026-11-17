@@ -6,7 +6,7 @@ import {
 import { EXIDX, registerCustom } from './exercises.js'
 import { youtubeSearchUrl } from './youtube.js'
 
-const BENCH = '0025', CURL = '0463', PLANK = '8221', RAISE = '0334'
+const BENCH = '0025', CURL = '0294', PLANK = '8221', RAISE = '0334'
 const custom = { id: 'cx1', n: 'Zercher carry ü 💪', bp: 'upper legs', eq: 'barbell', custom: true }
 
 const state = (over = {}) => ({

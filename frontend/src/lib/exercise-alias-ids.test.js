@@ -9,7 +9,12 @@ import { mergePlan, parsePlan } from './plan-share.js'
 import { applyChangeSet, CONSENT_VERSION } from './coach.js'
 import { HEVY_ID_MAP, parseHevyWorkouts } from './import-hevy.js'
 
-const [ALIAS, TO] = Object.entries(EXALIAS).find(([id, to]) => EXIDX[to] && !Object.keys(EXIDX).includes(id))
+// The catalogue cut left no drawing ids of its own (EXALIAS is empty), so the test supplies one:
+// an id that is not an exercise of its own, mapped to an exercise that is.
+const ALIAS = 'test-drawing-alias'
+const TO = '0001'
+EXALIAS[ALIAS] = TO
+Object.defineProperty(EXIDX, ALIAS, { value: EXIDX[TO], enumerable: false, configurable: true })
 const state = () => ({
   unit: 'kg', lang: 'en', customEx: [], workouts: [], bodyweight: [], exWeights: {}, dayPlan: {}, week: {},
   routines: [{ id: 'r1', name: 'Old', ex: [{ id: ALIAS, sets: 3, reps: 10, mode: 'reps' }, { id: '0001', sets: 3, reps: 10, mode: 'reps' }] }],

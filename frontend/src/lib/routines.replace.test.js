@@ -11,7 +11,7 @@ const BENCH = '0025'      // barbell bench press
 const DB_BENCH = '0289'   // dumbbell bench press
 const PUSH_UP = '0662'    // push-up, body weight
 const PULL_UP = '0652'    // pull-up, body weight
-const BIKE = '2138'       // stationary bike, cardio
+const BIKE = '0798'       // stationary bike walk
 const ASSISTED_PULL_UP = '0015' // assisted pull-up, a leverage machine: the weight is help
 const PULLDOWN = '0150'   // lat pulldown, cable
 

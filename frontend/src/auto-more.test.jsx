@@ -11,7 +11,7 @@ import { useUI } from './store/useUI.js'
 import { exercisePicker } from './sheets.jsx'
 import Library from './views/Library.jsx'
 import MuscleExplorer from './components/MuscleExplorer.jsx'
-import { BODYPARTS, EXDB } from './lib/exercises.js'
+import { BODYPARTS, EXDB, allExercises, searchExercises } from './lib/exercises.js'
 
 vi.mock('react-router-dom', () => ({ useNavigate: () => () => {} }))
 
@@ -85,8 +85,9 @@ describe('lists load their next page as you scroll', () => {
   })
 
   it('stops watching once everything is shown', () => {
-    // a body part with a few pages, not the whole catalogue
-    const count = bp => EXDB.filter(e => e.bp === bp).length
+    // a body part with a few pages, not the whole catalogue. The list is what the Library
+    // builds (allExercises + searchExercises), which is not just the raw EXDB count.
+    const count = bp => searchExercises(allExercises(structuredClone(DEF)).filter(e => e.bp === bp), '').length
     const bp = BODYPARTS.filter(b => count(b) > 40).sort((a, b) => count(a) - count(b))[0]
     const host = render(<Library />)
     act(() => [...host.querySelectorAll('.chips .chip')].find(c => c.textContent === bp).click())

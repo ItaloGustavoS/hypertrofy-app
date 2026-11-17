@@ -18,7 +18,7 @@ vi.mock('../components/Heatmap.jsx', () => ({ default: () => null }))
 vi.mock('../components/BodyMap.jsx', () => ({ default: () => null, BodyMapLegend: () => null }))
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true
-const BIKE = '2138'
+const BIKE = '0798'
 const session = (d, speeds) => ({
   id: d, d, start: Date.parse(d + 'T10:00:00Z'), end: Date.parse(d + 'T10:40:00Z'), name: 'Cardio',
   entries: [{ id: BIKE, target: { id: BIKE, sets: speeds.length, min: 20, speed: 8 }, sets: speeds.map(speed => ({ min: 20, speed, done: true })) }],

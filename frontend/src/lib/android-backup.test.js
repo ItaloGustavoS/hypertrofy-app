@@ -41,7 +41,7 @@ describe('Android backup rules', () => {
     expect(modern.match(/<cloud-backup>([\s\S]*?)<\/cloud-backup>/)?.[1]).toMatch(GYMS)
     expect(modern.match(/<device-transfer>([\s\S]*?)<\/device-transfer>/)?.[1]).toMatch(GYMS)
     // the file name the native side writes
-    const java = readFileSync(new URL('../../android/app/src/main/java/ch/duartesantos/opengym/GymReminder.java', import.meta.url), 'utf8')
+    const java = readFileSync(new URL('../../android/app/src/main/java/com/hypertrofy/app/GymReminder.java', import.meta.url), 'utf8')
     expect(java).toMatch(/PREFS = "opengym_gym_reminder"/)
   })
 
@@ -61,7 +61,7 @@ describe('Android backup rules', () => {
 // The backup-folder plugin deletes and writes only the app's own dated copies (#161): the native
 // rule has to be the same one lib/mobile.js names them by, or a prune would miss its own files.
 describe('BackupFolderPlugin', () => {
-  const src = readFileSync(new URL('../../android/app/src/main/java/ch/duartesantos/opengym/BackupFolderPlugin.java', import.meta.url), 'utf8')
+  const src = readFileSync(new URL('../../android/app/src/main/java/com/hypertrofy/app/BackupFolderPlugin.java', import.meta.url), 'utf8')
   it('names the same backup files as lib/mobile.js, and checks the folder grant before writing or pruning', () => {
     const java = /BACKUP_NAME = Pattern\.compile\("(.+)"\);/.exec(src)[1].replace(/\\\\/g, '\\')
     const js = /const AUTO_BACKUP_NAME = \/(.+)\//.exec(readFileSync(new URL('./mobile.js', import.meta.url), 'utf8'))[1]

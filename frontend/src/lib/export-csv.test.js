@@ -24,7 +24,7 @@ const state = (extra = {}) => ({
           { w: 14, r: 10, done: true, type: 'dropset', drops: [{ w: 10, r: 8 }, { w: 6, r: 6 }] },
           { done: true, w: 14, r: 15, rir: 1, sides: { L: { w: 14, r: 8, done: true, rir: 2 }, R: { w: 12, r: 7, done: true, rir: 1 } } },
         ] },
-        { id: '0463', sets: [{ sec: 60, w: 0, done: true }, { sec: 45, w: 10, done: true }] },
+        { id: '3544', sets: [{ sec: 60, w: 0, done: true }, { sec: 45, w: 10, done: true }] },
         { id: 'cx1', sets: [{ w: 30, r: 20, done: true }] },
       ],
     },
@@ -102,7 +102,7 @@ describe('the workout CSV', () => {
     expect(run[col('distance_km')]).toBe('2.4')
     expect(run[col('incline')]).toBe('8')
     expect(run[col('weight')]).toBe('')
-    const hold = body.find(r => r[col('exercise_id')] === '0463')
+    const hold = body.find(r => r[col('exercise_id')] === '3544')
     expect(hold[col('seconds')]).toBe('60')
     expect(hold[col('distance_km')]).toBe('')
     expect(hold[col('reps')]).toBe('')

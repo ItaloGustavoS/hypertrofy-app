@@ -12,8 +12,8 @@ vi.mock('../lib/sound.js', () => ({ beep: vi.fn(), vibrate: vi.fn(), alertBuzz: 
 vi.mock('../lib/api.js', () => ({ api: vi.fn(() => Promise.resolve({})) }))
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true
-const TREADMILL = '2259'   // walking on treadmill
-const BIKE = '2138'        // stationary bike, cardio
+const TREADMILL = '3666'   // walking on incline treadmill
+const BIKE = '0798'        // stationary bike walk, cardio
 let root, container
 
 function mount(id, sets, more = {}) {

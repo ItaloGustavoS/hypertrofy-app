@@ -12,11 +12,11 @@ describe('Brazilian Portuguese exercise instructions', () => {
   const catalogue = JSON.parse(readFileSync(new URL('../../../catalogue/i18n/pt-BR.json', import.meta.url), 'utf8'))
 
   // The v1.3 catalogue was translated in full; the v1.4 additions fall back to English until
-  // someone writes them, so coverage is pinned on the legacy ids only.
+  // someone writes them, so coverage is pinned on the legacy ids that still exist after the cut.
   test('is built from catalogue/i18n and covers the v1.3 catalogue', () => {
     const steps = Object.fromEntries(Object.entries(catalogue).filter(([, row]) => row.instructions).map(([id, row]) => [id, row.instructions]))
     expect(ptBR).toEqual(steps)
-    for (const id of V13_IDS) expect(ptBR, id).toHaveProperty(id)
+    for (const id of V13_IDS) if (exercises.has(id)) expect(ptBR, id).toHaveProperty(id)
   })
 
   test('enables pt-BR instructions when there is a pack', () => {

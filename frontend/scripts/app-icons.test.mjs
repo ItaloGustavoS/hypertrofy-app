@@ -149,12 +149,12 @@ describe('Android launcher aliases', () => {
   })
 
   it('the plugin knows the same aliases and is registered', () => {
-    const java = read('android/app/src/main/java/ch/duartesantos/opengym/AppIcons.java')
+    const java = read('android/app/src/main/java/com/hypertrofy/app/AppIcons.java')
     const list = name => JSON.parse('[' + java.match(new RegExp(`${name} = \\{([^}]*)\\}`))[1] + ']')
     expect(list('IDS')).toEqual(APP_ICON_VARIANTS.map(v => v.id))
     expect(list('ALIASES')).toEqual(APP_ICON_VARIANTS.map(v => v.android))
     // In main, not in FlavorPlugins: the sideload and the Play build both have it.
-    expect(read('android/app/src/main/java/ch/duartesantos/opengym/MainActivity.java')).toContain('registerPlugin(AppIconPlugin.class);')
+    expect(read('android/app/src/main/java/com/hypertrofy/app/MainActivity.java')).toContain('registerPlugin(AppIconPlugin.class);')
   })
 })
 

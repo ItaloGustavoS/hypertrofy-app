@@ -181,7 +181,7 @@ describe('Library similar exercises', () => {
 
   it('lists similar ones under a short result list, without repeating a result', () => {
     const host = render()
-    search(host, 'face pull')
+    search(host, 'farmers walk')
     expect(label(host)).toBe('Similar exercises')
     const all = names(host)
     expect(new Set(all).size).toBe(all.length)

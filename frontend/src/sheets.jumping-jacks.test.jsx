@@ -1,4 +1,6 @@
 // @vitest-environment happy-dom
+// A jump-based exercise the catalogue files outside cardio (star jump, full body) is counted in
+// sets x reps, while a duration/speed plan saved before the catalogue fix keeps its cardio form.
 import React, { act } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -10,7 +12,7 @@ import { useUI } from './store/useUI.js'
 const mounted = []
 function open(existing) {
   const onSave = vi.fn()
-  exConfigSheet(EXIDX['3094'], existing, onSave)
+  exConfigSheet(EXIDX['3223'], existing, onSave)
   const sheet = useUI.getState().sheets.at(-1)
   const host = document.createElement('div')
   document.body.appendChild(host)
@@ -22,7 +24,7 @@ function open(existing) {
   return { host, labels, save, onSave }
 }
 
-describe('jumping-jack exercise settings', () => {
+describe('star-jump exercise settings', () => {
   beforeEach(() => {
     globalThis.IS_REACT_ACT_ENVIRONMENT = true
     useUI.setState({ sheets: [] })
@@ -30,7 +32,7 @@ describe('jumping-jack exercise settings', () => {
   })
   afterEach(() => act(() => mounted.splice(0).forEach(([root, host]) => { root.unmount(); host.remove() })))
 
-  it('offers sets and reps for a newly added jumping jack', () => {
+  it('offers sets and reps for a newly added star jump', () => {
     const { labels } = open()
     expect(labels).toContain('Sets')
     expect(labels).toContain('Reps')

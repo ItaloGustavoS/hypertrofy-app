@@ -124,18 +124,18 @@ describe('swap picker opens on the same muscle', () => {
   })
 })
 
-it('shows a labelled suggestions section for Dead Hang Stretch with a gym profile', () => {
+it('shows a labelled suggestions section for Back Pec Stretch with a gym profile', () => {
   const S = structuredClone(DEF)
   S.equipProfiles = [{ id: 'gm', name: 'gm', equipment: ['pull-up bar'], accV: 1 }]
   S.activeEquipId = 'gm'; S.equipFilterOn = true
   useStore.setState({ S, user: null })
-  exercisePicker(vi.fn(), { like: '5055', title: 'Swap exercise' })
+  exercisePicker(vi.fn(), { like: '1405', title: 'Swap exercise' })
   const host = renderTop()
   const section = host.querySelector('section[aria-label="Suggested substitutes"]')
   expect(section).not.toBeNull()
   expect(section.textContent).toContain('Same muscle and exercise type. The movement may differ.')
   expect(section.querySelectorAll('.item')).toHaveLength(3)
-  expect(section.textContent).not.toContain('dead hang stretch')
+  expect(section.textContent).not.toContain('back pec stretch')
   // the list under the suggestions is the same-muscle one the swap opened on (#473)
   expect([...host.querySelectorAll('h4.sec')].map(h => h.textContent)).toContain('Same muscle: lats')
 })

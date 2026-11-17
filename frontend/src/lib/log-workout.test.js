@@ -41,10 +41,10 @@ describe('what the user said becomes the workout Finish would have saved', () =>
     expect(best1RM(profile({ workouts: [w] }), '0294')).toMatchObject({ w: 12, r: 12, d: TODAY })
   })
 
-  it('a drawing alias id is filed under the exercise it draws, or its history would never find it', () => {
-    const r = build(profile(), { date: TODAY, exercises: [{ exercise: '1019', sets: [{ reps: 5, weight: 50 }] }] })
-    expect(r.workout.entries[0].id).toBe('3841')
-    expect(best1RM(profile({ workouts: [r.workout] }), '3841')).not.toBe(null)
+  it('a catalogue id is filed under itself, so its history finds it', () => {
+    const r = build(profile(), { date: TODAY, exercises: [{ exercise: '0294', sets: [{ reps: 5, weight: 50 }] }] })
+    expect(r.workout.entries[0].id).toBe('0294')
+    expect(best1RM(profile({ workouts: [r.workout] }), '0294')).not.toBe(null)
   })
 
   it('a name the catalogue spells twice is a question with both answers, not the first of them', () => {
@@ -98,7 +98,7 @@ describe('the numbers', () => {
   })
 
   it('a timed hold keeps its mode on the entry, so it reads back as 1:00 and not as 0 reps', () => {
-    const w = build(profile(), { date: TODAY, exercises: [{ exercise: '0463', sets: [{ seconds: 60 }] }] }).workout
+    const w = build(profile(), { date: TODAY, exercises: [{ exercise: '3544', sets: [{ seconds: 60 }] }] }).workout
     const e = w.entries[0]
     expect(e.sets[0]).toEqual({ sec: 60, w: 0, done: true })
     expect(e.target.mode).toBe('time')
@@ -121,7 +121,7 @@ describe('the numbers', () => {
     const w = build(profile(), { date: TODAY, exercises: [{ exercise: '0025', sets: [{ reps: 5, weight: 100, rir: 2 }, { reps: 4, weight: 100, failure: true, rpe: 10 }] }] }).workout
     expect(w.entries[0].sets).toEqual([{ w: 100, r: 5, done: true, rir: 2 }, { w: 100, r: 4, done: true, failure: true, rpe: 10 }])
     expect(build(profile(), { date: TODAY, exercises: [{ exercise: '0025', sets: [{ reps: 5, rir: 2, rpe: 8 }] }] }).problems).toBeDefined()
-    expect(build(profile(), { date: TODAY, exercises: [{ exercise: '0463', sets: [{ seconds: 30, rpe: 8 }] }] }).problems).toBeDefined()
+    expect(build(profile(), { date: TODAY, exercises: [{ exercise: '3544', sets: [{ seconds: 30, rpe: 8 }] }] }).problems).toBeDefined()
     expect(build(profile(), { date: TODAY, exercises: [{ exercise: '0025', sets: [{ reps: 5, rpe: 3 }] }] }).problems).toBeDefined()
   })
 

@@ -9,15 +9,14 @@ import { workoutText } from './workout-text.js'
 import { finishCardio } from './finish-compare.js'
 import { parseWorkoutCSV } from './import-csv.js'
 
-const TREADMILL = '2259'      // walking on treadmill
-const INCLINE_WALK = '3666'   // walking on incline treadmill
-const ELLIPTICAL = '2192'     // elliptical machine walk
+const TREADMILL = '3666'      // walking on incline treadmill
+const INCLINE_WALK = '3655'   // walking high knees lunge
+const ELLIPTICAL = '2141'     // walk elliptical cross trainer
 const STEPMILL = '2311'       // walking on stepmill
 const RUN = '0685'            // run
-const BIKE = '2138'           // stationary bike run v. 3
-const ROWER = '1161'          // rowing (with rowing machine)
+const BIKE = '0798'           // stationary bike walk
 const ROPE = '2612'           // jump rope
-const JACKS = '3094'          // jumping jack
+const JACKS = '3224'          // jack jump
 
 describe('clampIncline', () => {
   it('keeps a grade on the half percent between 0 and 40', () => {
@@ -42,8 +41,8 @@ describe('inclineFits', () => {
   it('offers the incline on treadmills, walking, running, stairs and ellipticals', () => {
     for (const id of [TREADMILL, INCLINE_WALK, ELLIPTICAL, STEPMILL, RUN]) expect(inclineFits(EXIDX[id]), EXIDX[id].n).toBe(true)
   })
-  it('not on a bike, a rower, a rope or jumping jacks', () => {
-    for (const id of [BIKE, ROWER, ROPE, JACKS]) expect(inclineFits(EXIDX[id]), EXIDX[id].n).toBe(false)
+  it('not on a bike, a rope or jumping jacks', () => {
+    for (const id of [BIKE, ROPE, JACKS]) expect(inclineFits(EXIDX[id]), EXIDX[id].n).toBe(false)
   })
   it('on your own cardio exercise unless its name says it has no grade', () => {
     expect(inclineFits({ id: 'c1', n: 'Laufband', bp: 'cardio', custom: true })).toBe(true)

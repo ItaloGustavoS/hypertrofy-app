@@ -8,7 +8,7 @@ import { fatigueOf } from './recovery.js'
 
 const HOUR = 3600000
 const NOW = Date.UTC(2026, 9, 25, 12)
-const TREADMILL = '2259'   // walking on treadmill
+const TREADMILL = '3666'   // walking on incline treadmill
 const walk = extra => [{
   id: 'w1', d: '2026-10-25', start: NOW - 2 * HOUR,
   entries: [{ id: TREADMILL, target: { mode: 'cardio', min: 30, speed: 5 }, sets: [{ min: 30, speed: 5, incline: 8, done: true, ...extra }] }],

@@ -9,9 +9,10 @@ import EN from '../instr/en.js'
 describe('Traditional Chinese (zh-TW) exercise instructions', () => {
   const exercises = new Map(EXDB.map(exercise => [exercise.id, exercise]))
 
-  // The v1.3 catalogue was translated in full; the v1.4 additions fall back to English.
-  test('covers the 1324 exercises of the v1.3 catalogue', () => {
-    for (const id of V13_IDS) expect(zhTW, id).toHaveProperty(id)
+  // The v1.3 catalogue was translated in full; the v1.4 additions fall back to English. The
+  // 1597-exercise cut (docs/MEDIA_PLAN.md) removed some v1.3 ids, which need no steps.
+  test('covers every v1.3 exercise the catalogue still has', () => {
+    for (const id of V13_IDS) if (exercises.has(id)) expect(zhTW, id).toHaveProperty(id)
   })
 
   test('enables zh-TW in INSTR_LANGS when there is a pack', () => {

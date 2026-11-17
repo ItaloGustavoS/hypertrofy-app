@@ -10,8 +10,8 @@ import { DEF, useStore } from './store/useStore.js'
 import { useUI } from './store/useUI.js'
 import { exConfigSheet } from './sheets.jsx'
 
-const TREADMILL = '2259'   // walking on treadmill
-const BIKE = '2138'        // stationary bike run v. 3
+const TREADMILL = '3666'   // walking on incline treadmill
+const BIKE = '0798'        // stationary bike walk
 const mounted = []
 function open(ex, existing) {
   useStore.setState({ S: structuredClone(DEF), user: null })

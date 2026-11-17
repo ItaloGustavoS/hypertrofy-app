@@ -4,11 +4,11 @@ import { EXIDX } from './exercises.js'
 import { exerciseType, goneIds, healthRecords, planSync, plannedType, recordKey, sessionRecord, sessionType, SESSION_TYPES, TEXT_MAX, weightRecord, writtenIds } from './health-connect.js'
 
 // #200: what the Android app writes to Health Connect, worked out from the state alone.
-const nameOf = e => ({ '0025': 'barbell bench press', '3666': 'walking on incline treadmill', '2138': 'stationary bike run v. 3' })[e.id] || e.id
+const nameOf = e => ({ '0025': 'barbell bench press', '3666': 'walking on incline treadmill', '0798': 'stationary bike walk' })[e.id] || e.id
 const at = (h, m = 0) => new Date(2026, 8, 17, h, m).getTime()
 const strength = { id: '0025', target: { mode: 'reps' }, sets: [{ w: 60, r: 8, done: true }, { w: 60, r: 8, done: true }] }
 const treadmill = { id: '3666', target: { mode: 'cardio' }, sets: [{ min: 20, speed: 5, done: true }] }
-const bike = { id: '2138', target: { mode: 'cardio' }, sets: [{ min: 15, speed: 20, done: true }] }
+const bike = { id: '0798', target: { mode: 'cardio' }, sets: [{ min: 15, speed: 20, done: true }] }
 const workout = (entries, extra = {}) => ({ id: 'w1', d: '2026-09-17', start: at(18), end: at(19), name: 'Push', entries, ...extra })
 
 describe('sessionType', () => {
@@ -32,24 +32,23 @@ describe('sessionType', () => {
   const cardio = (id, extra = {}) => ({ id, target: { mode: 'cardio' }, sets: [{ min: 20, speed: 8, done: true }], ...extra })
   const reps = id => ({ id, target: { mode: 'reps' }, sets: [{ r: 20, done: true }] })
   it.each([
-    ['5216', 'running'],            // sprint
-    ['4004', 'running'],            // place jog
-    ['2197', 'running'],            // run on treadmill (filed with the stationary bike)
-    ['2259', 'walking'],            // walking on treadmill
-    ['2258', 'walking'],
-    ['1161', 'rowing'],             // rowing (with rowing machine)
-    ['3893', 'biking_stationary'],  // assault bike run
-    ['5214', 'biking'],             // riding outdoor bicycle
-    ['2192', 'elliptical'],
+    ['3656', 'running'],            // short stride run
+    ['0685', 'running'],            // run
+    ['0684', 'running'],            // run (equipment)
+    ['3666', 'walking'],            // walking on incline treadmill
+    ['3655', 'walking'],            // walking high knees lunge
+    ['0798', 'biking_stationary'],  // stationary bike walk
+    ['2139', 'biking'],             // hands bike (upper body ergometer)
+    ['2141', 'elliptical'],
+    ['2311', 'stair_climbing_machine'],
     ['2612', 'jump_rope'],
-    ['6100', 'jump_rope'],          // bodyweight skipping
-    ['3384', 'hiit'],               // battling ropes power slam
-    ['3037', 'mixed_cardio'],       // butt kicks: cardio, no machine, no name to go by
+    ['0128', 'hiit'],               // battling ropes
+    ['3222', 'mixed_cardio'],       // semi squat jump: cardio, no machine, no name to go by
   ])('files cardio %s as %s', (id, type) => {
     expect(sessionType(workout([cardio(id)]))).toBe(type)
   })
   it('counts burpees and jacks as HIIT also when they are logged as reps', () => {
-    expect(sessionType(workout([reps('1160'), reps('3094')]))).toBe('hiit')
+    expect(sessionType(workout([reps('1160'), reps('3224')]))).toBe('hiit')
     expect(exerciseType(reps('0630'))).toBe('hiit') // mountain climber
   })
   it('keeps a strength move named like cardio strength (bent over row)', () => {
@@ -83,7 +82,7 @@ describe('the native tables', () => {
     for (const name of SESSION_TYPES) expect(s).toContain(`"${name}": .`)
   })
   it('Health Connect knows every type it has a constant for', () => {
-    const s = src('../../android/app/src/main/java/ch/duartesantos/opengym/HealthConnectPlugin.java')
+    const s = src('../../android/app/src/main/java/com/hypertrofy/app/HealthConnectPlugin.java')
     for (const name of SESSION_TYPES.filter(n => !['jump_rope', 'mixed_cardio', 'other_workout'].includes(n))) {
       expect(s).toContain(`case "${name}": return`)
     }

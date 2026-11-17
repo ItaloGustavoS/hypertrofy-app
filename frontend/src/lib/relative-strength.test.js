@@ -111,7 +111,7 @@ describe('relativeSeries', () => {
 
 // Body weight is one number, so a dumbbell lift is measured by both bells together.
 describe('relativeSeries: dumbbells', () => {
-  const DB = '1175'          // dumbbell forward leaning lunge: two bells
+  const DB = '3635'          // dumbbell contralateral forward lunge: two bells
   const ONE_ARM = '1048'     // dumbbell lying one arm rear lateral raise: one bell
   const bell = (id, w, dbLoad) => ({ id, sets: [done(w, 1)], ...(dbLoad ? { target: { dbLoad } } : {}) })
   const y = (S, id) => relativeSeries(S, id, { formula: 'epley' })[0].y

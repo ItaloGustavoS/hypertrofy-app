@@ -6,7 +6,7 @@ import { MAX_PLANNED_WARMUPS } from './history.js'
 
 const BENCH = '0025'    // barbell bench press
 const ROW = '0027'      // barbell bent over row
-const BIKE = '2138'     // stationary bike, cardio
+const BIKE = '0798'     // stationary bike walk
 
 const work = n => Array.from({ length: n }, () => ({ w: 60, r: 5, done: false }))
 const warm = n => Array.from({ length: n }, () => ({ w: 30, r: 5, done: false, phase: 'warmup' }))

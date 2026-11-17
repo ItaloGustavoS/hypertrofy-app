@@ -5,7 +5,7 @@ import { modeForEntry } from './workout-model.js'
 import { repeatSessionEntries } from './session-repeat.js'
 
 // Issue #678: these countable movements used to open the running-style min/speed form.
-const JACKS = ['3094', '3224', '0501', '7555', '3108', '0264', '0610', '2465']
+const JACKS = ['3224', '0501', '1160', '3223', '3220', '0514', '1472', '1473']
 const empty = { workouts: [] }
 
 describe('jumping-jack logging', () => {
@@ -17,12 +17,12 @@ describe('jumping-jack logging', () => {
     expect(buildSets(empty, cfg)).toEqual(Array.from({ length: 3 }, () => ({ w: 0, r: 20, done: false })))
   })
 
-  it.each(['0516', '0645'])('gives the same default to drawing alias %s', id => {
+  it.each(['0459', '0507'])('gives the same bodyweight default to another bodyweight movement %s', id => {
     expect(defaultConfig(id)).toMatchObject({ mode: 'reps', bodyweight: true })
   })
 
   it('still lets a jumping jack be timed', () => {
-    const cfg = { id: '3094', ...defaultConfig('3094', 'time'), sets: 1, sec: 30 }
+    const cfg = { id: '3224', ...defaultConfig('3224', 'time'), sets: 1, sec: 30 }
     expect(buildSets(empty, cfg)).toEqual([{ sec: 30, w: 0, done: false }])
   })
 
@@ -39,13 +39,13 @@ describe('jumping-jack logging', () => {
   })
 
   it('honours an explicit mode even when old cardio fields remain', () => {
-    expect(modeOf({ id: '3094', mode: 'reps', min: 5, speed: 8 })).toBe('reps')
-    expect(modeOf({ id: '3094', mode: 'time', min: 5, speed: 8 })).toBe('time')
+    expect(modeOf({ id: '3224', mode: 'reps', min: 5, speed: 8 })).toBe('reps')
+    expect(modeOf({ id: '3224', mode: 'time', min: 5, speed: 8 })).toBe('time')
   })
 
   it.each([undefined, { sets: 1, min: 5, speed: 8 }])('can repeat an old cardio workout with target %j', target => {
     const session = { id: 'old', d: '2026-09-01', entries: [{
-      id: '3094', target, sets: [{ min: 5, speed: 8, done: true }]
+      id: '3224', target, sets: [{ min: 5, speed: 8, done: true }]
     }] }
     const before = structuredClone(session)
     const { entries } = repeatSessionEntries({ ...empty, unit: 'kg' }, session)
@@ -56,13 +56,13 @@ describe('jumping-jack logging', () => {
 
   it('starts a new rep plan from its target after a previous cardio session', () => {
     const state = { workouts: [{ d: '2026-09-01', entries: [{
-      id: '3094', sets: [{ min: 5, speed: 8, done: true }]
+      id: '3224', sets: [{ min: 5, speed: 8, done: true }]
     }] }] }
-    const cfg = { id: '3094', ...defaultConfig('3094'), sets: 1, reps: 20 }
+    const cfg = { id: '3224', ...defaultConfig('3224'), sets: 1, reps: 20 }
     expect(buildSets(state, cfg)).toEqual([{ w: 0, r: 20, done: false }])
   })
 
-  it.each(['2258', '0798'])('keeps walking and cycling (%s) in duration/speed mode', id => {
+  it.each(['3666', '0798'])('keeps walking and cycling (%s) in duration/speed mode', id => {
     expect(isCardio(id)).toBe(true)
     expect(defaultConfig(id)).toEqual({ sets: 1, min: 20, speed: 8 })
   })

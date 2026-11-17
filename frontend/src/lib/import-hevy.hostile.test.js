@@ -7,11 +7,11 @@ import { parseHevyWorkouts, parseHevyRoutines, parseHevyBodyweight, mergeHevyRou
 
 const BODY_PARTS = new Set(['chest', 'back', 'shoulders', 'upper arms', 'lower arms', 'upper legs', 'lower legs', 'waist', 'cardio', 'neck'])
 const kg = { unit: 'kg' }
-// 4E5257DE is in HEVY_ID_MAP (a lat pulldown); ZZZ1 / DEADBEEF are not, so they become customs.
-const T_LAT = { id: '4E5257DE', title: 'Lat Pulldown - Close Grip (Cable)', type: 'weight_reps', primary_muscle_group: 'lats' }
+// 6A6C31A5 is in HEVY_ID_MAP (a lat pulldown); ZZZ1 / DEADBEEF are not, so they become customs.
+const T_LAT = { id: '6A6C31A5', title: 'Lat Pulldown (Cable)', type: 'weight_reps', primary_muscle_group: 'lats' }
 const T_MINE = { id: 'DEADBEEF', title: 'My Invented Landmine Twist', type: 'weight_reps', primary_muscle_group: 'abdominals' }
 const set = (o = {}) => ({ type: 'normal', weight_kg: 50, reps: 5, distance_meters: null, duration_seconds: null, rpe: null, ...o })
-const lat = (...sets) => ({ exercise_template_id: '4E5257DE', title: 'Latzug', sets: sets.length ? sets : [set()] })
+const lat = (...sets) => ({ exercise_template_id: '6A6C31A5', title: 'Latzug', sets: sets.length ? sets : [set()] })
 const workout = (o = {}) => ({ id: 'w1', title: 'Push', start_time: '2024-03-07T12:00:00Z', end_time: '2024-03-07T13:00:00Z', exercises: [lat()], ...o })
 const routines = (r = {}, templates = [T_LAT, T_MINE]) => parseHevyRoutines([{ id: 'r1', title: 'Push', exercises: [lat()], ...r }], templates, kg)
 const reply = body => ({ ok: true, status: 200, headers: { get: () => null }, json: async () => body })
@@ -88,7 +88,7 @@ describe('workout fields of the wrong type', () => {
   it('a null workout throws (the sheet toasts); a string list of exercises or sets imports nothing', () => {
     expect(() => parseHevyWorkouts([null], [T_LAT], kg)).toThrow(TypeError)
     expect(parseHevyWorkouts([workout({ exercises: 'abc' })], [T_LAT], kg).workouts).toEqual([])
-    expect(parseHevyWorkouts([workout({ exercises: [{ exercise_template_id: '4E5257DE', sets: 'abc' }] })], [T_LAT], kg).workouts).toEqual([])
+    expect(parseHevyWorkouts([workout({ exercises: [{ exercise_template_id: '6A6C31A5', sets: 'abc' }] })], [T_LAT], kg).workouts).toEqual([])
   })
 
   it('an exercise whose sets all have nothing measured leaves no empty entry behind, and is not counted as matched', () => {
@@ -162,16 +162,16 @@ describe('routine fields of the wrong type', () => {
   it('a routine with no usable exercise is dropped, never saved with an empty list', () => {
     expect(routines({ exercises: 'abc' }).routines).toEqual([])
     expect(routines({ exercises: [] }).routines).toEqual([])
-    expect(routines({ exercises: [{ exercise_template_id: '4E5257DE', sets: [] }] }).routines).toEqual([])
-    expect(routines({ exercises: [{ exercise_template_id: '4E5257DE' }] }).routines).toEqual([])
+    expect(routines({ exercises: [{ exercise_template_id: '6A6C31A5', sets: [] }] }).routines).toEqual([])
+    expect(routines({ exercises: [{ exercise_template_id: '6A6C31A5' }] }).routines).toEqual([])
     expect(routines({ exercises: [{ sets: [set()] }] }).routines).toEqual([])       // no id, no title: nothing to resolve
   })
 
   it('a superset partner that never arrives is not a superset', () => {
     const r = routines({ exercises: [
-      { exercise_template_id: '4E5257DE', superset_id: 0, sets: [set()] },
+      { exercise_template_id: '6A6C31A5', superset_id: 0, sets: [set()] },
       { exercise_template_id: 'DEADBEEF', sets: [set()] },
-      { exercise_template_id: '4E5257DE', superset_id: 0, sets: [set()] },      // same group, not adjacent
+      { exercise_template_id: '6A6C31A5', superset_id: 0, sets: [set()] },      // same group, not adjacent
       { exercise_template_id: 'DEADBEEF', superset_id: 'x', sets: [set()] },
       { exercise_template_id: 'DEADBEEF', superset_id: 'x', sets: [set()] },
       { exercise_template_id: 'DEADBEEF', superset_id: 'ghost', sets: [set()] },

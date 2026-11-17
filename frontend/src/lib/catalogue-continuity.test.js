@@ -1,14 +1,17 @@
 import { describe, expect, it } from 'vitest'
-import { EXDB, EXIDX } from './exercises.js'
+import { EXDB, EXIDX, exOr } from './exercises.js'
 import V13_IDS from './catalogue-v13-ids.json' with { type: 'json' }
 
-// Workouts, routines, records and backups store exercise ids, so an id that ever shipped must
-// resolve forever (catalogue/README.md). This is every id of the v1.3 dataset, frozen.
+// Workouts, routines, records and backups store exercise ids. The 1597-exercise cut (the
+// ExerciseDB v1 migration, docs/MEDIA_PLAN.md) removed ids that old data may still hold; they
+// must degrade to a missing placeholder, never point at a different exercise.
 describe('catalogue continuity', () => {
-  it('still knows every exercise id Hypertrofy shipped before v1.4.0', () => {
+  it('resolves an id removed by the cut as missing, never as another exercise', () => {
     expect(V13_IDS).toHaveLength(1324)
-    const gone = V13_IDS.filter(id => !EXIDX[id])
-    expect(gone).toEqual([])
+    for (const id of V13_IDS) {
+      if (EXIDX[id]) continue
+      expect(exOr(id).missing, id).toBe(true)
+    }
   })
 
   it('never lists one id twice', () => {

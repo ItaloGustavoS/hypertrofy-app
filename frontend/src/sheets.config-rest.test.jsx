@@ -71,7 +71,7 @@ describe('exercise settings: rest for this exercise', () => {
 
   it('cardio keeps its "No timer" too', () => {
     const onSave = vi.fn()
-    const bike = EXIDX['2138']
+    const bike = EXIDX['0798']
     exConfigSheet(bike, { sets: 1, min: 20, speed: 8, restOff: true }, onSave)
     const host = render(useUI.getState().sheets.at(-1))
     expect(restRow(host).querySelector('.lrow-v').textContent).toBe('No timer')

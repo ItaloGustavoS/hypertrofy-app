@@ -12,7 +12,7 @@ import { DEF, useStore } from './store/useStore.js'
 import { useUI } from './store/useUI.js'
 import { exConfigSheet } from './sheets.jsx'
 
-const HIGH_KNEES = '3556'
+const HIGH_KNEES = '3636'   // high knee against wall
 const mounted = []
 function open(ex, existing) {
   useStore.setState({ S: structuredClone(DEF), user: null })

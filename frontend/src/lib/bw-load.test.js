@@ -7,7 +7,7 @@ import { bodyLoadOf, bodyweightFor, countsBodyweight } from './bw-load.js'
 import { workoutVolume, sessionVolume, lifetimeVolume } from './history.js'
 import { exerciseHistory } from './exercise-history.js'
 
-const PULLUP = '0652', DIP = '0251', PUSHUP = '0662', KNEE_PUSHUP = '1182', INCLINE = '0493', DECLINE = '0279'
+const PULLUP = '0652', DIP = '0251', PUSHUP = '0662', KNEE_PUSHUP = '2398', INCLINE = '0493', DECLINE = '0279'
 const ASSISTED_PULLUP = '0017', WEIGHTED_PULLUP = '0841', BENCH_DIP = '0129', BAND_PULLUP = '0970', BENCH = '0025'
 const done = (w, r) => ({ w, r, done: true })
 const session = (d, entries, extra = {}) => ({

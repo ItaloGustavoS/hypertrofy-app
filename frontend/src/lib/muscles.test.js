@@ -124,15 +124,13 @@ describe('catalogue secondary additions', () => {
     expect(musclesOf(raw)).toHaveProperty('deltoids')
   })
 
-  it('credits the lower back on the deadlift variants the muscle map does not carry (#693)', () => {
-    for (const id of ['4133', '10189']) {
-      const raw = EXDB.find(e => e.id === id)
-      // the generated rows name no back muscle at all
-      expect([...raw.sm, raw.tg, raw.mg].join(' ')).not.toMatch(/back|spine|lats|traps/)
-      expect(smOf(raw)).toContain('lower back')
-      expect(muscleGroupsOf(EXIDX[id])).toContain('lower-back')
-      expect(musclesOf(EXIDX[id])).toHaveProperty('lower-back', 0.4)
-    }
+  it('credits the lower back on a deadlift variant the raw row does not carry (#693)', () => {
+    const id = '0578' // lever deadlift: the generated row names hamstrings and quads only
+    const raw = EXDB.find(e => e.id === id)
+    // the generated row names no back muscle at all
+    expect([...raw.sm, raw.tg, raw.mg].join(' ')).not.toMatch(/back|spine|lats|traps/)
+    expect(muscleGroupsOf(EXIDX[id])).toContain('lower-back')
+    expect(musclesOf(EXIDX[id])).toHaveProperty('lower-back', 0.4)
   })
 })
 

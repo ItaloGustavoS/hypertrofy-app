@@ -6,7 +6,7 @@ import { isHold, isOneLimb } from './exercises.js'
 // The 1.4.3 catalogue defaults (a plank starts timed #694, a one-arm row per side #736) are for
 // exercises picked fresh. What someone already logged or planned keeps its own shape.
 describe('catalogue defaults leave existing plans alone', () => {
-  const PLANK = '0463'
+  const PLANK = '3544'
   const ROW = '0292'
 
   it('fresh picks get the new defaults', () => {

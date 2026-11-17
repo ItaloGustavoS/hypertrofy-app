@@ -144,8 +144,8 @@ describe('encodeFit', () => {
 const BENCH = Object.values(EXIDX).find(e => e.n === 'barbell bench press').id
 const CURL = Object.values(EXIDX).find(e => e.n === 'dumbbell curl' || /^dumbbell.*curl$/.test(e.n)).id
 const PLANK = Object.values(EXIDX).find(e => e.n === 'front plank' || /plank$/.test(e.n)).id
-const TREADMILL = '2259'   // walking on treadmill
-const BIKE = '2138'        // stationary bike run v. 3
+const TREADMILL = '3666'   // walking on incline treadmill
+const BIKE = '0798'        // stationary bike walk
 const T0 = Date.UTC(2026, 9, 9, 17)
 const min = n => n * 60000
 
@@ -338,11 +338,10 @@ describe('categories and sports', () => {
   it('reads the sport of a cardio exercise off its name and equipment', () => {
     expect(cardioSport(EXIDX[TREADMILL])).toEqual([SPORT.walking, SUB_SPORT.treadmill])
     expect(cardioSport(EXIDX[BIKE])).toEqual([SPORT.cycling, SUB_SPORT.indoorCycling])
-    expect(cardioSport(EXIDX['1161'])).toEqual([SPORT.rowing, SUB_SPORT.indoorRowing])
-    expect(cardioSport(EXIDX['2192'])).toEqual([SPORT.fitnessEquipment, SUB_SPORT.elliptical])
+    expect(cardioSport(EXIDX['2141'])).toEqual([SPORT.fitnessEquipment, SUB_SPORT.elliptical])
     expect(cardioSport(EXIDX['2311'])).toEqual([SPORT.fitnessEquipment, SUB_SPORT.stairClimbing])
     expect(cardioSport(EXIDX['0685'])).toEqual([SPORT.running, SUB_SPORT.generic])
-    expect(cardioSport(EXIDX['3094'])).toEqual([SPORT.training, SUB_SPORT.cardioTraining])
+    expect(cardioSport(EXIDX['3224'])).toEqual([SPORT.training, SUB_SPORT.cardioTraining])
   })
   it('names the file after the day and the start time', () => {
     const local = new Date(2026, 9, 9, 18, 5).getTime()
