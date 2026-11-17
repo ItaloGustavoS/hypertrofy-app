@@ -12,8 +12,8 @@ want. Run them from the repository root with Node 22 unless noted.
 | `build-coach-library.mjs` | Old name of the one above, only forwards to it |
 | `catalogue/validate.mjs` | Checks every entry in `catalogue/` (fields, words, ids) |
 | `catalogue/build.mjs` | Builds the app's exercise files from `catalogue/`. `--check` fails when they are out of date |
-| `catalogue/check-media.mjs` | Fails on any media file over 180 px (the licence) or in a format the app can't show |
-| `catalogue/stage-media.mjs` | Copies the stills and animations next to a built app (`npm run build:mobile`, the demo) |
+| `catalogue/check-media.mjs` | Fails on any bundled media file over 180 px or in a format the app can't show; this build has none |
+| `catalogue/stage-media.mjs` | Copies bundled stills and animations next to a built app when `catalogue/media` exists (forks); this build has none, so it is a no-op |
 | `android/check-fdroid.sh` | The F-Droid build has nothing from Google Play services, Firebase or ML Kit (classpath, manifest, plugin list) |
 | `ci/fork-mr-pipelines.py` | GitLab mirror only: starts pipelines for merge requests from forks |
 
@@ -40,7 +40,7 @@ run on the maintainer's machine against the private media archive.
 | `android/make-asset-packs.mjs` | Adds the Play asset packs to the Android project for one build, and removes them again |
 | `ios/finish-ipa.sh` | Puts the app's animations into the unsigned IPA from CI and signs it for the App Store |
 | `media/make-pack-manifests.mjs` | Plans the Apple-hosted animation packs from file names alone |
-| `media/build-media.py` | Turns the Gym visual pack into the files Hypertrofy ships (ffmpeg only) |
+| `media/build-media.py` | Turns a Gym visual pack into animation files (upstream pipeline; unused here, media now comes from ExerciseDB v1) |
 | `media/build-app-webp.py` | The phone apps' animated WebP animations |
 
 ## Kept for the record

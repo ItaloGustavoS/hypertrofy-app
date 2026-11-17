@@ -83,10 +83,9 @@ lowercase like English.
 
 1. **Write it yourself.** Don't copy names, descriptions or steps from other apps, websites, books
    or datasets, and don't paste machine translation unreviewed. Short, correct, plain beats long.
-2. **The media is not open.** The pictures and animations are licensed from Gym visual for openGym
-   only (see [media/NOTICE.md](media/NOTICE.md)). Don't add, edit or replace media files, don't copy
-   them elsewhere, and don't feed them to any AI tool. Fixes to what an exercise *shows* go in an
-   issue.
+2. **The media is not here.** The app bundles no pictures or animations: exercise GIFs come from
+   ExerciseDB and are cached on the device, so there is no `catalogue/media` to add or edit. The
+   exercise text is Hypertrofy's and open to contributions.
 3. **No medical advice.** Describe the movement, not treatments.
 
 ## Checking your change

@@ -6,10 +6,10 @@
 //                                                                        Android package: larger animations
 //   VITE_CLIP_EXT=webp APP_MEDIA_DIR=/private/app-webp ...              ... as animated WebP (the release)
 //
-// The media are licensed from Gym visual for openGym only (catalogue/media/NOTICE.md). 180 px is
-// what may sit in the repository, a website or a self-hosted server; anything larger may only
-// ever end up inside a compiled app package, so APP_MEDIA_DIR is set by the release build alone
-// and points at the maintainer's private copy, never at anything in this repository.
+// This fork ships no media (exercise GIFs come from ExerciseDB v1 and are cached on the device),
+// so the script is a no-op here. Forks that still keep catalogue/media keep the original rule:
+// 180 px may sit in the repository, a website or a self-hosted server; anything larger may only
+// ever end up inside a compiled app package, so APP_MEDIA_DIR points at a private copy.
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -17,6 +17,12 @@ import { fileURLToPath } from 'node:url'
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 const out = path.resolve(process.argv[2] || 'frontend/dist')
 const media = path.join(ROOT, 'catalogue/media')
+// This fork removed the bundled media: exercise GIFs come from ExerciseDB v1 and are cached on
+// the device. Forks that still keep catalogue/media stage it exactly as before.
+if (!fs.existsSync(path.join(media, 'still'))) {
+  console.log(`no catalogue/media to stage: ${out} keeps remote exercise media`)
+  process.exit(0)
+}
 const appDir = process.env.APP_MEDIA_DIR
 const clipExt = process.env.VITE_CLIP_EXT === 'webp' ? '.webp' : '.mp4'
 if (clipExt === '.webp' && !appDir) {

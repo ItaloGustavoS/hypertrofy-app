@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// The media licence allows 180x180 px at most in this repository (Gym visual agreement, Part A).
+// This fork bundles no media, so the check passes with nothing to read. Forks that keep
+// catalogue/media still get the original rule: 180x180 px at most in this repository.
 // This reads the size straight out of every file's header (WebP and MP4, no ffmpeg needed) and
 // fails on anything larger, on a file that is not an exercise's, or on a format the app can't show.
 //
@@ -51,6 +52,8 @@ for (const [dir, ext, size] of [['still', '.webp', webpSize], ['clip', '.mp4', m
 for (const f of fs.existsSync(MEDIA) ? fs.readdirSync(MEDIA) : []) {
   if (!['still', 'clip', 'NOTICE.md'].includes(f)) problems.push(`catalogue/media/${f}: only still/, clip/ and NOTICE.md belong here`)
 }
-if (!fs.existsSync(path.join(MEDIA, 'NOTICE.md'))) problems.push('catalogue/media/NOTICE.md is missing (the licence requires it)')
+// This fork bundles no media (ExerciseDB v1 GIFs are cached on the device), so there is no
+// NOTICE.md to require. Forks that still keep catalogue/media must keep it.
+if (fs.existsSync(MEDIA) && !fs.existsSync(path.join(MEDIA, 'NOTICE.md'))) problems.push('catalogue/media/NOTICE.md is missing (the licence requires it)')
 if (problems.length) { console.error(problems.slice(0, 40).join('\n') + (problems.length > 40 ? `\n...and ${problems.length - 40} more` : '')); process.exit(1) }
 console.log(`media OK: ${n} files, all within ${MAX}x${MAX}`)
