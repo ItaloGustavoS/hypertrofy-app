@@ -43,7 +43,7 @@ describe('checkForUpdate', () => {
   it('asks GitHub for the latest published release (never a draft or a beta)', async () => {
     mockFetch({ tag_name: 'v' + __APP_VERSION__, assets: [] })
     await checkForUpdate()
-    expect(globalThis.fetch.mock.calls[0][0]).toBe('https://api.github.com/repos/DuarteSantos8/Hypertrofy/releases/latest')
+    expect(globalThis.fetch.mock.calls[0][0]).toBe('https://api.github.com/repos/ItaloGustavoS/hypertrofy-app/releases/latest')
   })
 
   it('reports no update when the latest release matches the current version', async () => {
@@ -82,8 +82,8 @@ describe('checkForUpdate', () => {
   const REAL_RELEASE = {
     tag_name: 'v1.4.0',
     assets: [
-      { name: 'Hypertrofy-1.4.0.apk', browser_download_url: 'https://github.com/DuarteSantos8/Hypertrofy/releases/download/v1.4.0/Hypertrofy-1.4.0.apk' },
-      { name: 'Hypertrofy-1.4.0.apk.sha256', browser_download_url: 'https://github.com/DuarteSantos8/Hypertrofy/releases/download/v1.4.0/Hypertrofy-1.4.0.apk.sha256' },
+      { name: 'Hypertrofy-1.4.0.apk', browser_download_url: 'https://github.com/ItaloGustavoS/hypertrofy-app/releases/download/v1.4.0/Hypertrofy-1.4.0.apk' },
+      { name: 'Hypertrofy-1.4.0.apk.sha256', browser_download_url: 'https://github.com/ItaloGustavoS/hypertrofy-app/releases/download/v1.4.0/Hypertrofy-1.4.0.apk.sha256' },
     ],
   }
 
@@ -91,8 +91,8 @@ describe('checkForUpdate', () => {
     mockFetch(REAL_RELEASE)
     const result = await checkForUpdate()
     expect(result.latestVersion).toBe('1.4.0')
-    expect(result.apkUrl).toBe('https://github.com/DuarteSantos8/Hypertrofy/releases/download/v1.4.0/Hypertrofy-1.4.0.apk')
-    expect(result.hashUrl).toBe('https://github.com/DuarteSantos8/Hypertrofy/releases/download/v1.4.0/Hypertrofy-1.4.0.apk.sha256')
+    expect(result.apkUrl).toBe('https://github.com/ItaloGustavoS/hypertrofy-app/releases/download/v1.4.0/Hypertrofy-1.4.0.apk')
+    expect(result.hashUrl).toBe('https://github.com/ItaloGustavoS/hypertrofy-app/releases/download/v1.4.0/Hypertrofy-1.4.0.apk.sha256')
   })
 
   it('does not take the checksum for the APK when it is listed first', async () => {
@@ -232,7 +232,7 @@ describe('semver comparison (via checkForUpdate behavior)', () => {
 // v1.4.2: a release carries a Standard and an HD APK. GitHub lists assets by name, so for the
 // names we publish the HD file would come first; each build must still find its own.
 describe('pickApk: Standard and HD APKs', () => {
-  const url = n => `https://github.com/DuarteSantos8/Hypertrofy/releases/download/v1.4.2/${n}`
+  const url = n => `https://github.com/ItaloGustavoS/hypertrofy-app/releases/download/v1.4.2/${n}`
   const a = n => ({ name: n, browser_download_url: url(n) })
   const RELEASE = ['Hypertrofy-1.4.2.apk', 'Hypertrofy-1.4.2.apk.sha256', 'Hypertrofy-HD-1.4.2.apk', 'Hypertrofy-HD-1.4.2.apk.sha256'].map(a)
 
@@ -283,7 +283,7 @@ describe('pickApk: Standard and HD APKs', () => {
 })
 
 describe('pickApk: Standard, Plus and HD', () => {
-  const a = n => ({ name: n, browser_download_url: `https://github.com/DuarteSantos8/Hypertrofy/releases/download/v1.4.2/${n}` })
+  const a = n => ({ name: n, browser_download_url: `https://github.com/ItaloGustavoS/hypertrofy-app/releases/download/v1.4.2/${n}` })
   const NAMES = ['Hypertrofy-1.4.2.apk', 'Hypertrofy-1.4.2.apk.sha256', 'Hypertrofy-HD-1.4.2.apk', 'Hypertrofy-HD-1.4.2.apk.sha256',
     'Hypertrofy-Plus-1.4.2.apk', 'Hypertrofy-Plus-1.4.2.apk.sha256']
   const sorted = [...NAMES].sort().map(a)  // GitHub lists assets by name
