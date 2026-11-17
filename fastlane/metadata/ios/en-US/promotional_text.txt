@@ -1,0 +1,1 @@
+Exercise demos now come from ExerciseDB and stay on the phone after the first view, so the download is smaller.

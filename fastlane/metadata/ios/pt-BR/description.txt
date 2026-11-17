@@ -1,0 +1,29 @@
+O Hypertrofy é um diário de treinos feito por quem treina, para quem treina. Planeje sua semana, registre cada série e veja o que você realmente fez. Sem conta, sem assinatura, sem rastreamento. Grátis com um banner discreto, e uma compra única o remove para sempre.
+
+PLANEJE
+• Mais de 1.500 exercícios com demonstrações animadas, em 19 idiomas
+• Quatro planos iniciais (Push/Pull/Legs, Superior/Inferior, Corpo inteiro, 5x5), ou monte o seu
+• Uma rotina por dia da semana, ou uma rotação (A, B, C, A ...) se sua semana não segue um horário
+• Super-séries, aquecimentos, drop sets, rest-pause, isometrias cronometradas, repetições por lado
+• Um cronômetro de descanso com som e um alarme que toca mesmo com o celular no silencioso
+
+REGISTRE
+• Carga, repetições, RPE, repetições parciais, trabalho por lado, isometrias e cardio
+• Os números da sessão anterior ao lado de cada série
+• Notas por exercício, e uma calculadora de anilhas que conhece as do seu treino
+
+ACOMPANHE
+• Níveis de força, recordes, volume por músculo e por semana
+• Peso corporal e medidas ao longo do tempo
+• Um ano em revista
+
+SEUS DADOS
+• Ficam no celular; exporte em zip, ou em CSV para uma planilha
+• Sincronize com o seu próprio servidor se quiser em mais de um celular
+• Funciona offline, com ou sem conta
+
+MÍDIA DOS EXERCÍCIOS
+As demonstrações vêm do ExerciseDB (exercisedb.dev) e são baixadas na primeira vez que você abre um exercício, depois ficam em cache no celular. Veja o NOTICE.md do projeto para a fonte e os termos.
+
+CÓDIGO ABERTO
+O Hypertrofy é software livre. O código está no GitHub: https://github.com/ItaloGustavoS/hypertrofy-app

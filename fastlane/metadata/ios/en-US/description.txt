@@ -1,0 +1,29 @@
+Hypertrofy is a workout log made by people who lift, for people who lift. Plan your week, log every set and see what you actually did. No account, no subscription, no tracking. Free with a small banner, and one purchase removes it for good.
+
+PLAN
+• Over 1,500 exercises with animated demos, in 19 languages
+• Four starter plans (Push/Pull/Legs, Upper/Lower, Full body, 5x5), or build your own
+• One routine per weekday, or a rotation (A, B, C, A ...) when your week has no fixed shape
+• Supersets, warm-ups, drop sets, rest-pause, timed holds, reps per side
+• A rest timer with a chime and an alarm that still rings with the phone on silent
+
+LOG
+• Weight, reps, RPE, partial reps, per-side work, timed holds and cardio
+• The previous session's numbers beside every set
+• Notes per exercise, and a plate calculator that knows your gym's plates and bars
+
+SEE
+• Strength levels, records, volume per muscle and week
+• Body weight and measurements over time
+• A year in review
+
+YOUR DATA
+• Stays on the phone; export it to a zip, or to CSV for a spreadsheet
+• Sync with your own server if you want it on more than one phone
+• Works offline, with or without an account
+
+EXERCISE MEDIA
+Exercise demos come from ExerciseDB (exercisedb.dev) and are downloaded the first time you open an exercise, then cached on the phone. See the project's NOTICE.md for the source and its terms.
+
+OPEN SOURCE
+Hypertrofy is free software. The code is on GitHub: https://github.com/ItaloGustavoS/hypertrofy-app
