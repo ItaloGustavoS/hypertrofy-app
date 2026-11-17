@@ -345,7 +345,7 @@ describe('categories and sports', () => {
   })
   it('names the file after the day and the start time', () => {
     const local = new Date(2026, 9, 9, 18, 5).getTime()
-    expect(fitFileName({ start: local })).toBe('opengym-2026-10-09-1805.fit')
-    expect(fitFileName({})).toBe('opengym-workout.fit')
+    expect(fitFileName({ start: local })).toBe('hypertrofy-2026-10-09-1805.fit')
+    expect(fitFileName({})).toBe('hypertrofy-workout.fit')
   })
 })
