@@ -194,18 +194,11 @@ public class WatchBridgePlugin: CAPPlugin, CAPBridgedPlugin, WCSessionDelegate {
         }
     }
 
-    /// The clip as a small GIF: a file of a downloaded animation pack (`packId` + `drawing`, read
-    /// through Background Assets, never by path) or a file in the app package (`path` under
-    /// public/). Anything else is refused.
+    /// The clip as a small GIF: a file in the app package (`path` under public/). Anything else
+    /// is refused.
     static func gifFor(_ clip: [String: Any], named exId: String) -> URL? {
         let dir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("watch-clips")
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
-        if let pack = clip["packId"] as? String, let drawing = clip["drawing"] as? String {
-            let out = dir.appendingPathComponent("\(pack)-\(drawing).gif")
-            if FileManager.default.fileExists(atPath: out.path) { touch(out); return out }
-            guard let data = AnimationPacksPlugin.packData(pack, drawing) else { return nil }
-            return ClipCodec.makeGif(data: data, to: out, maxPixels: 160) ? out : nil
-        }
         guard let path = clip["path"] as? String, !path.hasPrefix("/"), !path.contains(".."),
               ["webp", "gif", "mp4"].contains((path as NSString).pathExtension.lowercased()) else { return nil }
         let source = Bundle.main.bundleURL.appendingPathComponent("public").appendingPathComponent(path)

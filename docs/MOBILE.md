@@ -12,12 +12,12 @@ TestFlight beta) on an iPhone, the APK on Android. Then read
 |---|---|---|
 | **iPhone and iPad** | The [App Store](https://apps.apple.com/app/id6822275400). To test the next version early: the [public TestFlight beta](https://testflight.apple.com/join/RKATb61k) | the App Store or TestFlight |
 | **Apple Watch** | Comes with the iPhone app | with the iPhone app |
-| **Android, APK** | [GitHub release](https://github.com/DuarteSantos8/Hypertrofy/releases/latest) or [opengym.ch](https://opengym.ch). From v1.4.2 in three sizes: Standard (animations at 180 px), Plus (240 px) and HD (360 px, the biggest download) | the app itself, each size to its own kind |
+| **Android, APK** | [GitHub release](https://github.com/DuarteSantos8/Hypertrofy/releases/latest) or [opengym.ch](https://opengym.ch). One signed APK; exercise GIFs are fetched on first view and cached on the device | the app itself |
 | **Android, Google Play** | Coming: the account has to run a closed test first | Google Play, sharper animations as downloads |
 
 The APK and the Google Play app are signed with the same key, so a phone can move from one to
-the other, or between Standard, Plus and HD, without losing its data. How the store builds are made and
-released is in [APP_STORES.md](APP_STORES.md).
+the other without losing its data. How the store builds are made and released is in
+[APP_STORES.md](APP_STORES.md).
 
 ## How the phone app works
 
@@ -658,22 +658,20 @@ Google Play build come from the same code; how they are built and uploaded is in
 
 ### Android: sideload the APK
 
-Every release has three signed APKs on [the GitHub release](https://github.com/DuarteSantos8/Hypertrofy/releases),
-each with its `.sha256` beside it, and [opengym.ch](https://opengym.ch) links to all three:
+Every release has one signed APK on [the GitHub release](https://github.com/DuarteSantos8/Hypertrofy/releases),
+with its `.sha256` beside it, and [opengym.ch](https://opengym.ch) links to it:
 
-- **`Hypertrofy-X.Y.Z.apk` (Standard):** the exercise animations built in at 180 px, about 315 MB.
-- **`Hypertrofy-Plus-X.Y.Z.apk` (Plus):** the same app with 240 px animations, about 424 MB.
-- **`Hypertrofy-HD-X.Y.Z.apk` (HD):** the same app with 360 px animations, about 760 MB.
+- **`Hypertrofy-X.Y.Z.apk`:** the app. Exercise GIFs are fetched on first view and cached on the
+  device, so the download stays small.
 
-Same app id, same key: install one over another and the data stays. The in-app updater keeps
-each on its own kind. Android asks you to allow installs from the browser the first time; that's
+Same app id, same key: installing a new version keeps the data. Android asks you to allow
+installs from the browser the first time; that's
 standard for any app from outside Google Play. Check the `.sha256` if you got the file from
 anywhere else.
 
-The release APKs are built and signed on the release machine (`scripts/android/build-release.sh`,
-[APP_STORES.md](APP_STORES.md)), not in CI, because the animations inside them are larger than
-the 180 px the licence allows in a repository or a CI run. GitLab CI on the mirror can still build
-a test APK with the repo's 180 px media (`build:apk`, a manual job on `main` and merge requests,
+The release APK and bundle are built and signed on the release machine
+(`scripts/android/build-release.sh`, [APP_STORES.md](APP_STORES.md)), not in CI. GitLab CI on
+the mirror can still build a test APK (`build:apk`, a manual job on `main` and merge requests,
 never on a tag); its releases link to GitHub's.
 
 The release APK carries native code for ARM only (`arm64-v8a`, `armeabi-v7a`), which is every

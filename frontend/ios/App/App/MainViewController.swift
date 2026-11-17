@@ -9,20 +9,10 @@ import WebKit
  * that live in the app itself are registered here, or the page finds none of them.
  */
 class MainViewController: CAPBridgeViewController {
-    /// The downloaded animation packs, read through Background Assets (AnimationPacksPlugin.swift).
-    private let packFiles = AnimationPackSchemeHandler()
-
-    override open func webViewConfiguration(for instanceConfiguration: InstanceConfiguration) -> WKWebViewConfiguration {
-        let config = super.webViewConfiguration(for: instanceConfiguration)
-        config.setURLSchemeHandler(packFiles, forURLScheme: AnimationPackSchemeHandler.scheme)
-        return config
-    }
-
     override open func capacitorDidLoad() {
         bridge?.registerPluginInstance(PrintPlugin())
         bridge?.registerPluginInstance(RestAlertPlugin())
         bridge?.registerPluginInstance(DeviceAuthPlugin())
-        bridge?.registerPluginInstance(AnimationPacksPlugin())
         bridge?.registerPluginInstance(NudgeCheckPlugin())
         bridge?.registerPluginInstance(GymReminderPlugin())
         bridge?.registerPluginInstance(GymMapPickerPlugin())

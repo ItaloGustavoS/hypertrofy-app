@@ -37,11 +37,7 @@ run on the maintainer's machine against the private media archive.
 |---|---|
 | `android/build-release.sh` | Builds and signs the APK and the Google Play bundle |
 | `android/build-wear.sh` | Builds and signs the Wear OS watch app (AAB for Google Play, APK for sideloading) |
-| `android/make-asset-packs.mjs` | Adds the Play asset packs to the Android project for one build, and removes them again |
 | `ios/finish-ipa.sh` | Puts the app's animations into the unsigned IPA from CI and signs it for the App Store |
-| `media/make-pack-manifests.mjs` | Plans the Apple-hosted animation packs from file names alone |
-| `media/build-media.py` | Turns a Gym visual pack into animation files (upstream pipeline; unused here, media now comes from ExerciseDB v1) |
-| `media/build-app-webp.py` | The phone apps' animated WebP animations |
 
 ## Kept for the record
 

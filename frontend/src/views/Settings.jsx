@@ -41,7 +41,6 @@ import { setRestAccent } from '../lib/rest-alert.js'
 import { CUSTOM, accentKey, adjustedIn, applyAccent, cleanHex, inkOn, isGrey } from '../lib/accent.js'
 import { checkForUpdate, downloadAndInstall, fetchChecksum, forgetDownloadedUpdate, RELEASES_PAGE } from '../lib/update.js'
 import { APK_VARIANT, VARIANT_NAMES } from '../lib/apk-variant.js'
-import { BUILTIN_PX } from '../lib/anim-quality.js'
 import { getChannel, gymReminderBuilt } from '../lib/channel.js'
 import { forgetCoach } from '../lib/coach-api.js'
 import { REST_MAX, REST_PAUSE_MIN, REST_PAUSE_MAX, fmtRest, fmtDuration } from '../lib/duration.js'
@@ -51,7 +50,6 @@ import { durationSheet } from '../components/DurationWheel.jsx'
 import { showsConnection, showsLocalLine } from '../components/SyncBanner.jsx'
 import BackupFolderRow, { useBackupFolder, autoBackupSubtitle } from '../components/BackupFolderRow.jsx'
 import AppIconRow from '../components/AppIconRow.jsx'
-import { AnimationQualityRow } from '../components/Animations.jsx'
 import { ServerSyncSection, KeptChangesRows, leaveServer, connectServer, passkeySignIn } from '../components/ServerSync.jsx'
 import { passwordOn, PasswordRow, openPasswordSignIn, openPasswordRegister } from '../components/PasswordAuth.jsx'
 import { usePasskeys, PasskeysRow, DeviceLinkRow, openDeviceLinkRedeem, PairSheet } from '../components/Passkeys.jsx'
@@ -644,9 +642,6 @@ export default function Settings({ page = null, find = null, via = null, entryKe
             value={S.gifSize === 'mini' || S.gifSize === 'off' ? S.gifSize : 'full'}
             onChange={v => update(s => { s.gifSize = v })} />
         </Row>
-        {/* Store apps: how sharp the animations are, from packs this device downloads. Per device,
-            never synced: the profile is not touched (components/Animations.jsx). */}
-        <AnimationQualityRow />
       </Section>
       <Section>
         <Row icon="wrench" iconTint="var(--grey)" title={t('Fine-tuning')} subtitle={t('Buttons, timed sets')} accessory="chevron" onClick={() => open('advanced')} />
@@ -1116,7 +1111,7 @@ export default function Settings({ page = null, find = null, via = null, entryKe
         {/* The sideloaded APK comes in three kinds that differ only in the animations built in
             (lib/apk-variant.js): which one this is, so nobody has to guess from the file size. */}
         <Row icon="info" iconTint="var(--grey)" title={t('Version')} value={'v' + __APP_VERSION__}
-          subtitle={MOBILE && selfUpdate ? t('{0} APK, animations at {1} px', VARIANT_NAMES[APK_VARIANT], BUILTIN_PX) : undefined} />
+          subtitle={MOBILE && selfUpdate ? t('{0} APK, animations at {1} px', VARIANT_NAMES[APK_VARIANT], 180) : undefined} />
         {MOBILE
           ? selfUpdate && <Row icon="download" iconTint="var(--green)"
               title={updateInfo?.hasUpdate ? t('Update to Hypertrofy v{0}', updateInfo.latestVersion) : t('Check for updates')}

@@ -28,8 +28,7 @@ offline), or build the app onto your own phone with Xcode; both are in [MOBILE.m
 ### Is it on Google Play?
 
 Not yet, it's next: Google wants a round of closed testing first. Until then the signed APK is the
-way to go. It's published with a `.sha256` next to every release, comes in three sizes (Standard,
-Plus, HD) and updates itself. Get it from the
+way to go. It's published with a `.sha256` next to every release and updates itself. Get it from the
 [latest release](https://github.com/DuarteSantos8/Hypertrofy/releases/latest) or [opengym.ch](https://opengym.ch).
 
 ### Where is my data?

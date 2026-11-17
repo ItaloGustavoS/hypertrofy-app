@@ -51,7 +51,7 @@ in a file in the app's private storage (MOBILE.md explains the modes).
 | `frontend/src/lib/` | Pure helpers, each with a `*.test.js` beside it: progression, 1RM, recovery, sync merge, imports, media, the native bridges |
 | `frontend/src/locales/` | One pack per language. The key is the English text, English itself has no pack |
 | `frontend/src/{instr,exercise-names,exercise-desc}/`, `lib/exercises-data.js` | Generated from `catalogue/` by `scripts/catalogue/build.mjs`. Don't edit by hand |
-| `frontend/android/`, `frontend/ios/` | The Capacitor shells and the native plugins (rest alarm, Health Connect, Apple Health, watch, widgets, animation packs) |
+| `frontend/android/`, `frontend/ios/` | The Capacitor shells and the native plugins (rest alarm, Health Connect, Apple Health, watch, widgets) |
 | `api/` | `server.js` (routes, sessions, storage), plus small modules split out so they can be tested alone: `media.js`, `sync-stamps.js`, `queue.js`, `nudge.js`, `rate-limit.js`, `durable.js`, `password.js`, `passkeys-store.js`, `device-link.js` |
 | `api/coach/` | The optional AI Coach. `core/` has no server state and is shared with the phone apps |
 | `api/integrations/` | Settings → Integrations on the server: providers (the webhook first), sealed per-profile connections in `DATA_DIR/integrations/`, a durable outbox with idempotency, backoff and rate limits ([INTEGRATIONS.md](INTEGRATIONS.md)) |
@@ -168,8 +168,6 @@ still need verifying before a store release.
   the App Group (`lib/widgets.js` → `WidgetBridgePlugin.swift`), the widgets read it. On Android the
   same snapshot goes to SharedPreferences (`WidgetBridgePlugin.java`) and `HypertrofyWidgetProvider.java`
   draws the Home Screen widget. A tap opens an `opengym://` link the page routes (`lib/widget-links.js`).
-- **Animation packs** (`ios/App/AnimationPacksDownloader`, `AnimationPacksPlugin.swift`): the
-  sharper animation sizes as Apple-hosted Background Assets.
 
 ## CI and releases
 

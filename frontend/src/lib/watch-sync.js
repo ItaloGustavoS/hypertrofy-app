@@ -24,8 +24,6 @@
 import { isOn } from './modules.js'
 import { MOBILE, nativePlatform } from './mobile.js'
 import { EXIDX, gifSrc, figureOf, isAssisted } from './exercises.js'
-import { packId, packDrawingId } from './anim-quality.js'
-import { getState as animPacks } from './anim-packs.js'
 import { getLang, baseLang, onLangChange } from './i18n.js'
 import { modeOf, setLabel, lastEntryFor, effectiveRoutineIds, isBw, isPerSide, EFFORT, effortOf } from './history.js'
 import { isWarmupRow, isSideSet, syncSideAggregate } from './workout-model.js'
@@ -257,27 +255,19 @@ export function staleWatchFinish (A, ev, now = Date.now()) {
 
 /**
  * The running workout's animations for the watch, from what this phone itself shows for each
- * exercise: the smallest downloaded animation pack of the figure (240 px, `packId` + `drawing`, read
- * through Background Assets on the phone) when there is one, else the app's built-in clip (`path` inside the app package:
- * the 180 px animated WebP of the store build, an MP4 loop in other builds). The native side makes
- * each into a small GIF and sends it as a file; the watch deletes them when the workout ends.
- * Nothing is ever fetched from anywhere.
+ * exercise: the clip path inside the app package. ExerciseDB GIFs are remote, so a mapped
+ * exercise has no path here. The native side makes each into a small GIF and sends it as a
+ * file; the watch deletes them when the workout ends. Nothing is ever fetched from anywhere.
  */
-export const WATCH_PACK_PX = 240
-export function clipsFor (S, packs = animPacks().packs || {}) {
+export function clipsFor (S) {
   const A = S && S.active
   if (!A || !Array.isArray(A.entries)) return []
   const figure = figureOf(S)
-  const pid = packId(WATCH_PACK_PX, figure)
-  const pack = packs[pid] && packs[pid].state === 'ready' ? pid : null
   const out = [], seen = new Set()
   for (const e of A.entries) {
     const ex = e && EXIDX[e.id]
     if (!ex || seen.has(e.id) || !ex.gif) continue
     seen.add(e.id)
-    const drawing = packDrawingId(ex, figure)
-    // a pack's files are read through Background Assets on the phone, never by a path
-    if (pack && drawing && /^[A-Za-z0-9_-]+$/.test(drawing)) { out.push({ exId: e.id, packId: pack, drawing }); continue }
     const path = gifSrc(ex, figure)
     if (!/\.(webp|mp4|gif)$/i.test(path) || /^[a-z]+:|^\//i.test(path) || path.includes('..')) continue
     out.push({ exId: e.id, path })

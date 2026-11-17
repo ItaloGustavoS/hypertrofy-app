@@ -217,31 +217,17 @@ describe('heart rate from the watch', () => {
 })
 
 describe('the workout\'s animations for the watch', () => {
-  it('are what the phone shows: the built-in clip of each exercise in the app package', async () => {
+  it('are the built-in clip of each exercise in the app package; mapped GIFs are remote and skipped', async () => {
     const { clipsFor } = await import('./watch-sync.js')
     const { EXIDX } = await import('./exercises.js')
-    const clips = clipsFor(state(), {})
-    expect(clips.map(c => c.exId)).toEqual(['0025', '0001'].filter(id => EXIDX[id]?.gif))
-    for (const c of clips) {
-      expect(c.path).toMatch(/^exercise-media\/clip\/[^/]+\.(mp4|webp)$/)
-      expect(c.packId).toBeUndefined()
-    }
-    expect(clipsFor({ active: null }, {})).toEqual([])
-  })
-
-  it('or the downloaded 240 px pack of the figure, when it is there', async () => {
-    const { clipsFor } = await import('./watch-sync.js')
-    const packs = { 'anim-240-male': { state: 'ready', base: 'opengym-pack://anim-240-male' } }
-    const clips = clipsFor(state(), packs)
-    expect(clips.length).toBeGreaterThan(0)
-    for (const c of clips) {
-      expect(c.packId).toBe('anim-240-male')
-      expect(c.drawing).toMatch(/^[A-Za-z0-9_-]+$/)
-      expect(c.path).toBeUndefined()
-    }
-    // a pack that is not ready, or of the other figure, is not used
-    expect(clipsFor(state(), { 'anim-240-female': { state: 'ready' } })[0].path).toBeDefined()
-    expect(clipsFor(state(), { 'anim-240-male': { state: 'downloading' } })[0].path).toBeDefined()
+    // 0025 and 0001 are mapped to ExerciseDB GIFs, so they have no local clip.
+    expect(clipsFor(state())).toEqual([])
+    EXIDX['ZZ99'] = { id: 'ZZ99', gif: 'ZZ99.mp4' }
+    try {
+      const clips = clipsFor({ exFigure: 'male', active: { entries: [{ id: 'ZZ99' }] } })
+      expect(clips).toEqual([{ exId: 'ZZ99', path: 'exercise-media/clip/ZZ99.mp4' }])
+    } finally { delete EXIDX['ZZ99'] }
+    expect(clipsFor({ active: null })).toEqual([])
   })
 })
 

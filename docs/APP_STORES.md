@@ -23,11 +23,8 @@ the app fetches ExerciseDB v1 GIFs and caches them on the device.
 
 - **Google Play:** targets Android 16 (API 36), required for new apps and updates since
   31 August 2026 (Capacitor 8). Native libraries are 16 KB page aligned. The base module carries
-  the 180 px animations like the App Store app (well under Play's 500 MB; build-release.sh checks
-  it). The sharper qualities, 240 included, are on-demand **Play asset packs** (Play Asset
-  Delivery), one per quality and figure like the iPhone's, each under Play's 1.5 GB per pack (a bigger one is split into parts),
-  far under the 30 GB for all on-demand packs together. Google Play delivers them; the sideloaded
-  APKs have none and keep what they have built in (Standard 180 px, Plus 240 px, HD 360 px).
+  no media (the app fetches ExerciseDB GIFs and caches them on the device), so it is far under
+  Play's 500 MB; build-release.sh checks it.
 - **App Store:** built with Xcode 26 (the `macos-26` runner). Privacy manifest
   (`ios/App/App/PrivacyInfo.xcprivacy`): no tracking, no data collected. No non-exempt
   encryption (`ITSAppUsesNonExemptEncryption = NO`, HTTPS only). The Coach asks before anything
@@ -57,25 +54,15 @@ cd gym-app        # the release checkout, at the release tag
 export ANDROID_HOME=/opt/android-sdk
 K=/root/.config/opengym
 scripts/android/build-release.sh $K/opengym-release.keystore $K/keystore.pass $K/key.alias ~/release
-#  → Hypertrofy-X.Y.Z.apk, Hypertrofy-Plus-X.Y.Z.apk, Hypertrofy-HD-X.Y.Z.apk (each + .sha256, and
-#    SHA256SUMS) for the GitHub release (APK_ONLY=1: only these),
+#  → Hypertrofy-X.Y.Z.apk (+ .sha256) for the GitHub release (APK_ONLY=1: only that),
 #    Hypertrofy-X.Y.Z.aab for Google Play
 ```
 
-Each is built from its own phone build: the **Standard** APK with the box-free 180 px animations
-built in (`quality/180`, about 315 MB), the **Plus** APK with 240 px (`quality/240`, about
-424 MB; `PLUS_PX=0` none), the **HD** APK with 360 px (`quality/360`, about 760 MB; `HD_PX=0`
-none), the bundle with 180 px (`quality/180`, like the App Store app) and an asset
-pack for every quality above 180 that has a folder in `/mnt/build-fast/from-hdd/opengym-media/quality/`
-(`scripts/android/make-asset-packs.mjs`, the same drawings per pack as the iPhone's); the pack
-modules are generated into `frontend/android/` for the build and removed after, never committed.
-To try packs on an emulator: `make-asset-packs.mjs --px 240 --builtin 180 --limit 30`, then
-`./gradlew bundlePlayDebug` and `bundletool build-apks --local-testing` + `install-apks`.
-
-Only the bundle: `AAB_ONLY=1`. Only some packs: `PACK_PX=240,360` (the 1.4.4 closed test had
-180 built in plus 240 and 360 as packs, 2.0 GB to upload; the full set 240 to 1080 is about
-13 GB). On a box that must not run hot: `GRADLE_ARGS=-Dorg.gradle.workers.max=2` and
-`nice -n 19 ionice -c3`. `BUNDLETOOL=/path/bundletool.jar` validates the bundle at the end.
+Both come from the same phone build (`npm run build:mobile`), which bundles no media: the app
+fetches ExerciseDB GIFs and caches them on the device. `AAB_ONLY=1` builds only the bundle,
+`APK_ONLY=1` only the APK. On a box that must not run hot:
+`GRADLE_ARGS=-Dorg.gradle.workers.max=2` and `nice -n 19 ionice -c3`.
+`BUNDLETOOL=/path/bundletool.jar` validates the bundle at the end.
 
 **Version codes.** One `versionCode` per version, shared by the APKs and the Play bundle
 (1.4.3 = 28, 1.4.4 = 30: 29 went to the 1.4.4 closed test, ...), so the same version from either source installs
@@ -89,9 +76,9 @@ language from a folder (`--notes`). `alpha` is Play's name for the closed testin
 
 ### iPhone
 
-The IPA carries the app, the asset pack downloader extension (`AnimationPacksDownloader`), the
-widget extension (`HypertrofyWidgets`: widgets and the Live Activity) and the Apple Watch app with its
-own widget. Each is a separate bundle id with its own App Store provisioning profile.
+The IPA carries the app, the widget extension (`HypertrofyWidgets`: widgets and the Live
+Activity) and the Apple Watch app with its own widget. Each is a separate bundle id with its own
+App Store provisioning profile.
 
 1. **Compile (CI).** The `iOS` workflow (`.github/workflows/ios.yml`, job `device-archive`) runs
    on every push to `main` and `stores` and archives the app for devices, unsigned, without the
@@ -123,28 +110,6 @@ own widget. Each is a separate bundle id with its own App Store provisioning pro
    public beta (https://testflight.apple.com/join/RKATb61k) after Beta App Review. Submit it for
    App Store review from there.
 
-#### Animation packs (Background Assets)
-
-The sharper animation qualities are Apple-hosted asset packs (iOS 26), one per quality and
-figure (`anim-<px>-male`, `anim-<px>-female`), on demand. They change only when the animations
-do, not with every release, and are uploaded once per change, separate from the build.
-
-1. `node scripts/media/make-pack-manifests.mjs <out>` writes per pack the drawing ids and the
-   manifest (`fileSource` `<px>/<id>.webp`, `fileDestination` `<packId>/<id>.webp`), from the
-   catalogue's names only; it never opens a media file.
-2. `xcrun ba-package package <packId>/manifest.json -o <packId>.aar` turns each manifest plus the
-   private quality folders (its `sourceRoot`, one folder per quality) into the pack's archive.
-   This needs Xcode 26 or later: the one release step that needs a Mac of our own.
-3. Upload through the App Store Connect API, per pack: find or create it
-   (`GET /v1/apps/{id}/backgroundAssets?filter[assetPackIdentifier]=…`, `POST /v1/backgroundAssets`),
-   `POST /v1/backgroundAssetVersions` (Apple numbers it), `POST /v1/backgroundAssetUploadFiles`
-   (name, size) for the `uploadOperations`, send the parts, `PATCH` it with `uploaded: true` and
-   the MD5, then poll the version until it is `COMPLETE`. A complete version is available to
-   internal TestFlight by itself; external TestFlight and the App Store take it with their review
-   submission.
-
-The full-quality files only ever travel from the release machine to Apple, like the IPA (licence).
-
 ## F-Droid
 
 The third Android flavour, `fdroid`, is the one F-Droid builds from the public source on its own
@@ -154,7 +119,6 @@ server. F-Droid accepts only free software, so this build carries nothing from G
 |---|---|
 | Wear OS link (`play-services-wearable`, the Wearable Data Layer) | left out: `WatchBridgePlugin` and `WatchListenerService` live in `src/gms` (sideload + play only); `src/fdroid` has a `WatchBridgePlugin` that answers "no watch", and Settings → About says why |
 | Gym card scanner: ML Kit (`@capacitor-mlkit/barcode-scanning`, with Play services code scanner, Firebase components, datatransport) | left out (excluded from the flavour's configurations and from its copy of `capacitor.plugins.json`); the scanner and photo import go the browser's way, the WebView's camera with jsQR / `BarcodeDetector` (`lib/scan.js`, `components/CameraScan.jsx`) |
-| Play Asset Delivery (play) | none; the repository's 180 px animations are built in, as in a self-hosted server |
 | In-app updater (sideload) | none; F-Droid updates the app (`lib/channel.js` → `fdroid`) |
 | Gym reminder | the same: the platform's proximity alerts (`LocationManager`), no Play services |
 | Donation links | the same as the APK (F-Droid allows them) |
@@ -242,11 +206,10 @@ on the phone (Settings → Reset, or uninstall).
    - `openssl req -new -newkey rsa:2048 -nodes -keyout dist.key -out dist.csr -subj "/CN=Duarte Santos/emailAddress=…"`,
      upload the CSR under Certificates → Apple Distribution, download `distribution.cer`, then
      `openssl x509 -inform der -in distribution.cer -out dist.pem && openssl pkcs12 -export -legacy -inkey dist.key -in dist.pem -out dist.p12`.
-   - Profiles → an App Store Connect profile for `ch.opengym.app` → `Hypertrofy_AppStore.mobileprovision`,
-     and one each for `ch.opengym.app.AnimationPacksDownloader`, `ch.opengym.app.widgets`,
-     `ch.opengym.app.watchkitapp` and `ch.opengym.app.watchkitapp.widgets`. The app, the downloader,
-     the widgets and the watch widget share the App Group `group.ch.opengym.app`; the app and the
-     watch app have HealthKit.
+   - Profiles → an App Store Connect profile for `com.hypertrofy.app` → `Hypertrofy_AppStore.mobileprovision`,
+     and one each for `com.hypertrofy.app.widgets`, `com.hypertrofy.app.watchkitapp` and
+     `com.hypertrofy.app.watchkitapp.widgets`. The app, the widgets and the watch widget share the
+     App Group `group.com.hypertrofy.app`; the app and the watch app have HealthKit.
    - Users and Access → Integrations → App Store Connect API key (Admin) for uploads; with it the
      bundle id, certificate and profile can also be created through the API instead of the portal.
    - Keep all of it next to the Android keystore (`/root/.config/opengym/`, never in a repo).

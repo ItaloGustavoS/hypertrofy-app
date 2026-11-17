@@ -56,10 +56,9 @@ describe('printPictureSource', () => {
     expect(printPictureSource({ ...S, exFigure: 'female' }, 'X001').url).toBe('exercise-media/still/X001F.webp')
   })
 
-  it('in the phone app with larger built-in animations, still picks the 180 px still (unmapped)', async () => {
+  it('in the phone app, still picks the 180 px still (unmapped)', async () => {
     addUnmapped()
     vi.resetModules()
-    vi.stubEnv('VITE_BUILTIN_CLIP_PX', '1080')
     vi.stubEnv('VITE_CLIP_EXT', 'webp')
     vi.doMock('./mobile.js', async orig => ({ ...await orig(), MOBILE: true }))
     const pics = await import('./print-pictures.js')
