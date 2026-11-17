@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@zeppos/device-types": "4.0.0",
-    "@zeppos/zeus-cli": "1.9.3",
+    "@zeppos/zeus-cli": "1.10.1",
     "@zeppos/zml": "0.0.27"
   },
   "_moduleAliases": {
