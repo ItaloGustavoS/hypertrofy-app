@@ -4,6 +4,9 @@
 import pt from './pt.js'
 
 export const PT_BR_OVERRIDES = {
+  'Downloaded animations': 'Animações baixadas',
+  '{0} MB on this device': '{0} MB neste aparelho',
+  'None yet. Each animation downloads the first time you open it.': 'Nenhuma ainda. Cada animação é baixada na primeira vez que você abre.',
   'The search finds it by these too. Separate them with commas.': 'A busca também encontra o exercício por estes. Separe com vírgulas.',
   'Save names': 'Salvar nomes',
   'Handy when you compare with another app. Records ignore warm-ups either way.': 'Ajuda quando você compara com outro app. Os recordes ignoram o aquecimento de qualquer jeito.',
@@ -2417,7 +2420,7 @@ export const PT_BR_OVERRIDES = {
   "Paired watches": "Relógios pareados",
   "Couldn’t reach your server. Try again in a moment.": "Não foi possível acessar seu servidor. Tente de novo daqui a pouco.",
   // --- the F-Droid build ---
-  "Wear OS watches talk to the phone through Google Play services, which F-Droid apps leave out. The APK from opengym.ch and the Google Play app have the watch link.": "Os relógios Wear OS falam com o celular através dos serviços do Google Play, que os aplicativos do F-Droid deixam de fora. O APK de opengym.ch e o aplicativo do Google Play têm a conexão com o relógio.",
+  "Wear OS watches talk to the phone through Google Play services, which F-Droid apps leave out. The APK from GitHub and the Google Play app have the watch link.": "Os relógios Wear OS falam com o celular através dos serviços do Google Play, que os aplicativos do F-Droid deixam de fora. O APK de GitHub e o aplicativo do Google Play têm a conexão com o relógio.",
   // --- Settings → Modules (1.4.4) ---
   "Beginner to Elite for your main lifts, measured against your body weight.": "De Iniciante a Elite nos seus exercícios principais, medido em relação ao seu peso corporal.",
   "Change it anytime in Settings → Modules.": "Mude quando quiser em Configurações → Módulos.",

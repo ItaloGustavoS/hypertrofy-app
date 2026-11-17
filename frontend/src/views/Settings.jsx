@@ -37,6 +37,7 @@ import { mediaStore } from '../lib/media-store.js'
 import { syncMedia, fetchToStore } from '../lib/media-sync.js'
 import { getMediaStatus, subscribeMediaStatus, pendingRefCount, localOnlyRefCount } from '../lib/media-owed.js'
 import { limitsFrom, fmtMB, MB } from '../lib/media-limits.js'
+import { mediaCacheBytes, clearExerciseMediaCache } from '../lib/exercise-media-cache.js'
 import { setRestAccent } from '../lib/rest-alert.js'
 import { CUSTOM, accentKey, adjustedIn, applyAccent, cleanHex, inkOn, isGrey } from '../lib/accent.js'
 import { checkForUpdate, downloadAndInstall, fetchChecksum, forgetDownloadedUpdate, RELEASES_PAGE } from '../lib/update.js'
@@ -88,6 +89,21 @@ import { voiceShortcutsSheet, voiceRowTitle } from '../components/VoiceShortcuts
 // the history entry it was typed on, so Back (in the app, the browser's or Android's) brings the
 // results back, while Settings opened afresh from anywhere (the gear, a tab) starts at the root.
 let lastQuery = { q: '', key: null }
+
+/* Settings → Workout: how much of the phone the downloaded animations take, and a way to give it
+   back. The cache caps itself at 150 MB (lib/exercise-media-cache.js); this is for the rest. */
+function DownloadedAnimationsRow() {
+  const [bytes, setBytes] = useState(() => mediaCacheBytes())
+  const clear = async () => { await clearExerciseMediaCache(); setBytes(0) }
+  return (
+    <Row icon="download" iconTint="var(--teal)" title={t('Downloaded animations')}
+      subtitle={bytes
+        ? t('{0} MB on this device', fmtMB(bytes / MB))
+        : t('None yet. Each animation downloads the first time you open it.')}>
+      <Button disabled={!bytes} onClick={clear}>{t('Clear')}</Button>
+    </Row>
+  )
+}
 
 // The route: /settings and /settings/<page>. An unknown page, or one this device does not have
 // (the Coach page off the phone app), goes back to the root.
@@ -642,6 +658,7 @@ export default function Settings({ page = null, find = null, via = null, entryKe
             value={S.gifSize === 'mini' || S.gifSize === 'off' ? S.gifSize : 'full'}
             onChange={v => update(s => { s.gifSize = v })} />
         </Row>
+        {MOBILE && S.gifSize !== 'off' && <DownloadedAnimationsRow />}
       </Section>
       <Section>
         <Row icon="wrench" iconTint="var(--grey)" title={t('Fine-tuning')} subtitle={t('Buttons, timed sets')} accessory="chevron" onClick={() => open('advanced')} />
@@ -1119,12 +1136,12 @@ export default function Settings({ page = null, find = null, via = null, entryKe
               accessory="chevron"
               onClick={() => (updateInfo?.hasUpdate ? onUpdateRowClick() : checkNow())} />
           : <Row icon="download" iconTint="var(--green)" title={t('Get the Android app')}
-              subtitle={t('Download the APK from opengym.ch')} accessory="chevron"
-              onClick={() => window.open('https://opengym.ch/#download', '_blank', 'noopener')} />}
+              subtitle={t('Download the APK from GitHub')} accessory="chevron"
+              onClick={() => window.open(RELEASES_PAGE, '_blank', 'noopener')} />}
       </Section>
       {/* The F-Droid build has no Wear OS link (it would need Google Play services, which F-Droid
           leaves out): said here rather than having a watch that silently never connects. */}
-      {fdroid && <Section footer={t('Wear OS watches talk to the phone through Google Play services, which F-Droid apps leave out. The APK from opengym.ch and the Google Play app have the watch link.')}>
+      {fdroid && <Section footer={t('Wear OS watches talk to the phone through Google Play services, which F-Droid apps leave out. The APK from GitHub and the Google Play app have the watch link.')}>
         <Row icon="watch" iconTint="var(--grey)" title={t('Wear OS watch')} value={t('Not in this build')} />
       </Section>}
       {/* Tutorials (components/Tour.jsx): the tour from the top, and the four short guided runs
