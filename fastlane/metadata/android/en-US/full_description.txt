@@ -1,7 +1,7 @@
-Hypertrofy is a workout tracker made by people who lift, for people who lift. Plan your week, log every set, and see what you actually did. No account, no ads, no subscription, no tracking.
+Hypertrofy is a workout tracker made by people who lift, for people who lift. Plan your week, log every set, and see what you actually did. No account, no subscription, no tracking. Free with a small banner, and one purchase removes it for good.
 
 PLAN
-• Over 5,600 exercises with animated demos, in 19 languages
+• Over 1,500 exercises with animated demos, in 19 languages
 • Four starter plans (Push/Pull/Legs, Upper/Lower, Full Body, 5×5), or build your own
 • A routine per weekday, or a rotation (A, B, C, A …) if your week doesn't run on a schedule
 • Supersets, warm-ups, drop sets, rest-pause, timed holds, per-side reps
@@ -28,6 +28,6 @@ ON ANDROID
 • Gym reminder: add your gyms and Hypertrofy nudges you when you walk in, even with the app closed. It uses your location in the background, only once you switch it on, and your places never leave the phone
 • Health Connect if you want it: finished workouts and weigh-ins go in, heart rate and scale weigh-ins come back
 • A home screen widget with today's plan, and NFC stickers that open the app at your rack
-• This F-Droid build has the standard 180 px animations built in, and no Wear OS link, since that one needs Google Play services
+• This build fetches the exercise demos from ExerciseDB and keeps them on the phone, and has no Wear OS link, since that one needs Google Play services
 
-Exercise animations © Gym visual (gymvisual.com), licensed for Hypertrofy.
+Exercise animations from ExerciseDB (exercisedb.dev). See NOTICE.md for the source and its terms.

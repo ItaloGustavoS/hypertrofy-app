@@ -1,0 +1,1 @@
+Exercise demos now come from ExerciseDB and stay on the phone after the first view, so the app download is smaller. The library keeps 1,597 exercises with a matching demo, and the animation-quality download is gone. Bugs and ideas go to GitHub or Discord.

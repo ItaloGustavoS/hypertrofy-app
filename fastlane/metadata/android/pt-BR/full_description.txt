@@ -1,7 +1,7 @@
-O Hypertrofy é um diário de treinos feito por quem treina, para quem treina. Planeje sua semana, registre cada série e veja o que você realmente fez. Sem conta, sem anúncios, sem assinatura, sem rastreamento.
+O Hypertrofy é um diário de treinos feito por quem treina, para quem treina. Planeje sua semana, registre cada série e veja o que você realmente fez. Sem conta, sem assinatura, sem rastreamento. Grátis com um banner discreto, e uma compra única o remove para sempre.
 
 PLANEJE
-• Mais de 5.600 exercícios com demonstrações animadas, em 19 idiomas
+• Mais de 1.500 exercícios com demonstrações animadas, em 19 idiomas
 • Quatro planos iniciais (Push/Pull/Legs, Superior/Inferior, Corpo inteiro, 5×5), ou monte o seu
 • Uma rotina por dia da semana, ou uma rotação (A, B, C, A …) se sua semana não segue um horário
 • Super-séries, aquecimentos, drop sets, rest-pause, isometrias cronometradas, repetições por lado
@@ -28,6 +28,6 @@ NO ANDROID
 • Lembrete da academia: adicione suas academias e o Hypertrofy avisa quando você chega, mesmo com o aplicativo fechado. Ele usa sua localização em segundo plano, só se você ativar, e seus lugares nunca saem do celular
 • Health Connect se você quiser: treinos concluídos e pesagens vão para lá, frequência cardíaca e pesagens da balança voltam
 • Um widget na tela inicial com o plano de hoje, e adesivos NFC que abrem o aplicativo no seu rack
-• Esta versão do F-Droid traz as animações padrão de 180 px e não tem conexão com o Wear OS, porque essa precisa dos serviços do Google Play
+• Esta versão baixa as demonstrações dos exercícios do ExerciseDB e as mantém no celular, e não tem conexão com o Wear OS, porque essa precisa dos serviços do Google Play
 
-Animações dos exercícios © Gym visual (gymvisual.com), licenciadas para o Hypertrofy.
+Animações dos exercícios do ExerciseDB (exercisedb.dev). Veja o NOTICE.md para a fonte e os termos.

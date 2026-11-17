@@ -4,6 +4,19 @@ Newest first. Each release is a `## vX.Y.Z (YYYY-MM-DD)` section, and the releas
 GitHub and GitLab are that section, word for word. New work goes under `## Unreleased` until the
 tag. Write it for the people using the app: what changed for them, short, no em dashes.
 
+## Unreleased
+
+**Exercise demos, downloaded once.** The animations now come from ExerciseDB and are kept on the
+phone after the first time you open an exercise. They are no longer packed into the app, so the
+download is smaller. The library keeps 1,597 exercises, the ones with a matching demo.
+
+**Simpler animation settings.** The animation-quality download (240 to 1080 px packs) is gone.
+Settings keeps the workout sizes Full, Mini and Off, and every exercise shows the demo the app has
+cached.
+
+**Ads and the one-time removal** are the same as before: a banner at the bottom, and one purchase
+removes it for good.
+
 ## v1.4.4 (2026-11-03)
 
 **Modules: as much app as you want.** Settings → Modules switches whole parts of openGym on and
