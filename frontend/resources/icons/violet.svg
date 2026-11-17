@@ -1,12 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 512 512">
-  <!-- Hypertrofy app icon "violet", written by scripts/app-icons.mjs (the glyph of resources/icon.svg). -->
-  <rect width="512" height="512" fill="#bf5af2"/>
-  <g fill="#ffffff">
-    <rect x="118" y="270" width="60" height="118"/>
-    <rect x="226" y="210" width="60" height="178"/>
-    <rect x="334" y="150" width="60" height="238"/>
-    <rect x="96" y="132" width="320" height="26"/>
-    <rect x="96" y="104" width="28" height="82"/>
-    <rect x="388" y="104" width="28" height="82"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 512 512"><rect width="512" height="512" fill="#bf5af2"/><g fill="#fff"><rect width="60" height="118" x="118" y="270"/><rect width="60" height="178" x="226" y="210"/><rect width="60" height="238" x="334" y="150"/><rect width="320" height="26" x="96" y="132"/><rect width="28" height="82" x="96" y="104"/><rect width="28" height="82" x="388" y="104"/></g></svg>
