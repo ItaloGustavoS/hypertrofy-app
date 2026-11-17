@@ -1,6 +1,7 @@
-# Rebrand: Hypertrofy → Hypertrofy
+# Rebrand: opengym → Hypertrofy
 
-Status: planned, not started. Decisions below were taken on 2026-11-07.
+Status: the three commits are in (2026-11). What is left is store accounts, screenshots and
+native builds — the open items at the end. Decisions below were taken on 2026-11-07.
 
 The branch is `hypertrofy-port-v2`, cut from upstream v1.4.4. Upstream keeps moving, so the
 rebrand is built to survive a periodic rebase: every change is either an identifier that only
@@ -84,7 +85,7 @@ The rename is applied by `scripts/rebrand.mjs` (dry run by default, prints every
 restricted to a fixed file list). That script is also how the rename is replayed after each
 upstream rebase, instead of resolving the same conflicts by hand every release.
 
-Verification: `node scripts/check-locales.mjs` (19 × 3624), `cd api && npm test` (the wrapped
+Verification: `node scripts/check-locales.mjs` (19 × 3627), `cd api && npm test` (the wrapped
 test is the one that catches a missed regeneration), `npm run build`.
 
 ## Commit 3 — icon, store assets, docs
@@ -109,10 +110,19 @@ test is the one that catches a missed regeneration), `npm run build`.
   It must point at **our** public repository once that exists; until then it is a known
   placeholder (see open items).
 
+## What the rebrand deliberately leaves as `opengym`
+
+The on-device file names — `opengym-state.json`, `opengym-stash.json`, `opengym-health.json`,
+`opengym-coach.json`, `opengym-device`, the service-worker cache and the update download — are
+how the app finds the data of an install that already exists. Renaming them would orphan it.
+User-visible exports (CSV, FIT, routine JSON, PNG cards, plan/workout share images) use
+`hypertrofy-*`.
+
 ## Open items
 
-1. **Public repository URL** — needed for `REPO`, `NOTICE.md` and the store listing's privacy
-   and source links.
+1. ~~Public repository URL~~ — the fork is `ItaloGustavoS/hypertrofy-app`; `lib/demo.js`'s
+   `REPO`, the updater, the issue link and the docs links point at it. `NOTICE.md` keeps the
+   upstream attribution.
 2. **Apple app group** — `group.com.hypertrofy.app` has to be registered in the Apple Developer
    portal before the widget builds.
 3. **Store accounts and credentials** — the AdMob app ids are Google's test values, and

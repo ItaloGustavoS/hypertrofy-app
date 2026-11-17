@@ -91,11 +91,11 @@ The first two block the store entries themselves, because the ids are permanent.
 | # | need | blocks | owner |
 |---|---|---|---|
 | 1 | **Exercise media terms** — the app uses ExerciseDB v1 GIFs, fetched on first view and cached on device (no GymVisual media bundled). The project owner confirmed the commercial/caching/redistribution terms are acceptable (November 2026). Nothing to do unless the source changes | — | done |
-| 2 | **Rebrand**, commits 1–3 of [`REBRAND.md`](REBRAND.md) | creating the store entries | code |
+| 2 | **Rebrand**, commits 1–3 of [`REBRAND.md`](REBRAND.md): done in code, including the store text (`fastlane/metadata/android`, 20 locales) and `fastlane/metadata/ios` (en-US, pt-BR) | — | done |
 | 3 | JDK 21 + Android SDK + a release keystore, generated once and backed up | Android release build | you |
 | 4 | macOS + Xcode + an Apple Developer account | iOS archive | you |
 | 5 | Play Console: app `com.hypertrofy.app`, product `hypertrofy_premium_remove_ads` at R$ 34,90, data-safety form | Android listing | you |
-| 6 | App Store Connect: same ids, App Privacy answers, privacy-policy URL | iOS listing | you |
+| 6 | App Store Connect: same ids, App Privacy answers, privacy-policy URL (`fastlane/metadata/ios/*/privacy_url.txt` is not written until there is one) | iOS listing | you |
 | 7 | AdMob: app plus one banner unit per platform, into `VITE_ADMOB_BANNER_ID_ANDROID`/`_IOS`, `admob.app.id`, and the iOS `GADApplicationIdentifier` | ads actually serving | you |
 | 8 | Privacy policy, hosted at a public URL | both listings | you |
 | 9 | Screenshots retaken after the icon and name change | both listings | you |
