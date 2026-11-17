@@ -1,7 +1,7 @@
-Hypertrofy est un carnet d'entraînement fait par des gens qui soulèvent, pour des gens qui soulèvent. Planifie ta semaine, note chaque série et vois ce que tu as vraiment fait. Sans compte, sans pub, sans abonnement, sans pistage.
+Hypertrofy est un carnet d'entraînement fait par des gens qui soulèvent, pour des gens qui soulèvent. Planifie ta semaine, note chaque série et vois ce que tu as vraiment fait. Sans compte, sans abonnement, sans pistage. Gratuit avec une petite bannière, et un achat unique la retire pour de bon.
 
 PLANIFIER
-• Plus de 5 600 exercices avec démos animées, en 19 langues
+• Plus de 1 500 exercices avec démos animées, en 19 langues
 • Quatre programmes de départ (Push/Pull/Legs, Haut/Bas du corps, Full Body, 5×5), ou crée le tien
 • Une routine par jour de la semaine, ou une rotation (A, B, C, A …) si ta semaine n'a pas d'horaire fixe
 • Supersets, échauffements, drop sets, rest-pause, maintiens chronométrés, répétitions par côté
@@ -28,6 +28,6 @@ SUR ANDROID
 • Rappel salle : ajoute tes salles et Hypertrofy te fait signe quand tu entres, même app fermée. Il utilise ta position en arrière-plan, seulement si tu l'actives, et tes lieux ne quittent jamais le téléphone
 • Health Connect si tu veux : les séances terminées et les pesées y vont, le rythme cardiaque et les pesées de ta balance reviennent
 • Un widget d'écran d'accueil avec le plan du jour, et des stickers NFC qui ouvrent l'app devant ton rack
-• Cette version F-Droid embarque les animations standard en 180 px, sans liaison Wear OS, car celle-ci a besoin des services Google Play
+• Cette version F-Droid télécharge les GIF des exercices au premier affichage et les garde sur l'appareil ; sans liaison Wear OS, car celle-ci a besoin des services Google Play
 
-Animations des exercices © Gym visual (gymvisual.com), sous licence pour Hypertrofy.
+Animations des exercices issues d'ExerciseDB (exercisedb.dev). Voir NOTICE.md pour la source et ses conditions.

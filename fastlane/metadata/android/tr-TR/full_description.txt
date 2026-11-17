@@ -1,7 +1,7 @@
-Hypertrofy, antrenman yapan insanların, antrenman yapan insanlar için yaptığı bir antrenman takipçisi. Haftanı planla, her seti kaydet ve gerçekte ne yaptığını gör. Hesap yok, reklam yok, abonelik yok, izleme yok.
+Hypertrofy, antrenman yapan insanların, antrenman yapan insanlar için yaptığı bir antrenman takipçisi. Haftanı planla, her seti kaydet ve gerçekte ne yaptığını gör. Hesap yok, abonelik yok, izleme yok. Küçük bir banner ile ücretsiz; tek seferlik satın alma onu kalıcı olarak kaldırır.
 
 PLANLA
-• 19 dilde, animasyonlu gösterimli 5.600'den fazla egzersiz
+• 19 dilde, animasyonlu gösterimli 1.500'den fazla egzersiz
 • Dört başlangıç programı (Push/Pull/Legs, Üst/Alt, Tüm Vücut, 5×5) ya da kendininkini yap
 • Haftanın her günü için bir rutin, ya da haftan belli bir düzende ilerlemiyorsa rotasyon (A, B, C, A …)
 • Süperset, ısınma, drop set, rest-pause, süreli tutuşlar, taraf başına tekrar
@@ -28,6 +28,6 @@ ANDROID'DE
 • Spor salonu hatırlatıcısı: salonlarını ekle, içeri girdiğinde Hypertrofy seni dürtsün, uygulama kapalıyken bile. Bunun için konumunu arka planda kullanır, yalnızca sen açarsan, ve yerlerin telefondan hiç çıkmaz
 • İstersen Health Connect: biten antrenmanlar ve tartılar oraya gider, nabız ve tartı ölçümlerin geri gelir
 • Bugünün planını gösteren bir ana ekran widget'ı ve uygulamayı sehpanın başında açan NFC etiketleri
-• Bu F-Droid sürümünde standart 180 px animasyonlar hazır gelir, Wear OS bağlantısı yoktur, çünkü o Google Play hizmetleri ister
+• Bu F-Droid sürümü egzersiz GIF'lerini ilk görüntülemede indirip cihazda saklar; Wear OS bağlantısı yoktur, çünkü o Google Play hizmetleri ister
 
-Egzersiz animasyonları © Gym visual (gymvisual.com), Hypertrofy için lisanslıdır.
+Egzersiz animasyonları ExerciseDB (exercisedb.dev) kaynaklıdır. Kaynak ve koşullar için NOTICE.md'ye bakın.

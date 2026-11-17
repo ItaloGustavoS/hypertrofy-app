@@ -1,7 +1,7 @@
-Hypertrofy to dziennik treningowy zrobiony przez ludzi, którzy ćwiczą, dla ludzi, którzy ćwiczą. Zaplanuj tydzień, zapisuj każdą serię i zobacz, co naprawdę zrobiłeś. Bez konta, bez reklam, bez subskrypcji, bez śledzenia.
+Hypertrofy to dziennik treningowy zrobiony przez ludzi, którzy ćwiczą, dla ludzi, którzy ćwiczą. Zaplanuj tydzień, zapisuj każdą serię i zobacz, co naprawdę zrobiłeś. Bez konta, bez subskrypcji, bez śledzenia. Za darmo z małym banerem, a jednorazowy zakup usuwa go na zawsze.
 
 PLANUJ
-• Ponad 5600 ćwiczeń z animowanymi pokazami, w 19 językach
+• Ponad 1500 ćwiczeń z animowanymi pokazami, w 19 językach
 • Cztery plany na start (Push/Pull/Legs, Góra/Dół, Full Body, 5×5) albo własny
 • Trening na każdy dzień tygodnia albo rotacja (A, B, C, A …), jeśli Twój tydzień nie ma stałego rozkładu
 • Superserie, rozgrzewki, drop sety, rest-pause, izometria na czas, powtórzenia na stronę
@@ -28,6 +28,6 @@ NA ANDROIDZIE
 • Przypomnienie o siłowni: dodaj swoje siłownie, a Hypertrofy odezwie się, gdy wejdziesz, nawet przy zamkniętej aplikacji. Korzysta z lokalizacji w tle, tylko gdy to włączysz, a twoje miejsca nigdy nie opuszczają telefonu
 • Health Connect, jeśli chcesz: ukończone treningi i pomiary wagi trafiają tam, a tętno i pomiary z wagi wracają
 • Widżet na ekran główny z dzisiejszym planem i naklejki NFC, które otwierają aplikację przy stojaku
-• Ta wersja z F-Droid ma wbudowane standardowe animacje 180 px i nie łączy się z Wear OS, bo to wymaga usług Google Play
+• Ta wersja z F-Droid pobiera GIF-y ćwiczeń przy pierwszym wyświetleniu i zapisuje je na urządzeniu; nie łączy się z Wear OS, bo to wymaga usług Google Play
 
-Animacje ćwiczeń © Gym visual (gymvisual.com), na licencji dla Hypertrofy.
+Animacje ćwiczeń z ExerciseDB (exercisedb.dev). Źródło i warunki w NOTICE.md.

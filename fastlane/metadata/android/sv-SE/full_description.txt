@@ -1,7 +1,7 @@
-Hypertrofy är en träningslogg gjord av folk som lyfter, för folk som lyfter. Planera veckan, logga varje set och se vad du faktiskt gjorde. Inget konto, ingen reklam, ingen prenumeration, ingen spårning.
+Hypertrofy är en träningslogg gjord av folk som lyfter, för folk som lyfter. Planera veckan, logga varje set och se vad du faktiskt gjorde. Inget konto, ingen prenumeration, ingen spårning. Gratis med en liten banner, och ett engångsköp tar bort den för gott.
 
 PLANERA
-• Över 5 600 övningar med animerade demos, på 19 språk
+• Över 1 500 övningar med animerade demos, på 19 språk
 • Fyra startprogram (Push/Pull/Legs, Över-/Underkropp, Helkropp, 5×5), eller bygg ditt eget
 • Ett pass per veckodag, eller en rotation (A, B, C, A …) om din vecka inte följer kalendern
 • Superset, uppvärmning, dropset, rest-pause, statiska håll, reps per sida
@@ -28,6 +28,6 @@ PÅ ANDROID
 • Gympåminnelse: lägg till dina gym så hör Hypertrofy av sig när du kliver in, även när appen är stängd. Den använder din plats i bakgrunden för det, bara om du slår på det, och dina platser lämnar aldrig telefonen
 • Health Connect om du vill: färdiga pass och vägningar går dit, puls och vågens vägningar kommer tillbaka
 • En hemskärmswidget med dagens pass, och NFC-klistermärken som öppnar appen vid ditt rack
-• Den här F-Droid-versionen har standardanimationerna i 180 px inbyggda och ingen Wear OS-koppling, eftersom den kräver Google Play-tjänster
+• Den här F-Droid-versionen hämtar övningarnas GIF-filer första gången de visas och sparar dem på enheten; ingen Wear OS-koppling, eftersom den kräver Google Play-tjänster
 
-Övningsanimationer © Gym visual (gymvisual.com), licensierade för Hypertrofy.
+Övningsanimationer från ExerciseDB (exercisedb.dev). Se NOTICE.md för källan och villkoren.

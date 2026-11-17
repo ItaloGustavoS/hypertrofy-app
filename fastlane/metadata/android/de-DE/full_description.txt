@@ -1,7 +1,7 @@
-Hypertrofy ist ein Trainings-Tracker von Leuten, die selbst trainieren. Plane deine Woche, logge jeden Satz und sieh, was du wirklich gemacht hast. Kein Konto, keine Werbung, kein Abo, kein Tracking.
+Hypertrofy ist ein Trainings-Tracker von Leuten, die selbst trainieren. Plane deine Woche, logge jeden Satz und sieh, was du wirklich gemacht hast. Kein Konto, kein Abo, kein Tracking. Gratis mit einem kleinen Banner, ein einmaliger Kauf entfernt ihn dauerhaft.
 
 PLANEN
-• Über 5'600 Übungen mit animierten Demos, in 19 Sprachen
+• Über 1'500 Übungen mit animierten Demos, in 19 Sprachen
 • Vier Startpläne (Push/Pull/Legs, Ober-/Unterkörper, Ganzkörper, 5×5) oder dein eigener
 • Ein Plan pro Wochentag, oder eine Rotation (A, B, C, A …), wenn deine Woche nicht nach Kalender läuft
 • Supersätze, Aufwärmsätze, Dropsätze, Rest-Pause, Halteübungen, Wiederholungen pro Seite
@@ -28,6 +28,6 @@ AUF ANDROID
 • Gym-Erinnerung: Trag deine Gyms ein, und Hypertrofy meldet sich, wenn du reinkommst, auch wenn die App zu ist. Dafür nutzt sie deinen Standort im Hintergrund, nur wenn du es einschaltest, und deine Orte verlassen das Handy nie
 • Health Connect, wenn du willst: fertige Trainings und Wägungen gehen rein, Puls und Wägungen der Waage kommen zurück
 • Ein Widget für den Startbildschirm mit dem heutigen Plan, und NFC-Sticker, die die App direkt am Rack öffnen
-• Diese F-Droid-Version hat die Standard-Animationen mit 180 px eingebaut und keine Wear-OS-Verbindung, denn die braucht die Google-Play-Dienste
+• Diese F-Droid-Version lädt die Übungs-GIFs beim ersten Ansehen und speichert sie auf dem Gerät; keine Wear-OS-Verbindung, denn die braucht die Google-Play-Dienste
 
-Übungsanimationen © Gym visual (gymvisual.com), lizenziert für Hypertrofy.
+Übungsanimationen von ExerciseDB (exercisedb.dev). Quelle und Bedingungen in NOTICE.md.
