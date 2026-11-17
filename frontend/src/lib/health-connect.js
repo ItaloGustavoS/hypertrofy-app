@@ -25,7 +25,7 @@ export const TEXT_MAX = 1000
 const CARDIO_TYPES = {
   '3666': 'walking',                // walking on incline treadmill
   '0685': 'running', '0684': 'running', '3656': 'running',
-  '2138': 'biking_stationary', '0798': 'biking_stationary',
+  '0798': 'biking_stationary',      // stationary bike walk (the catalogue's bike entry)
   '2141': 'elliptical', '2331': 'elliptical',
   '2311': 'stair_climbing_machine',
 }

@@ -46,14 +46,14 @@ export function doorFor(day, year) {
   return DOOR_LIST[(((day - 1 + shift) % n) + n) % n]
 }
 
-/* The stretch door's routine: six gentle holds of 40 seconds a side or so, all on the floor or a
-   mat, nothing to load. Catalogue ids; the routine's name is translated when it is added. */
+/* The stretch door's routine: six gentle holds of 40 seconds a side or so, bodyweight only.
+   Catalogue ids; the routine's name is translated when it is added. */
 export const STRETCH = [
-  ['0945', 2, 40],   // child pose
-  ['1051', 2, 30],   // cat stretch
-  ['1053', 2, 40],   // kneeling hip flexor stretch
-  ['0692', 2, 40],   // seated single leg hamstring stretch
-  ['1056', 2, 40],   // lying glute stretch
+  ['0690', 2, 40],   // seated lower back stretch
+  ['0613', 2, 40],   // lying (side) quads stretch
+  ['0643', 2, 30],   // overhead triceps stretch
+  ['0669', 2, 30],   // rear deltoid stretch
+  ['0713', 2, 30],   // side neck stretch
   ['1271', 2, 30],   // chest and front of shoulder stretch
 ]
 

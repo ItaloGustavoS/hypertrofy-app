@@ -50,7 +50,6 @@ const BY_TITLE = {
   'bulgarian split squat (barbell)': '0099',
   'chest supported incline row (dumbbell)': '0327',
   'knee raise parallel bars': '0826',
-  'lat pulldown - close grip (cable)': '6392',
   'rear delt reverse fly (dumbbell)': '0380',
   'rear delt reverse fly (machine)': '0602',
   'reverse lunge (dumbbell)': '0381',
@@ -64,8 +63,6 @@ const BY_TITLE = {
   'elliptical trainer': '2141',
   'treadmill': '3666',
   'cycling': '2331',
-  'stationary bike': '2138',
-  'exercise bike': '2138',
   'stair machine': '2311',
   'stair machine (steps)': '2311',
   'jumping jack': '3220',
@@ -73,16 +70,13 @@ const BY_TITLE = {
   'battle ropes': '0128',
   'pallof press': '0979',
   'cable pallof press': '0979',
-  'face pull': '7744',
   'hack squat (machine)': '0743',
   'iso-lateral row (machine)': '0571',
   'seated cable row - bar grip': '0180',
   'reverse grip lat pulldown (cable)': '0208',
   'single arm lateral raise (cable)': '0192',
   'plate front raise': '0310',
-  'back extension (weighted hyperextension)': '5035',
   'behind the back bicep wrist curl (barbell)': '0104',
-  'butterfly (pec deck)': '1030',
   'chest fly (machine)': '0596',
   'chest fly (dumbbell)': '0308',
   'incline chest fly (dumbbell)': '0319',
@@ -99,7 +93,6 @@ const BY_TITLE = {
   'bench press (dumbbell)': '0289',
   'incline bench press (barbell)': '0047',
   'incline bench press (dumbbell)': '0314',
-  'overhead press (barbell)': '1165',
   'overhead press (dumbbell)': '0405',
   'shoulder press (machine)': '0603',
   'shoulder press (dumbbell)': '0405',
@@ -129,7 +122,6 @@ const BY_TITLE = {
   'push up': '0662',
   'push-up': '0662',
   'chest dip': '0251',
-  'plank': '0463',
   'russian twist': '0687',
   'hanging leg raise': '0472',
   'hanging knee raise': '9819',
@@ -152,45 +144,29 @@ const BY_TITLE = {
   // Checked against Hevy's own artwork: a template's thumbnail is named after the catalogue
   // animation it shows (14541201-Lever-Seated-Shoulder-Press.jpg is 1454), so these titles take
   // that entry, or the closest one where the catalogue lacks it (standing leg curls, lying neck curls).
-  'air bike': '3893',
-  'back extension (hyperextension)': '1860',
-  'band pullaparts': '4568',
-  'behind the back curl (cable)': '4838',
   'calf extension (machine)': '2315',
   'crunch': '0274',
   'ez bar biceps curl': '0447',
   'iso-lateral chest press (machine)': '0576',
   'iso-lateral high row (machine)': '0581',
-  'iso-lateral low row': '4214',
   'lat pulldown (machine)': '0579',
-  'lying neck curls': '10780',
-  'nordic hamstrings curls': '7746',
-  'romanian deadlift (smith machine)': '1597',
   'seated cable row - bar wide grip': '0218',
   'seated cable row - v grip (cable)': '2661',
   'seated overhead press (dumbbell)': '0290',
   'shoulder press (machine plates)': '0587',
-  'single arm cable row': '7564',
   'single arm tricep extension (dumbbell)': '0362',
-  'single leg extensions': '7108',
-  'single leg standing calf raise': '5052',
   'skullcrusher (dumbbell)': '0351',
-  'standing leg curls': '4347',
   'straight arm lat pulldown (cable)': '0238',
   'triceps dip': '0814',
   'triceps dip (weighted)': '1755',
   'triceps extension (cable)': '0149',
   'triceps extension (dumbbell)': '0430',
-  'triceps pressdown': '1605',
   'triceps rope pushdown': '0200',
-  'walking': '2258',
   'calf press (machine)': '0738',
   'chest dip (weighted)': '1755',
-  'chest press (band)': '3780',
   'preacher curl (dumbbell)': '0402',
   'single arm curl (cable)': '0190',
   'sissy squat (weighted)': '0851',
-  'standing calf raise (smith)': '1164',
   'triceps pushdown': '0201',
   'upright row (barbell)': '0121',
 }
@@ -241,8 +217,13 @@ async function fetchTemplates(apiKey) {
 }
 
 async function main() {
+  // The catalogue cut (docs/MEDIA_PLAN.md) removed exercises a hand-written alias may still
+  // point at: drop those aliases instead of failing, so they import as custom exercises.
   for (const [title, id] of Object.entries(BY_TITLE)) {
-    if (id && !EXIDX[id]) throw new Error(`BY_TITLE "${title}" → missing catalogue id ${id}`)
+    if (id && !EXIDX[id]) {
+      delete BY_TITLE[title]
+      console.warn(`dropped BY_TITLE "${title}" → missing catalogue id ${id}`)
+    }
   }
 
   const arg = process.argv[2]

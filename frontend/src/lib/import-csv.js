@@ -222,19 +222,19 @@ const ALIAS_EX = {
   skullcrusher: '0060', 'skull crusher': '0060', 'lying triceps extension': '0061',
   lunge: '0054', lunges: '0054', 'cable crossover': '1269', 'cable cross over': '1269',
   'goblet squat': '1760', 'dumbbell goblet squat': '1760', 'kettlebell goblet squat': '0534',
-  // Reported in issue #74: these come out of Hevy under names no word-overlap can reach, so
-  // they landed as custom exercises. The catalogue's cardio vocabulary is thin (29 of 1,324
-  // entries), so each of these is the *only* candidate rather than the best of several.
+   // Reported in issue #74: these come out of Hevy under names no word-overlap can reach, so
+   // they landed as custom exercises. The catalogue's cardio vocabulary is thin (29 of 1,324
+   // entries), so each of these is the *only* candidate rather than the best of several.
   treadmill: '3666', 'treadmill walk': '3666', 'treadmill run': '3666',
   cycling: '2331', 'cross trainer': '2331', elliptical: '2141',
-  'stationary bike': '2138', 'exercise bike': '2138', 'stepmill': '2311',
-  // The catalogue has only band Pallof presses, so a cable one resolves to the band entry:
-  // same movement, wrong equipment label, which beats leaving it uncategorised.
+  'stepmill': '2311',
+   // The catalogue has only band Pallof presses, so a cable one resolves to the band entry:
+   // same movement, wrong equipment label, which beats leaving it uncategorised.
   'pallof press': '0979', 'cable pallof press': '0979', 'vertical pallof press': '1015',
   'cable core pallof press': '0979', 'core pallof press': '0979',
-  // Hevy's own vocabulary, from a real export. Hevy writes the equipment in parentheses
-  // and uses "bicep"/"chest fly"/"reverse fly" where the dataset says "biceps"/"fly"/
-  // "reverse fly", so these are near-misses the word-bag cannot close on its own.
+   // Hevy's own vocabulary, from a real export. Hevy writes the equipment in parentheses
+   // and uses "bicep"/"chest fly"/"reverse fly" where the dataset says "biceps"/"fly"/
+   // "reverse fly", so these are near-misses the word-bag cannot close on its own.
   'bicep curl (dumbbell)': '0294', 'bicep curl (cable)': '0868', 'bicep curl (barbell)': '0031',
   'chest fly (dumbbell)': '0308', 'chest fly (machine)': '0596', 'butterfly (pec deck)': '0596',
   'incline chest fly (dumbbell)': '0319', 'cable fly crossovers': '1269',
@@ -246,36 +246,34 @@ const ALIAS_EX = {
   'single arm lateral raise (cable)': '0192', 'plate front raise': '0310',
   'back extension (weighted hyperextension)': '0573',
   'behind the back bicep wrist curl (barbell)': '0104',
-  // A face pull is a rope rear-delt row; the dataset has no entry under that name.
+   // A face pull is a rope rear-delt row; the dataset has no entry under that name.
   'face pull': '0203',
-  // More Hevy titles from a real export (906 workouts). The first group arrived as custom
-  // exercises; the second the word-bag did resolve, but to a neighbour: an alternating floor
-  // press, a side-plank clamshell, a single-leg deadlift on a bench.
-  'lu raises': '10858', 'dumbbell squeeze press': '3681', 'triceps kickback (dumbbell)': '0333',
-  'single arm lat pulldown': '1204', 'lateral band walks': '6607', 'frog pumps (dumbbell)': '3182',
+   // More Hevy titles from a real export (906 workouts). The first group arrived as custom
+   // exercises; the second the word-bag did resolve, but to a neighbour: an alternating floor
+   // press, a side-plank clamshell, a single-leg deadlift on a bench.
+  'dumbbell squeeze press': '3681', 'triceps kickback (dumbbell)': '0333',
+  'single arm lat pulldown': '1204',
   'rear delt reverse fly (cable)': '0225',
-  'single arm cross cable extension': '8614', 'bayesian curl': '2656',
-  'floor press (dumbbell)': '3668', 'clamshell': '2461',
   'single leg romanian deadlift (dumbbell)': '1757',
-  // Cardio again: the only candidates in a 29-entry cardio vocabulary.
+   // Cardio again: the only candidates in a 29-entry cardio vocabulary.
   'jumping jack': '3220', 'jumping jacks': '3220', 'battle ropes': '0128',
   'stair machine (steps)': '2311', 'stair machine': '2311',
-  // The apps added in 1.4.4 (lib/import-apps.js). Each group was checked name by name against
-  // the catalogue: a word-bag miss, or a word-bag hit on a neighbour, put right by hand.
-  // Liftosaur (github.com/astashov/liftosaur, src/models/exercise.ts): its built-in names, with
-  // the default equipment written in front the way import-apps.js matches them.
-  'bench dip': '0129', crunch: '0274', 'cable crunch': '0175', plank: '0463', 'oblique crunch': '0635',
+   // The apps added in 1.4.4 (lib/import-apps.js). Each group was checked name by name against
+   // the catalogue: a word-bag miss, or a word-bag hit on a neighbour, put right by hand.
+   // Liftosaur (github.com/astashov/liftosaur, src/models/exercise.ts): its built-in names, with
+   // the default equipment written in front the way import-apps.js matches them.
+  'bench dip': '0129', crunch: '0274', 'cable crunch': '0175', 'oblique crunch': '0635',
   'lever calf press on leg press': '1391', 'lever calf press on seated leg press': '2335',
-  'dumbbell chest press': '0289', 'dumbbell incline chest press': '0314', 'flat knee raise': '8194',
+  'dumbbell chest press': '0289', 'dumbbell incline chest press': '0314',
   'lever hip abductor': '0597', 'lever hip adductor': '0598', 'pistol squat': '1759',
-  'barbell press under': '4966', 'dumbbell reverse curl': '0429', 'dumbbell reverse grip concentration curl': '0403',
-  'single leg hip thrust': '2071', 'barbell snatch pull': '0776', 'barbell stiff leg deadlift': '1543',
-  'wide pull up': '1429', 'knee push up': '1182', 'hollow body hold': '1246', 'band shoulder pass through': '8365',
+  'dumbbell reverse curl': '0429', 'dumbbell reverse grip concentration curl': '0403',
+  'barbell snatch pull': '0776',
+  'wide pull up': '1429',
   'barbell power clean': '0648', 'ez barbell skullcrusher': '5873', 'dumbbell shoulder press': '0405',
   'dumbbell triceps extension': '0430', 'dumbbell tricep extension': '0430', 'barbell behind the neck press': '0788',
   'elliptical machine': '2141',
-  // Fitbod (its names as the Fitbod-to-Hevy converter github.com/sinan92/fitbod-to-hevy-converter maps them).
-  'single arm dumbbell tricep extension': '4343', 'vertical leg raise': '0826', 'air squats': '3948', 'bodyweight squat': '3948',
+   // Fitbod (its names as the Fitbod-to-Hevy converter github.com/sinan92/fitbod-to-hevy-converter maps them).
+  'single arm dumbbell tricep extension': '4343', 'vertical leg raise': '0826',
   'barbell shoulder press': '0091', 'seated barbell shoulder press': '0091', 'smith machine overhead shoulder press': '0766',
   'mid cable crossover fly': '1269', 'cable crossover fly': '1269', 'cable row': '0180', 'machine row': '1350',
   'hammerstrength iso row': '0571', 'machine fly': '0596', 'machine rear delt fly': '0602', 'machine leg press': '0739',
@@ -283,7 +281,7 @@ const ALIAS_EX = {
   'machine bench press': '0577', 'triceps pressdown': '0241', 'straight-arm pulldown': '0238',
   'dumbbell shoulder raise': '0334', 'side lateral raise': '0334', 'dumbbell bent over reverse fly': '0383',
   'lying hamstrings curl': '0586', dip: '0814', crunches: '0274', 'hammer curl': '0313', 'hammer curls': '0313',
-  // JEFIT (its names as the JEFIT-to-Hevy converter github.com/sondrealf/JeFit2Hevy maps them).
+   // JEFIT (its names as the JEFIT-to-Hevy converter github.com/sondrealf/JeFit2Hevy maps them).
   'back hyperextension': '0573', 'hyperextensions - back extensions': '0573',
   'barbell ab rollout on knees': '0857', 'barbell ab rollout (kneeling)': '0857', 'barbell deep squat': '0043',
   'barbell tricep extension (supine)': '0060', 'cable mid chest crossover': '1269', 'cable mid chest crossovers': '1269',
