@@ -15,10 +15,9 @@ since Google Play does not allow an app to update itself. Same application id, s
 phone can move from the APK to Play without losing its data. The page asks which build it runs in
 (`ChannelPlugin`, `lib/channel.js`) and shows the update row only in the APK.
 
-**Why the release machine:** the full-quality exercise animations may only ever be inside the
-app package itself (Gym visual licence, Part B), never in a repository, a CI run or a file anyone
-can download. So the store packages are put together and signed locally, like the APK. CI only
-ever sees the repo's 180 px media.
+**Why the release machine:** the store packages are put together and signed locally, like the
+APK, with the release keystore. CI never sees a signing key. Exercise media is no longer bundled:
+the app fetches ExerciseDB v1 GIFs and caches them on the device.
 
 ## Requirements the builds meet
 
@@ -168,7 +167,7 @@ system's Health Connect, which is part of Android 14 and later.
 and Maven Central's repositories):
 
 ```sh
-cd frontend && npm ci && npm run build:mobile          # 180 px media from catalogue/media, cap sync
+cd frontend && npm ci && npm run build:mobile          # web bundle + cap sync
 cd android && ./gradlew :app:assembleFdroidRelease     # unsigned APK, about 210 MB
 ../../scripts/android/check-fdroid.sh                  # nothing non-free in classpath, manifest, plugin list
 ```
@@ -182,9 +181,9 @@ ours (reproducible builds, `Binaries:` in the recipe). With F-Droid's key the ap
 updated from or to the GitHub APK or Google Play without uninstalling (and losing local data
 unless exported first).
 
-**Media.** Only the 180 px media in `catalogue/media` go in, the same files as the repository
-(Gym visual licence, Part A). The F-Droid listing marks the app `NonFreeAssets`, since the media
-are not under a free licence (NOTICE.md).
+**Media.** No exercise media is bundled. The app fetches ExerciseDB v1 GIFs on first view and
+keeps them on the device, so the APK carries no third-party media and needs no `NonFreeAssets`
+flag for it. `NOTICE.md` records the source and the terms still to verify.
 
 **Listing** texts and images: `fastlane/metadata/android/<locale>/` (F-Droid and IzzyOnDroid read
 it from the tagged source). The changelog for a version is `changelogs/<versionCode>.txt`.

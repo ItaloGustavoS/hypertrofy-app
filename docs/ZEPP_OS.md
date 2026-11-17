@@ -169,8 +169,8 @@ assigns (below).
 3. Privacy: heart rate is read on the watch and goes only to the user's own Hypertrofy server; no data
    to the developer or any third party. Say that in the privacy form, with the link to the
    project's privacy text.
-4. Licence: the code is AGPL; no exercise media is in the package (text and numbers only), so the
-   Gym visual licence does not apply to it.
+4. Licence: the code is AGPL; no exercise media is in the package (text and numbers only), so no
+   media licence applies to it.
 5. Submit for review. The review installs it on real watches; a reviewer without an Hypertrofy server
    needs one to see more than "Pair me first", so give them a demo server address and a fresh
    pairing code (codes last ten minutes: give them an account to sign in with instead, and say where

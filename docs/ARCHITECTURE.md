@@ -148,21 +148,12 @@ when the two disagree.
 
 ## Exercise media
 
-The animations are licensed from Gym visual and not covered by the AGPL (NOTICE.md). The licence
-decides where each size may go, and the build follows it:
-
-```mermaid
-flowchart LR
-  C["catalogue/media<br/>180 px stills + clips"] --> WEB["web image, demo, self-hosted"]
-  C --> CI["CI builds (iOS simulator, tests)"]
-  Q["private quality folders<br/>240 to 1080 px<br/>(release machine only)"] --> APK["APK: built in"]
-  Q --> AAB["Google Play: built in + Play asset packs"]
-  Q --> IPA["App Store: built in + Apple-hosted packs"]
-```
-
-Nothing larger than 180 px is ever committed, served by a server, or uploaded to CI. The store
-packages are put together and signed on the release machine (`scripts/android/build-release.sh`,
-`scripts/ios/finish-ipa.sh`).
+Exercise animations are 180p GIFs from ExerciseDB v1 (AscendAPI), not bundled media. The app maps
+each of the 1,597 catalogue exercises to its `gifUrl` (`frontend/src/lib/exercise-media-map.json`)
+and fetches it on first view, keeping the blob in Cache Storage
+(`hypertrofy-exercise-media-v1`). `catalogue/media/` no longer exists: the GymVisual stills and
+clips are gone, and so are the animation packs. `NOTICE.md` records the source and the terms that
+still need verifying before a store release.
 
 ## Native extras (iPhone)
 

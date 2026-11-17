@@ -41,9 +41,9 @@ cd api && npm test
 - **Match the style.** Small components, clear names, comments only where the *why* isn't obvious.
   State lives in the Zustand store (`src/store`), pure helpers in `src/lib`. There is no linter or
   formatter config, so follow the surrounding code.
-- **Don't commit** `data/`; it is gitignored. Don't add or replace anything in
-  `catalogue/media/`: the stills and animations are licensed from Gym visual, 180 px at most, and
-  not open to contributions (see [NOTICE.md](NOTICE.md)).
+- **Don't commit** `data/`; it is gitignored. The app bundles no exercise media: demos come from
+  ExerciseDB v1 and are cached on the device, so there is no `catalogue/media/` to edit (see
+  [NOTICE.md](NOTICE.md)).
 - **Exercise fixes and translations go through `catalogue/`**, one JSON file per exercise and one
   per language. [catalogue/README.md](catalogue/README.md) explains the fields and how the app is
   built from them; don't edit the generated `frontend/src/lib/exercises-data.js` by hand.

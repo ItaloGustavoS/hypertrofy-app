@@ -100,10 +100,10 @@ an exercise and something measured. See [DATA_IMPORTS.md](DATA_IMPORTS.md).
 
 ### Can I reuse the exercise images in my own project?
 
-No. They are © Aliaksandr Makatserchyk, Gym visual, licensed for use in Hypertrofy only and not covered
-by Hypertrofy's license. Anything outside Hypertrofy needs your own licence from
-[gymvisual.com](https://gymvisual.com/). Details in [NOTICE.md](../NOTICE.md). The exercise text in
-[catalogue/](../catalogue/README.md) is a different story: that's Hypertrofy's, and fixes are welcome.
+No. The app fetches exercise GIFs from ExerciseDB and caches them on the device; those terms are not
+Hypertrofy's to grant. See [NOTICE.md](../NOTICE.md) for the source and its terms. The exercise text
+in [catalogue/](../catalogue/README.md) is a different story: that's Hypertrofy's, and fixes are
+welcome.
 
 ### Where do I ask something that isn't here?
 

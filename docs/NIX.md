@@ -118,12 +118,10 @@ The URL contract the frontend expects ([`frontend/src/lib/exercises.js`](../fron
 | --- | --- | --- |
 | `/` | `web.root` | SPA — any unknown path falls back to `/index.html` |
 | `/api/*` | `opengym-api` (the `apiPort` you configured) | reverse proxy, keep `/api` on the URL |
-| `/exercise-media/*` | `web.root` | plain static files; nothing extra to map |
 
-The exercise media come from `catalogue/media` in the source tree, copied next to the app at build
-time by `scripts/catalogue/stage-media.mjs` (the same step the demo and app builds use). Nothing is
-downloaded, at build time or at runtime. They are licensed from Gym visual for Hypertrofy only and
-stay at 180 px; don't publish that directory on its own (see [`NOTICE.md`](../NOTICE.md)).
+Exercise media is not served from the server: the app fetches ExerciseDB v1 GIFs on first view
+and caches them in the browser (see [`NOTICE.md`](../NOTICE.md) for the source and its terms).
+Nothing is staged from the source tree, at build time or at runtime.
 
 ### Caddy
 
@@ -441,7 +439,7 @@ routine update — see the passkey caveat in §4.
 | Service won't start | `journalctl -u opengym-api -xe`. Common: custom `dataDir` not created/owned correctly (the tmpfiles rule should handle it; check `systemd-tmpfiles --create`). |
 | Eval fails: `environment and environmentFile are mutually exclusive` | Pick one. Set extra vars either as a Nix attrset (`environment`) or in a file (`environmentFile`), never both. |
 | You expected a binary cache | The flake builds from source; override `services.opengym.package` (or `packages.*` via a cache/overlay) to substitute binaries. |
-| Exercise media licensing | © Aliaksandr Makatserchyk, Gym visual, licensed for use in Hypertrofy only and not covered by the AGPL. They ship at 180 px; don't re-host them on their own. See [`NOTICE.md`](../NOTICE.md) |
+| Exercise media | GIFs come from ExerciseDB and are cached by the browser. See [`NOTICE.md`](../NOTICE.md) for the source and the terms still to verify. |
 | `nix run .#opengym` serves a blank site | The app now serves frontend + API + media behind a local Caddy. If something's off, check the log line it prints (ports/`DATA_DIR`) and that nothing else already binds `:3000`/`:8080` — pass `OPENGYM_API_PORT`/`OPENGYM_WEB_PORT` to move them. |
 
 ## See also

@@ -1076,7 +1076,7 @@ browser (see section 2).
 | "This server only takes changes made at ...", or `refused cross-origin` in the API log | `ORIGIN` is not the address in your browser. The log line names the `ORIGIN=` and `RP_ID=` to set; then `docker compose up -d`. See [On a NAS](#on-a-nas-synology-qnap-unraid-truenas). |
 | The sign-in screen accepts nothing, only "Continue without account" works | The `api` service is not running or `web` cannot reach it (`BACKEND`, `PORT`). Without it you are a guest and nothing is saved on the server. |
 | "verification failed" on login | `RP_ID`/`ORIGIN` don't match the URL in the address bar. See the section above — start with what the server logged on startup. |
-| Exercise pictures missing | You are on an image older than v1.4.0 or a custom build: `docker compose pull && docker compose up -d`. A source build needs `catalogue/media/` checked out. |
+| Exercise pictures missing | Exercise GIFs come from ExerciseDB and are cached by the browser on first view. Before that, or offline, the exercise shows the neutral placeholder: open it once online. |
 | Port 8080 already used | Set `WEB_PORT=9090` in `.env` (and update `ORIGIN` for local testing). |
 | A photo or video will not upload ("refused as too large", or it stops partway) | A proxy in front caps the body or cuts the request off: see [Photos and videos](#photos-and-videos-of-custom-exercises) for the body size and timeouts it needs. |
 | No "Reminders" page in Settings | Requires a signed-in profile and HTTPS (or `localhost`) — guest mode and plain HTTP over LAN can't subscribe. |
