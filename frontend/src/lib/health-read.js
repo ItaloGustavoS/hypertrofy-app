@@ -23,7 +23,9 @@ export const LB_PER_KG = 2.2046226218
 const KG_MIN = 20
 const KG_MAX = 400
 // Packages and bundle ids that are Hypertrofy: the app, its test build, the Apple Watch app.
-const OWN = /^ch\.duartesantos\.opengym(\.|$)/
+// The bundle id the app ships as, and the one it shipped as before the rebrand: records written by
+// either are the app's own and must never be read back.
+const OWN = /^(ch\.duartesantos\.opengym|com\.hypertrofy\.app)(\.|$)/
 
 /** Whether a record in the hub is one Hypertrofy wrote itself (by its client id or by its origin). */
 export function isOwnRecord(rec) {
